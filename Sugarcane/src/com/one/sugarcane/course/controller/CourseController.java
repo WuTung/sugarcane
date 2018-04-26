@@ -43,7 +43,7 @@ public class CourseController {
 		session.setAttribute("coursePageIndex",pageIndex);
 		session.setAttribute("coursePageCount",pageCount);
 		session.setAttribute("adminCourseList", courseList);
-		//response.sendRedirect("/Sugarcane/organization/manageCourse.jsp");
+		response.sendRedirect("/Sugarcane/organization/manageCourse.jsp");
 		
 	}
 	
