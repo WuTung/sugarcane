@@ -20,23 +20,30 @@ import com.one.sugarcane.entity.Course;
 public class CourseController {
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
+	/**
+	 * 分页查询机构所有课程
+	 * @param coursePageIndex
+	 * @param response
+	 * @param session
+	 * @throws IOException
+	 */
 	@RequestMapping("/listCourse")
 	public void ListCourse(@RequestParam("coursePageIndex")Integer coursePageIndex,
 			HttpServletResponse response,HttpSession session) throws IOException {
 		List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
 		//分页
 		int pageCount=this.courseServiceImpl.getPageCount();	
-		int PageIndex=1;	
-		 if(0==coursePageIndex|| coursePageIndex<0) {
+		int pageIndex=1;	
+		 if(0==pageIndex|| pageIndex<0) {
 			 session.setAttribute("coursePageIndex",1);
 			 
 		 }else {
 			 session.setAttribute("coursePageIndex",coursePageIndex);
 			 	}		
-		session.setAttribute("coursePageIndex",PageIndex);
+		session.setAttribute("coursePageIndex",pageIndex);
 		session.setAttribute("coursePageCount",pageCount);
 		session.setAttribute("adminCourseList", courseList);
-		response.sendRedirect("/Sugarcane/organization/manageCourse.jsp");
+		//response.sendRedirect("/Sugarcane/organization/manageCourse.jsp");
 		
 	}
 	
