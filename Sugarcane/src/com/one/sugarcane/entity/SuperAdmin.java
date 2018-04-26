@@ -34,6 +34,7 @@ public class SuperAdmin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public SuperAdmin() {}
 	public SuperAdmin(String adminName, String password) {
 		super();
 		this.adminName = adminName;

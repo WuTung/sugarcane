@@ -39,6 +39,7 @@ public class Power {
 	public void setPart(Set<Part> part) {
 		this.part = part;
 	}
+	public Power() {}
 	public Power(String powerName, Set<Part> part) {
 		super();
 		this.powerName = powerName;

@@ -42,6 +42,7 @@ public class Address {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public Address() {}
 	public Address(String province, String area, String city) {
 		super();
 		this.province = province;

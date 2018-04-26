@@ -30,7 +30,7 @@
      <div id="list">
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;管理简介</a></div>
      <div class="a1 lefta"><a href="jgglStyle.html" class="leftb">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta selecteda"><a href="course/listCourse?coursePageIndex=1"class="selecteda leftb">○&nbsp;管理课程</a></div>
+     <div class="a1 lefta selecteda"><a href="../course/listCourse?coursePageIndex=1"class="selecteda leftb">○&nbsp;管理课程</a></div>
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
 
      </div><!--list-->

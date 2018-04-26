@@ -62,6 +62,7 @@ public class Evaluate {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+	public Evaluate() {}
 	public Evaluate(String content, String evaluateImg, int render, UserLogin userLogin, Course course) {
 		super();
 		this.content = content;

@@ -4,8 +4,10 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import com.one.sugarcane.entity.Course;
+import org.springframework.stereotype.Repository;
 
+import com.one.sugarcane.entity.Course;
+@Repository
 public class CourseDaoImpl{
 	@Resource
 	private SessionFactory sessionFactory;

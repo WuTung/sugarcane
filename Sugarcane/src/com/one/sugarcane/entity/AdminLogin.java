@@ -47,6 +47,7 @@ public class AdminLogin {
 	public void setSet(Set<Part> set) {
 		this.set = set;
 	}
+	public AdminLogin() {}
 	public AdminLogin(String adminName, String password, Set<Part> set) {
 		super();
 		this.adminName = adminName;

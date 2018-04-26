@@ -44,6 +44,7 @@ public class UserLoginLog {
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
+	public UserLoginLog() {}
 	public UserLoginLog(String time, String iP, UserLogin userLogin) {
 		super();
 		this.time = time;
