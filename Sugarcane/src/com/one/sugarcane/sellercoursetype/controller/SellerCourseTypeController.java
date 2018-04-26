@@ -1,3 +1,8 @@
+/**
+ * 
+ * @auther 王孜润
+ * @date 2018.4.26
+ */
 package com.one.sugarcane.sellercoursetype.controller;
 
 import javax.annotation.Resource;
