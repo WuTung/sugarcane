@@ -28,6 +28,7 @@ public class Course {
 	private SellerCourseType sellerCourseType;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
+	private String teacher;
 	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();
 	@Id
@@ -119,6 +120,13 @@ public class Course {
 	}
 	public void setUserCollections(Set<UserCollections> userCollections) {
 		this.userCollections = userCollections;
+	}
+	
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
 	public Course(String courseName, String courseBrief, double price, int phoneNumber, String introductionImg1,
 			String introductionImg2, String introductionImg3, SellerCourseType sellerCourseType,
