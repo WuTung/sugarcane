@@ -58,12 +58,14 @@
         <td class="td">联系方式</td>
      	<td class="td">课程所属分类</td>
      	<td class="td">是否删除</td>
-     	<td class="td">是否修改</td></tr>
+     	<td class="td">是否修改</td>
+     	</tr>
+     <c:forEach items="${courseList}" var="course" varStatus="i">
      	<tr>
-     	<td class="td">钢琴</td>
-        <td class="td"><input type="text" value="100" /></td>
-        <td class="td"><input type="text" value="张珊" /></td>
-        <td class="td"><input type="text" value="1938472819" /></td>
+     	<td class="td">${course.courseName}</td>
+        <td class="td"><input type="text" value="${course.price }" /></td>
+        <td class="td"><input type="text" value="${course.teacher }" /></td>
+        <td class="td"><input type="text" value="${course.phoneNumber }" /></td>
      	<td class="td">
      		 <select>
         	<option >所属类型</option>
@@ -72,81 +74,9 @@
         </select>
      	</td>
      	<td class="td"><a href="#"> 修改</a></td>
-     	<td class="td"><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td class="td">芭蕾</td>
-        <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td">
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        <td class="td"><a href="#"> 修改</a></td>
-        <td class="td"><a href="#"> 删除</a></td></tr>
-     	<tr>
-     	<td class="td">吉他</td>
-                <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-     	<td class="td">
-     		 <select>
-        	<option >所属类型</option>
-        	<option value="音乐">音乐</option>
-        	<option value="舞蹈">舞蹈</option>
-        </select>
-     	</td>
-
-     	<td class="td"><a href="#"> 修改</a></td>
-     	<td class="td"><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td class="td">吉他</td>
-                <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td">
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        
-        <td class="td"><a href="#"> 修改</a></td>
-        <td class="td"><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td class="td">吉他</td>
-                <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td">
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        
-        <td class="td"><a href="#"> 修改</a></td>
-        <td class="td"><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td class="td">吉他</td>
-                <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td"><input type="text"/></td>
-        <td class="td">
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        
-        <td class="td"><a href="#"> 修改</a></td>
-        <td class="td"><a href="#"> 删除</a></td></tr>
+     	<td class="td"><a href="#"> 删除</a></td>
+       </tr>
+       </c:forEach>
      </table>
      </form>
 
