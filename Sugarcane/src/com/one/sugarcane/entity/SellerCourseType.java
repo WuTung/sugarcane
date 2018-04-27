@@ -48,7 +48,6 @@ public class SellerCourseType {
 	public void setCourse(Set<Course> course) {
 		this.course = course;
 	}
-	public SellerCourseType() {}
 	public SellerCourseType(String courseTypeName2, int hidden, Set<Course> course) {
 		super();
 		this.courseTypeName2 = courseTypeName2;

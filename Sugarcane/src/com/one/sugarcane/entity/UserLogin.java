@@ -87,7 +87,6 @@ public class UserLogin {
 	public void setUserLoginLog(Set<UserLoginLog> userLoginLog) {
 		this.userLoginLog = userLoginLog;
 	}
-	public UserLogin() {}
 	public UserLogin(String userEmail, String password, String lastTime, String lastIP, Set<Evaluate> evaluate,
 			Set<UserCollections> userCollections, UserInfo userInfo, Set<UserLoginLog> userLoginLog) {
 		super();
