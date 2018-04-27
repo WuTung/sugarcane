@@ -25,7 +25,7 @@ public class Course {
 	private String introductionImg1;
 	private String introductionImg2;
 	private String introductionImg3;
-               private String teacher;
+        private String teacher;
 	private SellerCourseType sellerCourseType;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
