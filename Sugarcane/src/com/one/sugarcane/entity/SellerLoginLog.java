@@ -45,7 +45,6 @@ public class SellerLoginLog {
 	public void setSellerLogin(SellerLogin sellerLogin) {
 		this.sellerLogin = sellerLogin;
 	}
-	public SellerLoginLog() {}
 	public SellerLoginLog(String time, String iP, SellerLogin sellerLogin) {
 		super();
 		this.time = time;

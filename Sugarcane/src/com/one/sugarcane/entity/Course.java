@@ -1,5 +1,5 @@
 package com.one.sugarcane.entity;
- 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,14 +21,14 @@ public class Course {
 	private String courseName;
 	private String courseBrief;
 	private double price;
-	private String phoneNumber;
+	private int phoneNumber;
 	private String introductionImg1;
 	private String introductionImg2;
 	private String introductionImg3;
+        private String teacher;
 	private SellerCourseType sellerCourseType;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
-	private String teacher;
 	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();
 	@Id
@@ -58,10 +58,10 @@ public class Course {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public String getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getIntroductionImg1() {
@@ -121,15 +121,7 @@ public class Course {
 	public void setUserCollections(Set<UserCollections> userCollections) {
 		this.userCollections = userCollections;
 	}
-	
-	public String getTeacher() {
-		return teacher;
-	}
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
-	}
-	public Course() {}
-	public Course(String courseName, String courseBrief, double price, String phoneNumber, String introductionImg1,
+	public Course(String courseName, String courseBrief, double price, int phoneNumber, String introductionImg1,
 			String introductionImg2, String introductionImg3, SellerCourseType sellerCourseType,
 			PublicCourseType publicCourseType, SellerLogin sellerLogin, Set<Evaluate> evaluate,
 			Set<UserCollections> userCollections) {
