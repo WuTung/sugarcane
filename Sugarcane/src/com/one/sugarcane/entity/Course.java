@@ -25,7 +25,7 @@ public class Course {
 	private String introductionImg1;
 	private String introductionImg2;
 	private String introductionImg3;
-        private String teacher;
+    private String teacher;
 	private SellerCourseType sellerCourseType;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
@@ -39,6 +39,13 @@ public class Course {
 	}
 	public void setCourseID(Integer courseID) {
 		this.courseID = courseID;
+	}
+	
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
 	public String getCourseName() {
 		return courseName;
@@ -121,8 +128,9 @@ public class Course {
 	public void setUserCollections(Set<UserCollections> userCollections) {
 		this.userCollections = userCollections;
 	}
+	
 	public Course(String courseName, String courseBrief, double price, int phoneNumber, String introductionImg1,
-			String introductionImg2, String introductionImg3, SellerCourseType sellerCourseType,
+			String introductionImg2, String introductionImg3, String teacher, SellerCourseType sellerCourseType,
 			PublicCourseType publicCourseType, SellerLogin sellerLogin, Set<Evaluate> evaluate,
 			Set<UserCollections> userCollections) {
 		super();
@@ -133,6 +141,7 @@ public class Course {
 		this.introductionImg1 = introductionImg1;
 		this.introductionImg2 = introductionImg2;
 		this.introductionImg3 = introductionImg3;
+		this.teacher = teacher;
 		this.sellerCourseType = sellerCourseType;
 		this.publicCourseType = publicCourseType;
 		this.sellerLogin = sellerLogin;
