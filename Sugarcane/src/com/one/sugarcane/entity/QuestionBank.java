@@ -64,6 +64,7 @@ public class QuestionBank {
 	public void setPublicCourseType(PublicCourseType publicCourseType) {
 		this.publicCourseType = publicCourseType;
 	}
+	public QuestionBank() {}
 	public QuestionBank(String questionStem, String options, String answer, Set<GradeCondition> gradeConditon,
 			PublicCourseType publicCourseType) {
 		super();
@@ -72,9 +73,6 @@ public class QuestionBank {
 		this.answer = answer;
 		this.gradeConditon = gradeConditon;
 		this.publicCourseType = publicCourseType;
-	}
-	public QuestionBank() {
-		
 	}
 	
 }

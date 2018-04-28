@@ -53,15 +53,13 @@ public class GradeCondition {
 	public void setQuestionBank(QuestionBank questionBank) {
 		this.questionBank = questionBank;
 	}
+	public GradeCondition() {}
 	public GradeCondition(String answer, String correctAnswer, int questionGrade, QuestionBank questionBank) {
 		super();
 		this.answer = answer;
 		this.correctAnswer = correctAnswer;
 		this.questionGrade = questionGrade;
 		this.questionBank = questionBank;
-	}
-	public GradeCondition() {
-		
 	}
 	
 	

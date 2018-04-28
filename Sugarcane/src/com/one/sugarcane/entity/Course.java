@@ -1,5 +1,5 @@
 package com.one.sugarcane.entity;
-
+ 
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,14 +21,14 @@ public class Course {
 	private String courseName;
 	private String courseBrief;
 	private double price;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String introductionImg1;
 	private String introductionImg2;
 	private String introductionImg3;
-    private String teacher;
 	private SellerCourseType sellerCourseType;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
+	private String teacher;
 	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();
 	@Id
@@ -39,13 +39,6 @@ public class Course {
 	}
 	public void setCourseID(Integer courseID) {
 		this.courseID = courseID;
-	}
-	
-	public String getTeacher() {
-		return teacher;
-	}
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
 	}
 	public String getCourseName() {
 		return courseName;
@@ -65,10 +58,10 @@ public class Course {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getIntroductionImg1() {
@@ -129,8 +122,15 @@ public class Course {
 		this.userCollections = userCollections;
 	}
 	
-	public Course(String courseName, String courseBrief, double price, int phoneNumber, String introductionImg1,
-			String introductionImg2, String introductionImg3, String teacher, SellerCourseType sellerCourseType,
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
+	public Course() {}
+	public Course(String courseName, String courseBrief, double price, String phoneNumber, String introductionImg1,
+			String introductionImg2, String introductionImg3, SellerCourseType sellerCourseType,
 			PublicCourseType publicCourseType, SellerLogin sellerLogin, Set<Evaluate> evaluate,
 			Set<UserCollections> userCollections) {
 		super();
@@ -141,15 +141,11 @@ public class Course {
 		this.introductionImg1 = introductionImg1;
 		this.introductionImg2 = introductionImg2;
 		this.introductionImg3 = introductionImg3;
-		this.teacher = teacher;
 		this.sellerCourseType = sellerCourseType;
 		this.publicCourseType = publicCourseType;
 		this.sellerLogin = sellerLogin;
 		this.evaluate = evaluate;
 		this.userCollections = userCollections;
-	}
-	public Course() {
-		
 	}
 	
 	

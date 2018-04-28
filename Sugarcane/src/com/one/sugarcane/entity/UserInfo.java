@@ -104,6 +104,7 @@ public class UserInfo {
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
+	public UserInfo() {}
 	public UserInfo(String userName, String userEmail, int userGender, String userEducation, int userPhoneNumber,
 			String birthday, String address_province, String address_city, String address_area,
 			Set<GradeLevel> gradeLevel, UserLogin userLogin) {
@@ -119,9 +120,6 @@ public class UserInfo {
 		this.address_area = address_area;
 		this.gradeLevel = gradeLevel;
 		this.userLogin = userLogin;
-	}
-	public UserInfo() {
-		
 	}
 	
 }
