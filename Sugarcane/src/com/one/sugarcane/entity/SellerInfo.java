@@ -16,7 +16,7 @@ public class SellerInfo {
 	private String sellerEmail;
 	private int sellerPhoneNumber;
 	private String brief;
-	private int numberOfEmployees;
+	private String numberOfEmployees;
 	private String educationBureauApproved;
 	private String proofOfHouse;
 	private String fireSafetyCertificate;
@@ -60,10 +60,11 @@ public class SellerInfo {
 	public void setBrief(String brief) {
 		this.brief = brief;
 	}
-	public int getNumberOfEmployees() {
+
+	public String getNumberOfEmployees() {
 		return numberOfEmployees;
 	}
-	public void setNumberOfEmployees(int numberOfEmployees) {
+	public void setNumberOfEmployees(String numberOfEmployees) {
 		this.numberOfEmployees = numberOfEmployees;
 	}
 	public String getEducationBureauApproved() {
@@ -128,10 +129,10 @@ public class SellerInfo {
 		this.sellerLogin = sellerLogin;
 	}
 	public SellerInfo() {}
-	public SellerInfo(String sellerName, String sellerEmail, int sellerPhoneNumber, String brief, int numberOfEmployees,
-			String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate, String businessLisense,
-			String address_province, String address_city, String address_area, String address_detail, int qualified,
-			SellerLogin sellerLogin) {
+	public SellerInfo(String sellerName, String sellerEmail, int sellerPhoneNumber, String brief,
+			String numberOfEmployees, String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate,
+			String businessLisense, String address_province, String address_city, String address_area,
+			String address_detail, int qualified, SellerLogin sellerLogin) {
 		super();
 		this.sellerName = sellerName;
 		this.sellerEmail = sellerEmail;
@@ -149,5 +150,4 @@ public class SellerInfo {
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
 	}
-	
 }
