@@ -129,11 +129,12 @@ public class Course {
 		this.teacher = teacher;
 	}
 	public Course() {}
-	public Course(String courseName, String courseBrief, double price, String phoneNumber, String introductionImg1,
-			String introductionImg2, String introductionImg3, SellerCourseType sellerCourseType,
-			PublicCourseType publicCourseType, SellerLogin sellerLogin, Set<Evaluate> evaluate,
-			Set<UserCollections> userCollections) {
+	public Course(Integer courseID, String courseName, String courseBrief, double price, String phoneNumber,
+			String introductionImg1, String introductionImg2, String introductionImg3,
+			SellerCourseType sellerCourseType, PublicCourseType publicCourseType, SellerLogin sellerLogin,
+			String teacher, Set<Evaluate> evaluate, Set<UserCollections> userCollections) {
 		super();
+		this.courseID = courseID;
 		this.courseName = courseName;
 		this.courseBrief = courseBrief;
 		this.price = price;
@@ -144,6 +145,7 @@ public class Course {
 		this.sellerCourseType = sellerCourseType;
 		this.publicCourseType = publicCourseType;
 		this.sellerLogin = sellerLogin;
+		this.teacher = teacher;
 		this.evaluate = evaluate;
 		this.userCollections = userCollections;
 	}
