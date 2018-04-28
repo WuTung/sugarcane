@@ -54,15 +54,13 @@ public class PublicCourseType {
 	public void setQuestionBank(Set<QuestionBank> questionBank) {
 		this.questionBank = questionBank;
 	}
+	public PublicCourseType() {}
 	public PublicCourseType(String publicTypeName, int hidden, Set<Course> course, Set<QuestionBank> questionBank) {
 		super();
 		this.publicTypeName = publicTypeName;
 		this.hidden = hidden;
 		this.course = course;
 		this.questionBank = questionBank;
-	}
-	public PublicCourseType() {
-		
 	}
 	
 	

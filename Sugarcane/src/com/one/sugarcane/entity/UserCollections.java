@@ -67,6 +67,7 @@ public class UserCollections {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+	public UserCollections() {}
 	public UserCollections(String collectTime, int collecting, int collected, int collectionCount, UserLogin userLogin,
 			Course course) {
 		super();
@@ -76,9 +77,6 @@ public class UserCollections {
 		this.collectionCount = collectionCount;
 		this.userLogin = userLogin;
 		this.course = course;
-	}
-	public UserCollections() {
-		
 	}
 	
 }

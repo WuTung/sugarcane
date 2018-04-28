@@ -1,3 +1,62 @@
+<<<<<<< HEAD
+.button {
+  display: inline-block;
+  border-radius: 8px;
+  background-color:#9ACD32;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  width: 80px;
+  height: 40px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+  vertical-align:middle
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+#login{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 
+              0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 22px;background-color:white;
+  height:300px;width:400px;float:left;
+  border-right:1px solid #9ACD32;
+  margin-top:150px;
+  margin-bottom:150px;
+  margin-right:30px;
+  position: relative;
+  opacity: 1;
+}
+#cfoot{
+  margin:30px;
+  /*padding-left:90px;*/
+  text-decoration: none;
+=======
 #loginheader{
   position: relative;
   height: 30%;
@@ -67,6 +126,7 @@
 #cfoot{
   margin:3%;
   padding-bottom: 3%;
+>>>>>>> branch 'master' of https://github.com/WuTung/sugarcane
   text-align: center;
 }
 

@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class SellerInfo {
 	private Integer sellerID;
 	private String sellerName;
-	private String sellerEmain;
+	private String sellerEmail;
 	private int sellerPhoneNumber;
 	private String brief;
 	private int numberOfEmployees;
@@ -42,11 +42,11 @@ public class SellerInfo {
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
 	}
-	public String getSellerEmain() {
-		return sellerEmain;
+	public String getSellerEmail() {
+		return sellerEmail;
 	}
-	public void setSellerEmain(String sellerEmain) {
-		this.sellerEmain = sellerEmain;
+	public void setSellerEmail(String sellerEmail) {
+		this.sellerEmail= sellerEmail;
 	}
 	public int getSellerPhoneNumber() {
 		return sellerPhoneNumber;
@@ -127,13 +127,14 @@ public class SellerInfo {
 	public void setSellerLogin(SellerLogin sellerLogin) {
 		this.sellerLogin = sellerLogin;
 	}
-	public SellerInfo(String sellerName, String sellerEmain, int sellerPhoneNumber, String brief, int numberOfEmployees,
+	public SellerInfo() {}
+	public SellerInfo(String sellerName, String sellerEmail, int sellerPhoneNumber, String brief, int numberOfEmployees,
 			String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate, String businessLisense,
 			String address_province, String address_city, String address_area, String address_detail, int qualified,
 			SellerLogin sellerLogin) {
 		super();
 		this.sellerName = sellerName;
-		this.sellerEmain = sellerEmain;
+		this.sellerEmail = sellerEmail;
 		this.sellerPhoneNumber = sellerPhoneNumber;
 		this.brief = brief;
 		this.numberOfEmployees = numberOfEmployees;
@@ -147,9 +148,6 @@ public class SellerInfo {
 		this.address_detail = address_detail;
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
-	}
-	public SellerInfo() {
-		
 	}
 	
 }

@@ -82,6 +82,7 @@ public class SellerLogin {
 	public void setSellerLoginLog(Set<SellerLoginLog> sellerLoginLog) {
 		this.sellerLoginLog = sellerLoginLog;
 	}
+	public SellerLogin() {}
 	public SellerLogin(String sellerLoginName, String password, String lastTime, String lastIP, Set<Course> course,
 			SellerInfo sellerInfo, Set<SellerLoginLog> sellerLoginLog) {
 		super();
@@ -92,9 +93,6 @@ public class SellerLogin {
 		this.course = course;
 		this.sellerInfo = sellerInfo;
 		this.sellerLoginLog = sellerLoginLog;
-	}
-	public SellerLogin() {
-		
 	}
 	
 	

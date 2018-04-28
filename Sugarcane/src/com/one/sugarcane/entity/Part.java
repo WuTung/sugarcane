@@ -59,15 +59,13 @@ public class Part {
 	public void setPower(Set<Power> power) {
 		this.power = power;
 	}
+	public Part() {}
 	public Part(String roleName, int have, AdminLogin adminLogin, Set<Power> power) {
 		super();
 		this.roleName = roleName;
 		this.have = have;
 		this.adminLogin = adminLogin;
 		this.power = power;
-	}
-	public Part() {
-		
 	}
 	
 }

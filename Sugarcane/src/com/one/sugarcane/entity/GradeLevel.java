@@ -52,15 +52,13 @@ public class GradeLevel {
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
 	}
+	public GradeLevel() {}
 	public GradeLevel(int grade, String level, String time, UserInfo userInfo) {
 		super();
 		this.grade = grade;
 		this.level = level;
 		this.time = time;
 		this.userInfo = userInfo;
-	}
-	public GradeLevel() {
-		
 	}
 	
 }
