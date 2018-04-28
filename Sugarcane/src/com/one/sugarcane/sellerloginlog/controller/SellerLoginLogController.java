@@ -16,8 +16,8 @@ import com.one.sugarcane.sellerloginlog.service.SellerLoginLogServiceImpl;
 import com.one.sugarcane.entity.SellerLoginLog;
 
 @Controller
-@RequestMapping("seller")
-public class SellerLoginController {
+@RequestMapping("sellerLoginLog")
+public class SellerLoginLogController {
 	@Resource
 	private SellerLoginLogServiceImpl sellerLoginLogServiceImpl;
 }

@@ -16,7 +16,7 @@ import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
 import com.one.sugarcane.entity.SellerInfo;
 
 @Controller
-@RequestMapping("seller")
+@RequestMapping("sellerInfo")
 public class SellerInfoController {
 	@Resource
 	private SellerInfoServiceImpl sellerInfoServiceImpl;
