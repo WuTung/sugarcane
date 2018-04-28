@@ -139,6 +139,9 @@ public class Course {
 		this.evaluate = evaluate;
 		this.userCollections = userCollections;
 	}
+	public Course() {
+		
+	}
 	
 	
 }

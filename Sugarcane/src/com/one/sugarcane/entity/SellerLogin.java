@@ -93,6 +93,9 @@ public class SellerLogin {
 		this.sellerInfo = sellerInfo;
 		this.sellerLoginLog = sellerLoginLog;
 	}
+	public SellerLogin() {
+		
+	}
 	
 	
 }

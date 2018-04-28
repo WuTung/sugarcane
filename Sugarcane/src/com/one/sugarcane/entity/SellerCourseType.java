@@ -54,5 +54,8 @@ public class SellerCourseType {
 		this.hidden = hidden;
 		this.course = course;
 	}
+	public SellerCourseType() {
+		
+	}
 	
 }

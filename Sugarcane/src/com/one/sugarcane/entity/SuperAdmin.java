@@ -39,5 +39,8 @@ public class SuperAdmin {
 		this.adminName = adminName;
 		this.password = password;
 	}
+	public SuperAdmin() {
+		
+	}
 	
 }

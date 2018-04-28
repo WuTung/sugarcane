@@ -60,6 +60,9 @@ public class GradeCondition {
 		this.questionGrade = questionGrade;
 		this.questionBank = questionBank;
 	}
+	public GradeCondition() {
+		
+	}
 	
 	
 }

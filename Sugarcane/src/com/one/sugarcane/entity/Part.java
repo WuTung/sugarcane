@@ -66,5 +66,8 @@ public class Part {
 		this.adminLogin = adminLogin;
 		this.power = power;
 	}
+	public Part() {
+		
+	}
 	
 }

@@ -44,5 +44,8 @@ public class Power {
 		this.powerName = powerName;
 		this.part = part;
 	}
+	public Power() {
+		
+	}
 	
 }

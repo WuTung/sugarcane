@@ -148,5 +148,8 @@ public class SellerInfo {
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
 	}
+	public SellerInfo() {
+		
+	}
 	
 }

@@ -48,6 +48,9 @@ public class Address {
 		this.area = area;
 		this.city = city;
 	}
+	public Address() {
+		
+	}
 	
 	
 }

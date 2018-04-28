@@ -59,5 +59,8 @@ public class GradeLevel {
 		this.time = time;
 		this.userInfo = userInfo;
 	}
+	public GradeLevel() {
+		
+	}
 	
 }

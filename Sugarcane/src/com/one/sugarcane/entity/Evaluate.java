@@ -70,6 +70,9 @@ public class Evaluate {
 		this.userLogin = userLogin;
 		this.course = course;
 	}
+	public Evaluate() {
+		
+	}
 	
 	
 }

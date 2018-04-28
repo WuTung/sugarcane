@@ -61,6 +61,9 @@ public class PublicCourseType {
 		this.course = course;
 		this.questionBank = questionBank;
 	}
+	public PublicCourseType() {
+		
+	}
 	
 	
 }

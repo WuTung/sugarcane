@@ -120,5 +120,8 @@ public class UserInfo {
 		this.gradeLevel = gradeLevel;
 		this.userLogin = userLogin;
 	}
+	public UserInfo() {
+		
+	}
 	
 }

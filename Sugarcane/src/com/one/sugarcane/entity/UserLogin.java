@@ -99,5 +99,8 @@ public class UserLogin {
 		this.userInfo = userInfo;
 		this.userLoginLog = userLoginLog;
 	}
+	public UserLogin() {
+		
+	}
 	
 }

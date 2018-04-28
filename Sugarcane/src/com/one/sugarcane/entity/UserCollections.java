@@ -77,5 +77,8 @@ public class UserCollections {
 		this.userLogin = userLogin;
 		this.course = course;
 	}
+	public UserCollections() {
+		
+	}
 	
 }

@@ -51,5 +51,8 @@ public class SellerLoginLog {
 		IP = iP;
 		this.sellerLogin = sellerLogin;
 	}
+	public SellerLoginLog() {
+		
+	}
 	
 }

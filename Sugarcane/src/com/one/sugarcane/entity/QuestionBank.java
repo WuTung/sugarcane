@@ -73,5 +73,8 @@ public class QuestionBank {
 		this.gradeConditon = gradeConditon;
 		this.publicCourseType = publicCourseType;
 	}
+	public QuestionBank() {
+		
+	}
 	
 }

@@ -53,6 +53,9 @@ public class AdminLogin {
 		this.password = password;
 		this.set = set;
 	}
+	public AdminLogin() {
+		
+	}
 	
 	
 }

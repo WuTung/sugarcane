@@ -50,5 +50,8 @@ public class UserLoginLog {
 		IP = iP;
 		this.userLogin = userLogin;
 	}
+	public UserLoginLog() {
+		
+	}
 	
 }
