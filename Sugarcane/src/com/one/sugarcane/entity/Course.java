@@ -29,6 +29,7 @@ public class Course {
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
 	private String teacher;
+	private String video;
 	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();
 	@Id
@@ -146,6 +147,12 @@ public class Course {
 		this.sellerLogin = sellerLogin;
 		this.evaluate = evaluate;
 		this.userCollections = userCollections;
+	}
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
 	}
 	
 	

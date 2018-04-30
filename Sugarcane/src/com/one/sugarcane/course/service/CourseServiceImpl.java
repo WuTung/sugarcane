@@ -1,3 +1,8 @@
+/**
+ * 
+ * @auther 杜凯玲
+ * @date 2018.4.28
+ */
 package com.one.sugarcane.course.service;
 
 import java.util.List;
@@ -13,6 +18,13 @@ import com.one.sugarcane.entity.Course;
 public class CourseServiceImpl {
 	@Resource
 	private CourseDaoImpl courseDaoImpl;
+	/**
+	 * 查询所有课程
+	 * @return
+	 */
+	public List<Course> listAll(){
+		return this.courseDaoImpl.findAll();
+	}
 	/**
 	 * 分页查找所有该机构课程
 	 * @param page
@@ -54,10 +66,10 @@ public class CourseServiceImpl {
 	 * @return
 	 */
 	public int getPageCount() {
-        if((this.courseDaoImpl.findRowsCount())%9==0) {
-		    return (int)(this.courseDaoImpl.findRowsCount()/9);
+        if((this.courseDaoImpl.findRowsCount())%6==0) {
+		    return (int)(this.courseDaoImpl.findRowsCount()/6);
 		}else {
-		    return (int)(this.courseDaoImpl.findRowsCount()/9+1);	
+		    return (int)(this.courseDaoImpl.findRowsCount()/6+1);	
 		}	
 	}
 }

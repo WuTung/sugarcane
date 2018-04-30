@@ -1,3 +1,8 @@
+/**
+ * 
+ * @auther 杜凯玲
+ * @date 2018.4.28
+ */
 package com.one.sugarcane.course.dao;
 
 import java.util.List;
@@ -11,6 +16,14 @@ import com.one.sugarcane.entity.Course;
 public class CourseDaoImpl{
 	@Resource
 	private SessionFactory sessionFactory;
+	/**
+	 * 查询所有课程
+	 * @return
+	 */
+	public List<Course> findAll(){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Course");
+		return q.list();
+	}	
 	/**
 	 * 分页查询机构所有课程
 	 * @param page
@@ -53,7 +66,7 @@ public class CourseDaoImpl{
 	 * @param course
 	 */
 	public void updateCourse(Course course) {
-		this.sessionFactory.getCurrentSession().saveOrUpdate(course);
+		this.sessionFactory.getCurrentSession().update(course);
 	}
 	/**
 	 * 增加一门课程

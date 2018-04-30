@@ -1,7 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,39 +38,55 @@
 
 
     <div align="center" id="classDetail">
-	    <form id="form">
+	    <form id="form" action="../course/addOneCourse">
 		    <table>
-			    <tr><td>课程名称：</td><td><input type="text" name="coursename"></td></tr>
-			    <tr><td>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</td>
+			    <tr>
+			    <td>课程名称：</td>
+			    <td><input type="text" name="courseName"></td>
+			    </tr>
+			    <tr>
+			    <td>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</td>
 			    <td><select>
 		        	<option >请选择类型</option>
 		        	<option value="音乐">音乐</option>
 		        	<option value="舞蹈">舞蹈</option>
-		        </select></td></tr>
-				<tr><td>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</td> <td><input type="text" name="price"></td></tr>
-				<tr><td>授课教师：</td><td><input type="text" name="teacher"></td></tr>
-				<tr><td>联系方式：</td><td><input type="text" name="number"></td></tr>
-				<tr><td>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</td><td><input type="text" name="address"></td></tr>
-				<tr><td>简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介：</td><td><textarea rows="4" cols="27">请输入课程简介</textarea></td></tr>
+		        </select></td>
+		        </tr>
+				<tr>
+				<td>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</td>
+				<td><input type="text" name="price"></td>
+				</tr>
+				<tr>
+				<td>授课教师：</td><td><input type="text" name="teacher"></td>
+				</tr>
+				<tr>
+				<td>联系方式：</td><td><input type="text" name="phoneNumber"></td>
+				</tr>
+				<!--  tr>
+				<td>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</td>
+				<td><input type="text" name="address"></td>
+				</tr-->
+				<tr>
+				<td>简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介：</td>
+				<td><textarea rows="4" cols="27">请输入课程简介</textarea></td>
+				</tr>
 				<!-- 上传文件 -->
 				<tr>
 					<td></td>
 					<td>
 						<a href="javascript:;" class="file">上传视频
-				    	<input type="file" id="file" accept="video/*">
+				    	<input type="file" id="file" name="video" accept="video/*">
 						</a>
 						<a href="javascript:;" class="file">上传图片
-				    	<input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this)">
+				    	<input type="file" id="fileElem" name="introductionImg1" multiple accept="image/*" onchange="handleFiles(this)">
 						</a>
 						<div id="fileList" style="width:200px;height:200px;"></div>
 					</td>
 					<td>
 					<!-- 保存按钮 -->
-  						<div>
-  							<button class="button">
-  							<span><a style="font-size:13px" href="#">保存</a></span>
-  							</button>
-  						</div>
+  							<!-- button class="button" -->
+  					<input type="submit" value="保存"/>
+  							<!--/button-->
   					</td>
 				</tr>
 			</table>	
