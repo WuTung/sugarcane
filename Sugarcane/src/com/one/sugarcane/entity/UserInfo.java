@@ -20,7 +20,7 @@ public class UserInfo {
 	private String userEmail;
 	private int userGender;
 	private String userEducation;
-	private int userPhoneNumber;
+	private String userPhoneNumber;
 	private String birthday;
 	private String address_province;
 	private String address_city;
@@ -60,10 +60,11 @@ public class UserInfo {
 	public void setUserEducation(String userEducation) {
 		this.userEducation = userEducation;
 	}
-	public int getUserPhoneNumber() {
+	
+	public String getUserPhoneNumber() {
 		return userPhoneNumber;
 	}
-	public void setUserPhoneNumber(int userPhoneNumber) {
+	public void setUserPhoneNumber(String userPhoneNumber) {
 		this.userPhoneNumber = userPhoneNumber;
 	}
 	public String getBirthday() {
@@ -105,7 +106,7 @@ public class UserInfo {
 		this.userLogin = userLogin;
 	}
 	public UserInfo() {}
-	public UserInfo(String userName, String userEmail, int userGender, String userEducation, int userPhoneNumber,
+	public UserInfo(String userName, String userEmail, int userGender, String userEducation, String userPhoneNumber,
 			String birthday, String address_province, String address_city, String address_area,
 			Set<GradeLevel> gradeLevel, UserLogin userLogin) {
 		super();
@@ -121,5 +122,5 @@ public class UserInfo {
 		this.gradeLevel = gradeLevel;
 		this.userLogin = userLogin;
 	}
-	
+
 }
