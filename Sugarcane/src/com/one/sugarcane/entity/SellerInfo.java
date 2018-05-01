@@ -14,7 +14,7 @@ public class SellerInfo {
 	private Integer sellerID;
 	private String sellerName;
 	private String sellerEmail;
-	private int sellerPhoneNumber;
+	private String sellerPhoneNumber;
 	private String brief;
 	private String numberOfEmployees;
 	private String educationBureauApproved;
@@ -48,10 +48,10 @@ public class SellerInfo {
 	public void setSellerEmail(String sellerEmail) {
 		this.sellerEmail= sellerEmail;
 	}
-	public int getSellerPhoneNumber() {
+	public String getSellerPhoneNumber() {
 		return sellerPhoneNumber;
 	}
-	public void setSellerPhoneNumber(int sellerPhoneNumber) {
+	public void setSellerPhoneNumber(String sellerPhoneNumber) {
 		this.sellerPhoneNumber = sellerPhoneNumber;
 	}
 	public String getBrief() {
@@ -129,7 +129,7 @@ public class SellerInfo {
 		this.sellerLogin = sellerLogin;
 	}
 	public SellerInfo() {}
-	public SellerInfo(String sellerName, String sellerEmail, int sellerPhoneNumber, String brief,
+	public SellerInfo(String sellerName, String sellerEmail, String sellerPhoneNumber, String brief,
 			String numberOfEmployees, String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate,
 			String businessLisense, String address_province, String address_city, String address_area,
 			String address_detail, int qualified, SellerLogin sellerLogin) {
