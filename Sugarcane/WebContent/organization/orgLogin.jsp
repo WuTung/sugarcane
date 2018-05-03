@@ -32,19 +32,26 @@
 	<!-- 登录框 -->
 	<div id="login">
 			<br><br><br><br><br>
-			<form action="" method="post">
+		
+			<form action="${ctx }/sellerLogin/login" method="post">
 				<div id="words">
 					<div align="center">
 						<label for="username">登录名:</label>
-						<input type="text" class="form-control" id="username">
+						<input type="text" class="form-control" name="username">
 					</div><br>
 					<div align="center">
 						<label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
-						<input type="password" class="form-control" id="password">
-					</div><br>
+						<input type="password" class="form-control" name="password">
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<c:if test="${information!=null}">
+						<span>${information}</span>
+					</c:if>
+					<br>
 					<div align="center">
-						<button class="button"><span><a href="${ctx }/organization/orgRegist.jsp">注册</a></span></button>
-						<button class="button"><span><a href="#">登录</a></span></button>
+						<button class="button" type="button"><span><a href="${ctx}/organization/orgRegist.jsp">注册</a></span></button>
+						<button class="button" type="submit"><span>登录</span></button>
 					</div>
 				</div>
 			</form>
