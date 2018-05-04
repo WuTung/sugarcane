@@ -49,7 +49,7 @@
 			  <td><input type="password" class="input1" name="password" /></td>
 			  </tr>
 			 <tr>		
-			  <td class="td1">&nbsp;联系方式:</td>
+			  <td class="td1"><span class="xing">*</span>&nbsp;联系方式:</td>
 			  <td><input type="text" class="input1" name="phone"/></td></tr>
 			<tr>
 			 <td class="td1" ><span class="xing">*</span>
@@ -143,7 +143,7 @@
 					$('.tijiao').text("不可提交");
 				} else {
 					n1 = 1;
-					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 						$('.tijiao').removeAttr('disabled');
 						$('.tijiao').text("提交信息");
 					}
@@ -173,7 +173,7 @@
 						$('.tijiao').text("不可提交");
 				}else {
 					n2 = 1;
-					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 						$('.tijiao').removeAttr('disabled');
 						$('.tijiao').text("提交信息");
 					}
@@ -194,12 +194,44 @@
 					$('.tijiao').text("不可提交");
 				}else {
 					n3 = 1;
-					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 						$('.tijiao').removeAttr('disabled');
 						$('.tijiao').text("提交信息");
 					}
 				}
 			})
+			
+			$("input[name=phone]").blur(function(){
+				console.log('a');
+				$("tr:eq(3) p").remove();//先删除节点
+				var reg=/^1[3|4|5|7|8][0-9]\d{4,8}$/; 
+				if($(this).val().length==0){
+					//1.生成节点
+					var error=$("<p style='color:red;line-height:49px;height:49px;'>联系方式不能为空</span>");
+					//2.连接节点
+					$("tr:eq(3)").append(error);
+					//3.修改按钮
+				    n9 = 0;
+					$('.tijiao').attr('disabled',"true");
+					$('.tijiao').text("不可提交");
+				}else if(!reg.exec($(this).val())){
+						//1.生成节点
+						var error=$("<p style='color:red;line-height:49px;height:49px;'>电话号码格式不正确</span>");
+						//2.连接节点
+						$("tr:eq(3)").append(error);
+						//3.修改按钮
+					    n9 = 0;
+						$('.tijiao').attr('disabled',"true");
+						$('.tijiao').text("不可提交");
+				}else {
+					n9 = 1;
+					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
+						$('.tijiao').removeAttr('disabled');
+						$('.tijiao').text("提交信息");
+					}
+				}
+			})
+			
 	        $("#cmbProvince").change(function(){
 			 	console.log('a');
 			 	if($(this).val() == "请选择省份"){
@@ -208,7 +240,7 @@
 					$('.tijiao').text("不可提交");
 			 	} else {
 			 		n8 = 1;
-					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+					if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 						$('.tijiao').removeAttr('disabled');
 						$('.tijiao').text("提交信息");
 					}
@@ -227,7 +259,7 @@
 	        $(".showFileName1").html(fileName);
 	        //修改按钮
 			n4 = 1;
-			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 				$('.tijiao').removeAttr('disabled');
 				$('.tijiao').text("提交信息");
 			}
@@ -250,7 +282,7 @@
 	        $(".showFileName2").html(fileName);
 	        //修改按钮
 			n5 = 1;
-			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 				$('.tijiao').removeAttr('disabled');
 				$('.tijiao').text("提交信息");
 			}
@@ -273,7 +305,7 @@
 	        $(".showFileName3").html(fileName);
 	        //修改按钮
 			n6 = 1;
-			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 				$('.tijiao').removeAttr('disabled');
 				$('.tijiao').text("提交信息");
 			}
@@ -296,7 +328,7 @@
 	        $(".showFileName4").html(fileName);
 	        //修改按钮
 			n7 = 1;
-			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1){
+			if(n1 == 1 && n2 == 1 && n3 == 1 && n4 == 1 && n5 == 1 && n6 == 1 && n7 == 1 && n8 == 1 && n9 == 1){
 				$('.tijiao').removeAttr('disabled');
 				$('.tijiao').text("提交信息");
 			}

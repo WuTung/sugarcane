@@ -35,7 +35,7 @@ public class SellerInfoController {
 	 * @date 2018/4/30
 	 */
 	@RequestMapping("/save")
-	public String save(HttpServletRequest request,Model model,@RequestParam String name,@RequestParam String mail,@RequestParam String password,
+	public String save(HttpServletRequest request,@RequestParam String name,@RequestParam String mail,@RequestParam String password,
 			@RequestParam(required=false) String phone,@RequestParam String cmbProvince,@RequestParam String cmbCity,@RequestParam String cmbArea,
 			@RequestParam(required=false) String brief,@RequestParam MultipartFile educationBureauApproved,@RequestParam MultipartFile proofOfHouse,
 			@RequestParam MultipartFile fireSafetyCertificate,@RequestParam MultipartFile businessLisense) throws IOException {
@@ -48,6 +48,7 @@ public class SellerInfoController {
 		sellerInfo.setAddress_city(cmbCity);
 		sellerInfo.setAddress_area(cmbArea);
 		sellerInfo.setBrief(brief);
+		//存储证书
 		ServletContext context = request.getServletContext();
 		String realPath = context.getRealPath("/static/images");
 		if (educationBureauApproved != null) {
