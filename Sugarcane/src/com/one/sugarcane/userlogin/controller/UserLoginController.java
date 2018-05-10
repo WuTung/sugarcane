@@ -1,4 +1,4 @@
-package com.one.sugarcane.sellerlogin.controller;
+package com.one.sugarcane.userlogin.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -11,37 +11,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import com.one.sugarcane.sellerlogin.service.SellerLoginServiceImpl;
-import com.one.sugarcane.entity.SellerLogin;
-import com.one.sugarcane.entity.SellerLoginLog;
+import com.one.sugarcane.userlogin.service.UserLoginServiceImpl;
+import com.one.sugarcane.entity.UserLogin;
+import com.one.sugarcane.entity.UserLoginLog;
 
 /**
  * 培训机构登录
- * @author 张梦洲，王晟宇，崔允松
+ * @author 张梦洲
  * @throws IOException 
- * @date 2018/4/30
+ * @date 2018/5/10
  */
 @Controller
-@RequestMapping("sellerLogin")
-public class SellerLoginController {
+@RequestMapping("userLogin")
+public class UserLoginController {
 	@Resource
-	private SellerLoginServiceImpl sellerLoginServiceImpl;
+	private UserLoginServiceImpl userLoginServiceImpl;
 	
-	@RequestMapping(value = "login")
 	/**
-	 * seller登录
-	 * 登录日志
-	 * @param name
-	 * @param pwd
+	 * user登录
+	 * @param email
+	 * @param password
 	 * @param model
 	 * @param request
 	 * @return
 	 */
-	public String login(@RequestParam("username") String name,@RequestParam("password")String pwd,
+	@RequestMapping(value = "login")
+	public String login(@RequestParam String email,@RequestParam String password,
 			Model model,HttpServletRequest request)throws IOException{
-		SellerLogin sellerLogin = this.sellerLoginServiceImpl.Login(name,pwd);
-		if(null!=sellerLogin){
-			SellerLoginLog sellerLoginlog = new SellerLoginLog();
+		UserLogin userLogin = this.userLoginServiceImpl.Login(email,password);
+		if(null!=userLogin){
+			UserLoginLog userLoginlog = new UserLoginLog();
 			//获取ip
 			String ip = request.getHeader("x-forwarded-for"); 
 		       if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
@@ -56,18 +55,17 @@ public class SellerLoginController {
 		     //获取时间
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date = df.format(new Date());
-			sellerLoginlog.setIP(ip);
-			sellerLoginlog.setTime(date);
-			sellerLogin.setLastTime(date);
-			sellerLogin.setLastIP(ip);
-			sellerLoginlog.setSellerLogin(sellerLogin);
-			sellerLoginServiceImpl.saveSellerLoginLog(sellerLoginlog);
-			sellerLoginServiceImpl.saveSellerLogin(sellerLogin);
-			request.getSession().setAttribute("seller", sellerLogin.getSellerInfo());
-			return "organization/manageClassify";
+			userLoginlog.setIP(ip);
+			userLoginlog.setTime(date);
+			userLogin.setLastTime(date);
+			userLogin.setLastIP(ip);
+			userLoginlog.setUserLogin(userLogin);
+			this.userLoginServiceImpl.updateUserLogin(userLoginlog);
+			request.getSession().setAttribute("user", userLogin.getUserInfo());
+			return "front/home";
 		}else{
-			model.addAttribute("information", "账号或密码错误");
-			return "organization/orgLogin";
+			model.addAttribute("information", "邮箱或密码错误");
+			return "front/home";
 		
 		}
 	}

@@ -50,10 +50,10 @@
 					    <span class="t_txt">登录</span>
 					    <span class="del" onClick="deleteLogin()">X</span>
 				    </div>
-				    <form action="" method="post">
+				    <form action="${ctx }/userLogin/login.do" method="post">
 					    <input type="text" name="email" id="email" value="" placeholder="请输入邮箱" class="email-a" onblur="check_box1()" />
 					    <div class="bcde" align="center"></div>
-					    <input type="password" name="" id="pwd_login" value="" placeholder="请输入密码" onblur="check_box2()"/>
+					    <input type="password" name="password" id="pwd_login" value="" placeholder="请输入密码" onblur="check_box2()"/>
 					    <div class="error_pwd" align="center"></div>
 					    <input type="submit" name="" id="" value="登录" class="btn" />
 					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="">
@@ -67,15 +67,15 @@
 						<span class="t_txt">注册</span>
 						<span class="del" onClick="deleteRegist()">X</span>
 					</div>
-					<form action="" method="post">
-						<input type="text" name="" id="email_regist" value="" placeholder="请输入邮箱" class="email-b" onblur="check_box()" />
+					<form action="${ctx }/userInfo/save.do" method="post">
+						<input type="text" name="email" id="email_regist" value="" placeholder="请输入邮箱" class="email-b" onblur="check_box()" />
 						<div class="bcd" align="center"></div>
-						<input type="password" name="" id="pwd_regist" value="" placeholder="密码为6-16位包含数字、字母、下划线" onblur="check()" />
+						<input type="password" name="password" id="pwd_regist" value="" placeholder="密码为6-16位包含数字、字母、下划线" onblur="check()" />
 						<div id="spinfo2" align="center"></div>
-						<input type="password" name="" id="pwd_pwd" value="" placeholder="再次输入密码" onblur="check_again()">
+						<input type="password" name="password2" id="pwd_pwd" value="" placeholder="再次输入密码" onblur="check_again()">
 						<div id="spinfo3" align="center"></div>
-						<input type="text" name="" id="petname" value="" placeholder="昵称"/>
-						<input type="text" name="" id="phone" value="" placeholder="手机" onblur="Mous()" />
+						<input type="text" name="username" id="petname" value="" placeholder="昵称"/>
+						<input type="text" name="phone" id="phone" value="" placeholder="手机" onblur="Mous()" />
 						<div id="spinfo1" align="center"></div>
 						<input type="submit" name="" id="regist_1" value="注册" class="btn">
 					</form>	

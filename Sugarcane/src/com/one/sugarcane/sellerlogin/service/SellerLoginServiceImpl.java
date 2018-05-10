@@ -12,7 +12,7 @@ import com.one.sugarcane.MD5Util.MD5Util;
 
 /**
  * 培训机构注册
- * @author 狗洲，王晟宇，傻崔
+ * @author 张梦洲，王晟宇，崔允松
  * @throws IOException 
  * @date 2018/4/30
  */

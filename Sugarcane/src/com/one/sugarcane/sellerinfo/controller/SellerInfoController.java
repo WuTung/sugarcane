@@ -36,7 +36,7 @@ public class SellerInfoController {
 	 */
 	@RequestMapping("/save")
 	public String save(HttpServletRequest request,@RequestParam String name,@RequestParam String mail,@RequestParam String password,
-			@RequestParam(required=false) String phone,@RequestParam String cmbProvince,@RequestParam String cmbCity,@RequestParam String cmbArea,
+			@RequestParam String phone,@RequestParam String cmbProvince,@RequestParam String cmbCity,@RequestParam String cmbArea,
 			@RequestParam(required=false) String brief,@RequestParam MultipartFile educationBureauApproved,@RequestParam MultipartFile proofOfHouse,
 			@RequestParam MultipartFile fireSafetyCertificate,@RequestParam MultipartFile businessLisense) throws IOException {
 		SellerInfo sellerInfo = new SellerInfo();
