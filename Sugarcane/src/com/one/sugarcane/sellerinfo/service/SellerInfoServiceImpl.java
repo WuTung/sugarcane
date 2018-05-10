@@ -11,4 +11,23 @@ import com.one.sugarcane.entity.SellerInfo;
 public class SellerInfoServiceImpl {
 	@Resource
 	private SellerInfoDaoImpl sellerInfoDaoImpl;
+	
+	/**
+	 * 培训机构注册
+	 * @author 张梦洲，狗晟儿，傻崔
+	 * @date 2018/4/30
+	 */
+	public void saveSellerInfo(SellerInfo sellerInfo) {
+		sellerInfoDaoImpl.saveSellerInfo(sellerInfo);
+	}
+
+	public SellerInfo getpass(String name, String email) {
+		
+		return sellerInfoDaoImpl.fineByName(name,email);
+	}
+
+	public void updateSellerInfo(SellerInfo sellerinfo) {
+		
+		sellerInfoDaoImpl.updateSellerInfo(sellerinfo);
+	}
 }
