@@ -68,7 +68,7 @@
 						<span class="del" onClick="deleteRegist()">X</span>
 					</div>
 					<form action="" method="post">
-						<input type="text" name="" id="email" value="" placeholder="请输入邮箱" class="email-b" onblur="check_box()" />
+						<input type="text" name="" id="email_regist" value="" placeholder="请输入邮箱" class="email-b" onblur="check_box()" />
 						<div class="bcd" align="center"></div>
 						<input type="password" name="" id="pwd_regist" value="" placeholder="密码为6-16位包含数字、字母、下划线" onblur="check()" />
 						<div id="spinfo2" align="center"></div>
