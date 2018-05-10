@@ -57,7 +57,7 @@
 					    <div class="error_pwd" align="center"></div>
 					    <input type="submit" name="" id="" value="登录" class="btn" />
 					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="">
-					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="">
+					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="" onClick="regist()">
 				    </form>
 				</div>
 			</div>

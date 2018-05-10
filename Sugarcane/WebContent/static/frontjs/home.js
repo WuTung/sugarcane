@@ -175,6 +175,10 @@ function registBox(){
 	bg_filter.style.display="block";
 	
 }
+function regist(){
+	deleteLogin();
+	registBox();
+}
  	function check_box() {
                 if ($(".email-b").val() == '') {
                     $(".bcd").text("邮箱不能为空");

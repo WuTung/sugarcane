@@ -205,7 +205,7 @@ a:hover{text-decoration: underline;}
 	text-indent: 1.25em;
 	border: 0.0625em solid #cccccc;
 }
-#email,#pwd_login,#forgetPwd,#noAccount,#pwd_pwd,#petname,#phone,#pwd_regist {
+#email,#pwd_login,#forgetPwd,#noAccount,#pwd_pwd,#petname,#phone,#pwd_regist,#email_regist{
 	position: relative;
 	left:2.5em;
 }
