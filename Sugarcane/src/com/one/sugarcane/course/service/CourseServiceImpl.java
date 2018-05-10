@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.course.dao.CourseDaoImpl;
 import com.one.sugarcane.entity.Course;
+import com.one.sugarcane.entity.PublicCourseType;
+import com.one.sugarcane.entity.SellerCourseType;
+import com.one.sugarcane.entity.SellerInfo;
+import com.one.sugarcane.entity.SellerLogin;
 
 @Service
 @Transactional(readOnly=false)
@@ -26,12 +30,57 @@ public class CourseServiceImpl {
 		return this.courseDaoImpl.findAll();
 	}
 	/**
-	 * 分页查找所有该机构课程
+	 * 分页查找所有课程
 	 * @param page
 	 * @return
 	 */
 	public List<Course> listAll(int page){
 		return this.courseDaoImpl.findAll(page);
+	}
+	/**
+	 * 分页查询所有该机构课程
+	 * @param page
+	 * @param sellerID
+	 * @return
+	 */
+	public List<Course> listAll(int page,int sellerID){
+		return this.courseDaoImpl.findAll(page,sellerID);
+	}
+	public List<SellerCourseType> listSellerCourseType(int sellerID){
+		return this.courseDaoImpl.findSellerCourseType(sellerID);
+	}
+	/**
+	 *  通过商家分类分页查询课程
+	 * @param page
+	 * @param sellerCourseTypeID
+	 * @return
+	 */
+	public List<Course> listCourseBySellerCourseType(int page,int sellerCourseTypeID,int sellerID){
+		return this.courseDaoImpl.findCourseBySellerCourseType(page,sellerCourseTypeID,sellerID);
+	}
+	/**
+	 * 通过ID查询课程商家分类
+	 * @param id
+	 * @return
+	 */
+	public SellerCourseType selectSellerCourseTypeByID(int id) {
+		return this.courseDaoImpl.selectSellerCourseTypeByID(id);
+	}
+	/**
+	 * 通过ID查询课程公共分类
+	 * @param id
+	 * @return
+	 */
+	public PublicCourseType selectPublicCourseTypeByID(int id) {
+		return this.courseDaoImpl.selectPublicCourseTypeByID(id);
+	}
+	/**
+	 * 通过ID查询商家
+	 * @param id
+	 * @return
+	 */
+	public SellerLogin selectSellerByID(int id) {
+		return this.courseDaoImpl.selectSellerByID(id);
 	}
 	/**
 	 * 删除一门课程

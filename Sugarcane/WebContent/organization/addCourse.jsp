@@ -31,7 +31,7 @@
      <div id="list">
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;管理简介</a></div>
      <div class="a1 lefta"><a href="jgglStyle.html" class="leftb">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta selecteda"><a href="../course/listCourse?coursePageIndex=1"class="selecteda leftb">○&nbsp;管理课程</a></div>
+     <div class="a1 lefta selecteda"><a href="../course/listCourse?coursePageIndex=1&sellerID=1"class="selecteda leftb">○&nbsp;管理课程</a></div>
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
 
      </div><!--list-->
@@ -48,8 +48,9 @@
 			    <td>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</td>
 			    <td><select>
 		        	<option >请选择类型</option>
-		        	<option value="音乐">音乐</option>
-		        	<option value="舞蹈">舞蹈</option>
+		        	<c:forEach  items="${sellerCourseTypeList}" var="sellerCourseType" varStatus="i">
+		        		<option value="${sellerCourseType.sellerCourseTypeID }">${sellerCourseType.courseTypeName2 }</option>
+		        	</c:forEach>
 		        </select></td>
 		        </tr>
 				<tr>
@@ -85,7 +86,7 @@
 					<td>
 					<!-- 保存按钮 -->
   							<!-- button class="button" -->
-  					<input type="submit" value="保存"/>
+  					<input type="submit" value="保存" class="save"/>
   							<!--/button-->
   					</td>
 				</tr>
