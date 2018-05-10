@@ -24,7 +24,7 @@
 			</div>
 		<!--首页选项卡-->
 			<div class="home">
-				<a href="home.html">首页</a>
+				<a href="home.jsp">首页</a>
 			</div>
 		<!--全部课程选项卡-->
 			<div class="allclass">
@@ -51,7 +51,7 @@
 					    <span class="del" onClick="deleteLogin()">X</span>
 				    </div>
 				    <form action="" method="post">
-					    <input type="text" name="email" id="email" value="" placeholder="请输入邮箱" class="abcd" onblur="check_box1()" />
+					    <input type="text" name="email" id="email" value="" placeholder="请输入邮箱" class="email-a" onblur="check_box1()" />
 					    <div class="bcde" align="center"></div>
 					    <input type="password" name="" id="pwd_login" value="" placeholder="请输入密码" onblur="check_box2()"/>
 					    <div class="error_pwd" align="center"></div>
@@ -68,7 +68,7 @@
 						<span class="del" onClick="deleteRegist()">X</span>
 					</div>
 					<form action="" method="post">
-						<input type="text" name="" id="email" value="" placeholder="请输入邮箱" class="abc" onblur="check_box()" />
+						<input type="text" name="" id="email" value="" placeholder="请输入邮箱" class="email-b" onblur="check_box()" />
 						<div class="bcd" align="center"></div>
 						<input type="password" name="" id="pwd_regist" value="" placeholder="密码为6-16位包含数字、字母、下划线" onblur="check()" />
 						<div id="spinfo2" align="center"></div>
@@ -88,7 +88,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="backgroundImg"></div>
+	
 <!--body-->
     <div class="body">
 		<!--幻灯片-->
@@ -388,6 +388,7 @@
 		<br style="clear:both;">
 	</div>
 </div>
+<div id="backgroundImg"></div>
 <!--footer-->
     <div class="footer">
     	<div class="footer_text">Copyright©2018-2019&nbsp;&nbsp;&nbsp;sugarcane&nbsp;&nbsp;&nbsp;联系我们</div>

@@ -1,5 +1,5 @@
 /**
- 幻灯片
+ * 幻灯片
  */
 $(function() {
 	var SliderModule = (function() {
@@ -96,7 +96,7 @@ $(function() {
 });
 
 
-/*折叠*/
+/* 折叠 */
 $(function()  
   {  
         $("#zhe1").click(function()  
@@ -105,13 +105,13 @@ $(function()
                 {  
                   $(".changeTr1").removeAttr("style");  
                   $("#zhe1").text("收起");  
-				  $("#triangle1").attr('src','../images/triangle2.jpg');
+				  $("#triangle1").attr('src','${ctx }/static/frontimages/triangle2.jpg');
                 }  
             else  
                 {  
                   $(".changeTr1").css("display","none");  
                   $("#zhe1").text("展开剩余分类");  
-				  $("#triangle2").attr('src','../images/triangle.jpg');
+				  $("#triangle2").attr('src','${ctx }/static/frontimages/triangle.jpg');
                 }  
             });   
   });  
@@ -123,13 +123,13 @@ $(function()
                 {  
                   $(".changeTr2").removeAttr("style");  
                   $("#zhe2").text("收起");  
-				  $("#triangle2").attr('src','../images/triangle2.jpg');
+				  $("#triangle2").attr('src','${ctx }/static/frontimages/triangle2.jpg');
                 }  
             else  
                 {  
                   $(".changeTr2").css("display","none");  
                   $("#zhe2").text("展开查看全部培训机构");  
-				  $("#triangle2").attr('src','../images/triangle.jpg');
+				  $("#triangle2").attr('src','${ctx }/static/frontimages/triangle.jpg');
                 }  
             });   
   }); 
@@ -143,6 +143,7 @@ function deleteLogin(){
 	bg_filter.style.display="none";
 	del.style.display="none";
     $(".bcde").text("");
+    $(".error_pwd").text("");
 }
 function deleteRegist(){
 	var del=document.getElementById("regist_box");
@@ -174,147 +175,76 @@ function registBox(){
 	bg_filter.style.display="block";
 	
 }
- 	$(function check_box() {
-            var state = false;
-            $(".abc").focus(function () {
-                if (state == false) {
-                    $(this).val('');
-                }
-            })
-            $(".abc").blur(function () {
-                if ($(this).val() == '') {
+ 	function check_box() {
+                if ($(".email-b").val() == '') {
                     $(".bcd").text("邮箱不能为空");
                 }
                 else {
-                    if (/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test($(this).val()) == false) {
-                        $(".bcd").text("邮箱格式不正确，请重新填写");
+                    if (/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test($(".email-b").val()) == false) {
+                        $(".bcd").text("邮箱格式不正确");
                     }
                     else {
                         $(".bcd").text('');
-                        $(".bcd").append("<img src=images/onSuccess.gif />");
-                        state=true;
+                   
                     }
                 }
-            })
-        })
-    $(function check_box1() {
-            var state = false;
-            $(".abcd").focus(function () {
-                if (state == false) {
-                    $(this).val('');
-                }
-            })
-            $(".abcd").blur(function () {
-                if ($(this).val() == '') {
-                    $(".bcde").text("邮箱不能为空");
+        }
+    function check_box1() {
+    	if($(".email-a").val() == "") {
+    			$(".bcde").text("邮箱不能为空")
+    		}
+    	else {
+    		  if (/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test($(".email-a").val()) == false) {
+                  $(".bcde").text("邮箱格式不正确");
+              }
+              else {
+                  $(".bcde").text('');
+              }
+    	}
+    }
+    function check_box2() {
+                if ($("#pwd_login").val() == '') {
+                    $(".error_pwd").text("请输入密码");    
                 }
                 else {
-                    if (/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test($(this).val()) == false) {
-                        $(".bcde").text("邮箱格式不正确，请重新填写");
-                    }
-                    else {
-                        $(".bcde").text('');
-                        $(".bcde").append("<img src=images/onSuccess.gif />");
-                        state=true;
-                    }
+                    $(".error_pwd").text('');
                 }
-            })
-        })
-    $(function check_box2() {
-            var state = false;
-            $("#pwd_login").focus(function () {
-                if (state == false) {
-                    $(this).val('');
-                }
-            })
-            $("#pwd_login").blur(function () {
-                if ($(this).val() == '') {
-                    $(".error_pwd").text("请输入密码");
-                }
-            })
-        })
- 	$(function Mous(){
- 		var state = false;
-            $("#phone").focus(function () {
-                if (state == false) {
-                    $(this).val('');
-                }
-            })
-            $("#phone").blur(function () {
-                if ($(this).val() == '') {
+    }
+ 	function Mous(){
+                if ($("#phone").val() == '') {
                     $("#spinfo1").text("手机号不能为空");
-
                 }
                 else {
                 	var myreg=/^[1][3,4,5,7,8][0-9]{9}$/; 
-                    if (myreg.test($(this).val()) == false) {
+                    if (myreg.test($("#phone").val()) == false) {
                         $("#spinfo1").text("手机号格式不正确，请重新填写");
                     }
                     else {
                         $("#spinfo1").text('');
-                        $("#spinfo1").append("<img src=images/onSuccess.gif />");
-                        state=true;
+                        
                     }
                 }
-            })
- 	})
- 	$(function check(){
- 		 	var state = false;
-            $("#pwd_regist").focus(function () {
-                if (state == false) {
-                    $(this).val('');
-                }
-            })
-            $("#pwd_regist").blur(function () {
-                if ($(this).val() == '') {
+ 	}
+ 	function check(){
+                if ($("#pwd_regist").val() == '') {
                     $("#spinfo2").text("密码不能为空");
-
                 }
                 else {
                 	var myreg=/^[0-9a-z_A-Z]{6,16}$/i; 
-                    if (myreg.test($(this).val()) == false) {
+                    if (myreg.test($("#pwd_regist").val()) == false) {
                         $("#spinfo2").text("密码格式不正确");
-
                     }
                     else {
                         $("#spinfo2").text('');
-                        $("#spinfo2").append("<img src=images/onSuccess.gif />");
-                        state=true;
-
+                       
                     }
                 }
-            })
- 	})
- 	$(function check_again(){
- 		    var state = false;
-            $("#pwd_pwd").focus(function () {
-                if (state == false) {
-                    $(this).val('');
-                }
-            })
-            $("#pwd_pwd").blur(function () {
-                if ($(this).val() == '') {
-                    $("#spinfo3").text("密码不能为空");
+ 	}
+ 	function check_again(){
+                if ($("#pwd_regist").val() != $("#pwd_pwd").val()) {
+                    $("#spinfo3").text("密码不一致");
                 }
                 else {
-                    if (document.getElementById('pwd').value != document.getElementById('pwd_pwd').value) {
-                        $("#spinfo3").text("密码不相同,请重新输入");
-
-                    }
-                    else {
-                        $("#spinfo3").text('');
-                        $("#spinfo3").append("<img src=images/onSuccess.gif />");
-                        state=true;     
-                    }
+                	$("#spinfo3").text('');     
                 }
-            })
- 	})
-
-
-
-
-
-
-
-
-
+       }

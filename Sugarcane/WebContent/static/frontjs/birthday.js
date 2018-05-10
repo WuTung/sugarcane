@@ -35,7 +35,7 @@ function MMDD(str)   //月发生变化时日期联动
     var YYYYvalue = document.reg_testdate.YYYY.options[document.reg_testdate.YYYY.selectedIndex].value;   
     if (YYYYvalue == ""){ var e = document.reg_testdate.DD; optionsClear(e); return;}   
     var n = MonHead[str - 1];   
-    if (str ==2 && IsPinYear(YYYYvalue)) n++;   
+    if (str ==2 && IsPinYear(YYYYvalue)) {n++;   
         writeDay(n)   
     }   
     function writeDay(n)   //据条件写日期的下拉框   
@@ -50,4 +50,5 @@ function MMDD(str)   //月发生变化时日期联动
     {   
         e.options.length = 1;   
     }
+    
 }
