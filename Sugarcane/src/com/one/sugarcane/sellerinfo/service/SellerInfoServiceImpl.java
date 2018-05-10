@@ -20,4 +20,14 @@ public class SellerInfoServiceImpl {
 	public void saveSellerInfo(SellerInfo sellerInfo) {
 		sellerInfoDaoImpl.saveSellerInfo(sellerInfo);
 	}
+
+	public SellerInfo getpass(String name, String email) {
+		
+		return sellerInfoDaoImpl.fineByName(name,email);
+	}
+
+	public void updateSellerInfo(SellerInfo sellerinfo) {
+		
+		sellerInfoDaoImpl.updateSellerInfo(sellerinfo);
+	}
 }

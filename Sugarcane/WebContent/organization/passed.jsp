@@ -27,30 +27,27 @@
 <!--内容-->
 <div id="content">
 <div id="out">
+<form action="${ctx}/sellerInfo/pass.do " method="post">
 		<div id="table1">
-		<form action="" method="post">
+		
 		<table>
 			<tr>
 			  <td class="td1">邮&nbsp;&nbsp;箱:</td>
-			  <td><input type="text" class="input1" value="" /></td></tr>
+			  <td><input type="text" class="input1" name="email" /></td></tr>
 			<tr>
 			  <td class="td1">机构名称:</td>
-			  <td><input type="text" class="input1" /></td></tr>
+			  <td><input type="text" class="input1" name="name"/></td></tr>
 		</table>
-		</form>
+		
 		</div><!--table1-->
   
 	<div id="chaxun">
 	<a href="#">
-	<input type="button" value="查询" class="chaxun"/>
+	<input type="submit" value="查询" class="chaxun"/>
 	</a>
 	</div>
 
-	<div id="dialog" class="dialog">
-		<header>信息提示</header>
-		<div>审核通过,返回登录页面！</div>
-		<button><a href="${ctx}/pxlogin.html">确定</a></button>
-	</div>
+</form>
 
 </div><!--out-->
 </div><!--content-->
@@ -60,26 +57,6 @@
 </div><!--footer-->
 
 </body>
-<!--上传文件-->
-<script>
-	$(".filea").on("change","input[type='file']",function(){
-	    var filePath=$(this).val();
-	    if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1){
-	        $(".fileerrorTip1").html("").hide();
-	        var arr=filePath.split('\\');
-	        var fileName=arr[arr.length-1];
-	        $(".showFileName1").html(fileName);
-	    }else{
-	        $(".showFileName1").html("");
-	        $(".fileerrorTip1").html("您未上传文件，或者您上传文件类型有误！").show();
-	        return false;
-	    }
-	})
-	<!--提交后弹框-->
-	var subnode = document.getElementById('chaxun');
-	subnode.onclick = function(){
-		var node = document.getElementById('dialog');
-		node.style.display = 'block';
-	}
+
 </script>
 </html>

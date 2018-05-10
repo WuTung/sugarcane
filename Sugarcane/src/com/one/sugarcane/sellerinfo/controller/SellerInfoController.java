@@ -108,4 +108,62 @@ public class SellerInfoController {
 		sellerInfoServiceImpl.saveSellerInfo(sellerInfo);
 		return "organization/orgLogin";
 	}
+
+
+@RequestMapping("/pass")
+public String pass(@RequestParam String name,@RequestParam String email) {
+	
+	SellerInfo sellerinfo = this.sellerInfoServiceImpl.getpass(name,email);
+	
+	String phone = sellerinfo.getSellerPhoneNumber();
+	
+	if(phone != null) {
+			return "organization/dopass";
+	}else {
+			return "organization/passfail";
+	}
+	
+	}
+
+@RequestMapping("/successpass")
+public String dopass() {
+	
+	return "organization/orgLogin";
+	
+	}
+
+@RequestMapping("/failpass")
+public String undopass() {
+	
+	return "organization/orgLogin";
+	
+	}
+
+@RequestMapping("/updatebrief")
+public String upbrief(@RequestParam String brief,HttpServletRequest request) throws IOException{
+	
+	
+		
+		SellerInfo sellerinfo =(SellerInfo) request.getSession(true).getAttribute("seller");
+
+		System.out.println(brief);
+		
+		sellerinfo.setBrief(brief);
+
+		sellerInfoServiceImpl.updateSellerInfo(sellerinfo);
+	
+	
+		return "organization/manageClassify";
+	
+	}
+	
+	
+	
+	
+
+
 }
+
+
+
+
