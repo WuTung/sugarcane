@@ -3,21 +3,44 @@ package com.one.sugarcane.sellerinfo.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
+import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.portlet.ModelAndView;
 
 import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
+import com.one.sugarcane.mailUtil.SendmailUtil;
+
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 import com.one.sugarcane.MD5Util.MD5Util;;
@@ -27,6 +50,7 @@ import com.one.sugarcane.MD5Util.MD5Util;;
 public class SellerInfoController {
 	@Resource
 	private SellerInfoServiceImpl sellerInfoServiceImpl;
+
 	
 	/**
 	 * 培训机构注册
@@ -156,14 +180,39 @@ public String upbrief(@RequestParam String brief,HttpServletRequest request) thr
 		return "organization/manageClassify";
 	
 	}
-	
-	
-	
-	
 
+@RequestMapping("/forget")
+public String forget(@RequestParam String email,HttpServletRequest request) {
+	
+		
+		String hrefString = request.getScheme() + "://" +request.getServerName()
+		+":"+request.getLocalPort()
+		+request.getServletContext().getContextPath()
+		+"/sellerInfo/getpsd?email=" + email;
+		System.out.println(hrefString);
+		String href = "<a href='" + hrefString + "'>点击重置密码</a>如果链接不可用，拷贝" + hrefString +"到地址栏";
+		String title = "你好，请重置密码";
+		
+		System.out.print(hrefString);
+		SendmailUtil.doSendHtmlEmail(email, title, href);
+	
+	return "organization/forgetSuccess";
+}
+@RequestMapping("/getpsd")
+public String getpassword(@RequestParam String email,HttpSession session) {
+
+	
+Random random = new Random();
+String randomPasswordString = random.nextInt(900000) + 100000 + "";
+session.setAttribute("newpassword",randomPasswordString);
+MD5Util md5 = new MD5Util();
+String md5PWD = md5.generate(randomPasswordString);
+sellerInfoServiceImpl.resetPassword(email, md5PWD);
+System.out.print(email+randomPasswordString);
+return "organization/getpassword";
 
 }
 
 
 
-
+}
