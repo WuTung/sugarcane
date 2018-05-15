@@ -19,7 +19,7 @@
   <img src="${ctx }/static/images/b.png" id="welcomeImg"> 
   <a id="exit">退出登录</a>
   <a href="#"><img src="${ctx }/static/images/exit.png" id="exitimg"></a>
-  <a href="#" id="jgName">培训机构名称</a>
+  <a href="#" id="jgName">${sellerLogin.sellerLoginName }</a>
  
 </p>  
 </div>
@@ -31,7 +31,7 @@
      <div id="list">
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;管理简介</a></div>
      <div class="a1 lefta"><a href="jgglStyle.html" class="leftb">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta selecteda"><a href="../course/listCourse?coursePageIndex=1&sellerID=1"class="selecteda leftb">○&nbsp;管理课程</a></div>
+     <div class="a1 lefta selecteda"><a href="../course/listCourse?coursePageIndex=1&sellerID=${sellerLogin.sellerID }"class="selecteda leftb">○&nbsp;管理课程</a></div>
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
 
      </div><!--list-->
@@ -49,7 +49,7 @@
 			    <td><select>
 		        	<option >请选择类型</option>
 		        	<c:forEach  items="${sellerCourseTypeList}" var="sellerCourseType" varStatus="i">
-		        		<option value="${sellerCourseType.sellerCourseTypeID }">${sellerCourseType.courseTypeName2 }</option>
+		        		<option name="sellerCourseTypeID" value="${sellerCourseType.sellerCourseTypeID }" selected="true">${sellerCourseType.courseTypeName2 }</option>
 		        	</c:forEach>
 		        </select></td>
 		        </tr>

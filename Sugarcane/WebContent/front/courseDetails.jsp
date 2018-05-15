@@ -98,19 +98,19 @@
 				</div>
 				<div class="course_info">
 					<div class="courseinfos">
-						课程名称:<span>力德健身</span>
+						课程名称:<span>${courseDetails.courseName }</span>
 					</div>
 					<div class="courseinfos">
 						所属机构:<span>力德</span>
 					</div>
 					<div class="courseinfos">
-						价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<span>￥600</span>
+						价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<span>￥${courseDetails.price }</span>
 					</div>
 					<div class="courseinfos">
-						授课教师:<span>Mr.Smith</span>
+						授课教师:<span>${courseDetails.teacher }</span>
 					</div>
 					<div class="courseinfos">
-						联系方式:<span>12345678911</span>
+						联系方式:<span>${courseDetails.phoneNumber }</span>
 					</div>
 					<div class="courseinfos">
 						授课地点:<span>华所发胡搜批发店铺</span>

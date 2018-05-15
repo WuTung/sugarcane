@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +40,12 @@ public class SellerLoginController {
 	 * @return
 	 */
 	public String login(@RequestParam("username") String name,@RequestParam("password")String pwd,
-			Model model,HttpServletRequest request)throws IOException{
+			Model model,HttpServletRequest request,
+			HttpSession session)throws IOException{
 		SellerLogin sellerLogin = this.sellerLoginServiceImpl.Login(name,pwd);
+		//杜凯玲    添加sessionAttribut：sellerID,sellerLogin  5.14
+		session.setAttribute("sellerID", sellerLogin.getSellerID());
+		session.setAttribute("sellerLogin", sellerLogin);
 		if(null!=sellerLogin){
 			SellerLoginLog sellerLoginlog = new SellerLoginLog();
 			//获取ip

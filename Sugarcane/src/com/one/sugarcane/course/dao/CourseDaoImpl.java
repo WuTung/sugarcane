@@ -1,7 +1,7 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.4.28
+ * @date 2018.5.15
  */
 package com.one.sugarcane.course.dao;
 
@@ -116,7 +116,19 @@ public class CourseDaoImpl{
 		Number number = (Number)qc.uniqueResult();
 		int count = number.intValue();
 		return count;
-		} 	
+		}
+	/**
+	 * 通过机构课程分类查询课程总数
+	 * @param sellerCourseTypeID
+	 * @return
+	 */
+	public int findRowsCountBySellerCourseType(int sellerCourseTypeID){
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from Course where sellerCourseTypeID="+sellerCourseTypeID);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+		}
+	
 	/**
 	 * 通过ID删除一门课程
 	 * @param id

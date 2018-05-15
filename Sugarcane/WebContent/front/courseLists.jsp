@@ -176,102 +176,31 @@
                 </select>
             </div>
             <div class="righttwo">
+             <c:forEach  items="${courseList}" var="courseList" varStatus="i">
                 <div class="righttwotable">
                     <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/zhuolinsheji.jpg" alt="" width="130px" height="80px"></a>
+                        <a href="../course/courseDetails?courseID=${courseList.courseID }"><img src="${ctx }/static/${courseList.introductionImg1}" alt="" width="130px" height="80px"></a>
                     </div>
-                    <div class="two"><span><a href="#">卓林设计</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/xintianji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">新天际教育</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
+                    <div class="two"><span><a href="#">${courseList.courseName }</a></span><br>${courseList.courseBrief }
                     </div>
                 </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/redshoes.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><a href="#">红舞鞋</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/zhuolinsheji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">卓林设计</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/xintianji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">新天际教育</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/redshoes.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">红舞鞋</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/zhuolinsheji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">卓林设计</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/xintianji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">新天际教育</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/redshoes.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">红舞鞋</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/zhuolinsheji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">卓林设计</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/xintianji.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">新天际教育</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
-                <div class="righttwotable">
-                    <div class="one">
-                        <a href="#"><img src="${ctx }/static/frontimages/redshoes.jpg" alt="" width="130px" height="80px"></a>
-                    </div>
-                    <div class="two"><span><span><a href="#">红舞鞋</a></span><br>意思是说所所所所所所所所所所所多过付所付或付
-                    </div>
-                </div>
+                </c:forEach>
             </div>
             <div class="rightthree">
-                <ul class="pager">
-                  <li><a href="#">首页</a></li>
-                  <li><a href="#">上一页</a></li>
-                  <li><a href="#">2</a>
-                    <a href="#">...</a>
-                    <a href="#">10</a>
-                  </li>
-                  <li><a href="#">下一页</a></li>
-                  <li><a href="#">尾页</a></li>
-                </ul>
+        <ul> 
+            <li><a href="../course/listAllCourse?coursePageIndex=1" class="pagea">首页</a></li>
+            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex-1 }"><</a></li>          
+             <c:forEach begin="${coursePageIndex }" end="${coursePageCount-1}" step="1" var="i">
+            	<li><a href="../course/listAllCourse?coursePageIndex=${i}">${i}</a></li>
+            </c:forEach>
+            <c:if test="${coursePageIndex+1<=coursePageCount-1}">
+            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex+1 }">></a></li>
+            </c:if>
+            <c:if test="${coursePageIndex+1>coursePageCount}">
+             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount-1 }">></a></li>
+            </c:if>
+            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount-1 }">尾页</a></li>
+        </ul>
             </div>
         </div>
     </div>

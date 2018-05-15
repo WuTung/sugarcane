@@ -1,7 +1,7 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.4.30
+ * @date 2018.5.15
  */
 package com.one.sugarcane.course.service;
 
@@ -121,4 +121,12 @@ public class CourseServiceImpl {
 		    return (int)(this.courseDaoImpl.findRowsCount()/6+1);	
 		}	
 	}
+	public int getPageCountBySellerCourseType(int sellerCourseTypeID) {
+        if((this.courseDaoImpl.findRowsCountBySellerCourseType(sellerCourseTypeID))%6==0) {
+		    return (int)(this.courseDaoImpl.findRowsCountBySellerCourseType(sellerCourseTypeID)/6);
+		}else {
+		    return (int)(this.courseDaoImpl.findRowsCountBySellerCourseType(sellerCourseTypeID)/6+1);	
+		}	
+	}
+	
 }
