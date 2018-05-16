@@ -83,6 +83,14 @@ public class CourseServiceImpl {
 		return this.courseDaoImpl.selectSellerByID(id);
 	}
 	/**
+	 * 通过ID查询商家信息
+	 * @param id
+	 * @return
+	 */
+	public SellerInfo selectSellerInfoByID(int id) {
+		return this.courseDaoImpl.selectSellerInfoByID(id);
+	}
+	/**
 	 * 删除一门课程
 	 * @param id
 	 */

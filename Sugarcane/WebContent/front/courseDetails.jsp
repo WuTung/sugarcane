@@ -101,7 +101,7 @@
 						课程名称:<span>${courseDetails.courseName }</span>
 					</div>
 					<div class="courseinfos">
-						所属机构:<span>力德</span>
+						所属机构:<span>${sellerInfo.sellerName }</span>
 					</div>
 					<div class="courseinfos">
 						价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<span>￥${courseDetails.price }</span>
@@ -113,7 +113,7 @@
 						联系方式:<span>${courseDetails.phoneNumber }</span>
 					</div>
 					<div class="courseinfos">
-						授课地点:<span>华所发胡搜批发店铺</span>
+						授课地点:<span>${sellerInfo.address_province }${sellerInfo.address_city }${sellerInfo.address_area }${sellerInfo.address_detail }</span>
 					</div>
 				</div>
 			</div>
@@ -121,11 +121,11 @@
 			<div class="intro">
 				<div class="intro_top">
 					<div class="intro_img1">
-						<a href="#"><img src="${ctx }/static/frontimages/lidejianshen1.jpg"
+						<a href="#"><img src="${ctx }/static/${courseDetails.introductionImg1}"
 							alt=""></a>
 					</div>
 					<div class="intro_text1">
-						<span> 不会管理自己身体的人，就无资格管理他人；<br> 经营不好自己健康的人，又如何经营好他的事业。
+						<span> ${courseDetails.courseBrief }
 						</span>
 					</div>
 					<div class="intro_text2">

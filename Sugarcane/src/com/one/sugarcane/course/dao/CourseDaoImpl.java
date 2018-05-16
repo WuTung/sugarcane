@@ -94,6 +94,15 @@ public class CourseDaoImpl{
 		return this.sessionFactory.getCurrentSession().get(SellerLogin.class,id);
 	}
 	/**
+	 * 通过ID查询商家信息
+	 * @param id
+	 * @return
+	 */
+	public SellerInfo selectSellerInfoByID(int id) {
+		return this.sessionFactory.getCurrentSession().get(SellerInfo.class,id);
+	}
+	
+	/**
 	 * 通过商家分类分页查询课程
 	 * @param page
 	 * @param sellerCourseTypeID

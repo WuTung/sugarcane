@@ -72,6 +72,9 @@ public class CourseController {
 				HttpServletRequest request,
 				HttpServletResponse response) throws IOException {
 		    Course course=this.courseServiceImpl.getCourseById(courseID);
+		    Integer sellerID=course.getSellerLogin().getSellerID();
+		    SellerInfo sellerInfo=this.courseServiceImpl.selectSellerInfoByID(sellerID);
+		    session.setAttribute("sellerInfo",sellerInfo);
 			session.setAttribute("courseDetails", course);
 			response.sendRedirect("/Sugarcane/front/courseDetails.jsp");  
 		}
