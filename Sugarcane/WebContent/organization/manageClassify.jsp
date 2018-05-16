@@ -20,7 +20,7 @@
   <img src="${ctx}/static/images/b.png" id="welcomeImg"> 
   <a id="exit">退出登录</a>
   <a href="${ctx}/organization/orgLogin.jsp"><img src="${ctx}/static/images/exit.png" id="exitimg"></a>
-  <a href="" id="jgName">培训机构名称</a>
+  <a href="" id="jgName">${sellerLogin.sellerLoginName}</a>
 </p>  
 </div>
 <div><hr/></div>

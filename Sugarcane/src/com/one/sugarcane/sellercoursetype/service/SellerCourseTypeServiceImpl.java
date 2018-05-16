@@ -90,4 +90,24 @@ public class SellerCourseTypeServiceImpl {
 		List<PublicCourseType> list = sellerCourseTypeDaoImpl.selectAll();	
 		return list;
 	}
+	/**
+	 * 登录后根据id查询培训机构课程
+	 * @author 王孜润
+	 * @date 2018/5/16
+	 */
+	public List<SellerCourseType> findBySellerId(int page,int sellerID,int sellerCourseTypeID){
+		return this.sellerCourseTypeDaoImpl.selectBySellerId(page,sellerID,sellerCourseTypeID);
+	}
+	/**
+	 * 分页查询培训机构课程
+	 * @param page
+	 * @param sellerID
+	 * @return
+	 */
+	public List<SellerCourseType> listAll(int page,int sellerID){
+		return this.sellerCourseTypeDaoImpl.findAll(page,sellerID);
+	}
+	public List<Course> listSellerCourseType(int sellerID){
+		return this.sellerCourseTypeDaoImpl.findSellerCourseType(sellerID);
+	}
 }

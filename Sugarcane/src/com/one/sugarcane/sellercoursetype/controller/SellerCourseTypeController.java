@@ -5,11 +5,14 @@
  */
 package com.one.sugarcane.sellercoursetype.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +32,7 @@ public class SellerCourseTypeController {
 	@Resource
 	private SellerCourseTypeServiceImpl sellerCourseTypeServiceImpl;
 	private CourseServiceImpl courseServiceImpl;
+	private int pageNum;
 
 	/**
 	 * 列表查询
@@ -36,9 +40,7 @@ public class SellerCourseTypeController {
 	 * @date 2018/5/1
 	 * **/
 	@RequestMapping("/sellerCourseType")
-//	private String sellerCourseType(Model model) {
 	private String sellerCourseType(Model model,HttpServletResponse response,@RequestParam(value="pageNum",defaultValue="1")Integer page,HttpServletRequest request) {
-//		List<SellerCourseType> list = sellerCourseTypeServiceImpl.findAll();
 		List<SellerCourseType> list = this.sellerCourseTypeServiceImpl.findAll(page);
 		model.addAttribute("sellerCourseType",list);
 		List<PublicCourseType> list1 = sellerCourseTypeServiceImpl.findTypeAll();
@@ -46,7 +48,6 @@ public class SellerCourseTypeController {
 		for(int i=0;i<list1.size();i++) {
 			System.out.println(list1.get(i).getPublicTypeName());
 		}
-		
 		//分页
 		int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
 		model.addAttribute("pageCount",pageCount);
@@ -111,4 +112,32 @@ public class SellerCourseTypeController {
 //	private String updateCourseType(Model model) {
 //		
 //	}
+	/**
+	 * 登录后根据id查询培训机构课程
+	 * @author 王孜润
+	 * @param session 
+	 * @param sellerCourseType 
+	 * @date 2018/5/16
+	 */
+	@RequestMapping("/sellerCourse")
+	private String sellerCourse(Model model,HttpServletResponse response,@RequestParam(value="pageNum",defaultValue="1")Integer page,HttpServletRequest request, ServletRequest session, Object sellerCourseType) {
+		Integer sellerID=(Integer) session.getAttribute("sellerID");
+		List<Course> courseList=this.sellerCourseTypeServiceImpl.listSellerCourseType(sellerID);
+		List<SellerCourseType> sellerCourseTypeList=this.sellerCourseTypeServiceImpl.listAll(pageNum,sellerID);
+		//分页
+				int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
+				model.addAttribute("pageCount",pageCount);
+				int pageNum = 1;
+				model.addAttribute("pageNum",pageNum);
+				if(pageNum==0 || pageNum<0) {
+					model.addAttribute("pageNum",1);
+				}else {
+					model.addAttribute("pageNum",pageNum);
+				}
+				session.setAttribute("sellerCourseTypeList", sellerCourseTypeList);
+				session.setAttribute("coursePageNum",pageNum);
+				session.setAttribute("coursePageCount",pageCount);
+				session.setAttribute("sellerCourseType", sellerCourseType);
+				return "organization/manageClassify";
+	}
 }

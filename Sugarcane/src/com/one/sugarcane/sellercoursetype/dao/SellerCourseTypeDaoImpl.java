@@ -115,6 +115,39 @@ public class SellerCourseTypeDaoImpl {
 		query.setParameter(0, name);
 		List<PublicCourseType> list = query.list();
 		return list;
-		
+	}
+	/**
+	 * 登录后根据id查询培训机构课程
+	 * @author 王孜润
+	 * @param sellerCourseTypeID 
+	 * @date 2018/5/16
+	 */
+	public List<SellerCourseType> selectBySellerId(int page,int sellerID, int sellerCourseTypeID){
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Course where sellerCourseeTypeID="+sellerCourseTypeID+"and sellerID="+sellerID);
+		query.setFirstResult((page-1)*6);
+		query.setMaxResults(6);
+		return query.list();
+	}
+	/**
+	 * 分页查询机构所有课程
+	 * @param page
+	 * @param sellerID
+	 * @return
+	 */
+	public List<SellerCourseType>findAll(int page,int sellerID){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Course where sellerID="+sellerID);
+		q.setFirstResult((page-1)*6);
+		q.setMaxResults(6);	
+		return q.list();
+	}
+	/**
+	 * 查询商家所有分类
+	 * @param sellerID
+	 * @return
+	 */
+	public List<Course> findSellerCourseType(int sellerID) {
+		Query q= this.sessionFactory.getCurrentSession().createQuery("from SellerCourseType where sellerID="+sellerID);
+		return q.list();
 	}
 }
