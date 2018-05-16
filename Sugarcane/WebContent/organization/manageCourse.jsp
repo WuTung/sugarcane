@@ -20,7 +20,7 @@
   <img src="${ctx}/static/images/b.png" id="welcomeImg"> 
   <a id="exit">退出登录</a>
   <a href="#"><img src="${ctx}/static/images/exit.png" id="exitimg"></a>
-  <a href="#" id="jgName">培训机构名称</a>
+  <a href="#" id="jgName">${sellerLogin.sellerLoginName }</a>
  
 </p>  
 </div>
@@ -45,7 +45,7 @@
         <select >
         	<option >请选择类型</option>
         <c:forEach  items="${sellerCourseTypeList}" var="sellerCourseType" varStatus="i">
-        	<option value="${sellerCourseType.sellerCourseTypeID }">${sellerCourseType.courseTypeName2 }</option>
+        	<option name="sellerCourseTypeID" value="${sellerCourseType.sellerCourseTypeID }">${sellerCourseType.courseTypeName2 }</option>
         </c:forEach>
         </select>
         <input type="submit" value="搜索" class="find">
@@ -80,8 +80,8 @@
      	<td class="td">
      	 <select >
         	<option >请选择类型</option>
-        <c:forEach  items="${sellerCourseTypeList}" var="sellerCourseType" varStatus="i">
-        	<option name="sellerCourseTypeID" value="${sellerCourseType.sellerCourseTypeID }">${sellerCourseType.courseTypeName2 }</option>
+        <c:forEach  items="${sellerCourseTypeList}" var="sellerCourseTypeList" varStatus="i">
+        	<option name="sellerCourseTypeID" value="${sellerCourseTypeList.sellerCourseTypeID }">${sellerCourseTypeList.courseTypeName2 }</option>
         </c:forEach>
         </select>
      	</td>
@@ -95,19 +95,19 @@
 
 
       <div id="pageDivide">
-        <ul> 
+        <ul class="pager"> 
             <li><a href="../course/listCourse?coursePageIndex=1&sellerID=${sellerID}" class="pagea">首页</a></li>
             <li><a href="../course/listCourse?coursePageIndex=${coursePageIndex-1 }&sellerID=${sellerID}"><</a></li>          
-             <c:forEach begin="${coursePageIndex }" end="${coursePageCount}" step="1" var="i">
+             <c:forEach begin="${coursePageIndex }" end="${coursePageCount-1}" step="1" var="i">
             	<li><a href="../course/listCourse?coursePageIndex=${i}&sellerID=${sellerID}">${i}</a></li>
             </c:forEach>
-            <c:if test="${coursePageIndex+1<=coursePageCount}">
+            <c:if test="${coursePageIndex+1<=coursePageCount-1}">
             <li><a href="../course/listCourse?coursePageIndex=${coursePageIndex+1 }&sellerID=${sellerID}">></a></li>
             </c:if>
             <c:if test="${coursePageIndex+1>coursePageCount}">
-             <li><a href="../course/listCourse?coursePageIndex=${coursePageCount }&sellerID=${sellerID}">></a></li>
+             <li><a href="../course/listCourse?coursePageIndex=${coursePageCount-1 }&sellerID=${sellerID}">></a></li>
             </c:if>
-            <li><a href="../course/listCourse?coursePageIndex=${coursePageCount }&sellerID=${sellerID}">尾页</a></li>
+            <li><a href="../course/listCourse?coursePageIndex=${coursePageCount-1 }&sellerID=${sellerID}">尾页</a></li>
         </ul>
      </div>
 
