@@ -38,6 +38,14 @@ public class SellerInfoDaoImpl {
 		session.update(sellerinfo);
 		
 	}
+	@SuppressWarnings("unchecked")
+	public SellerInfo findByEmail(String email) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query<SellerInfo> query = session.createQuery("from SellerInfo where sellerEmail='"+email+"' ");
+		SellerInfo sellerinfo = query.uniqueResult();
+		return sellerinfo;
+	}
 }
 
 

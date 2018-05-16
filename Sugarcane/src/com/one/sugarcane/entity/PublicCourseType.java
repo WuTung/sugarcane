@@ -19,6 +19,7 @@ public class PublicCourseType {
 	private int hidden;
 	private Set<Course>course = new HashSet<Course>();
 	private Set<QuestionBank>questionBank = new HashSet<QuestionBank>();
+	
 	@Id
 	@GeneratedValue(generator="a")
 	@GenericGenerator(name="a",strategy="identity")

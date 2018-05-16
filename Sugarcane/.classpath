@@ -90,5 +90,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/websocket-api.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/zipfs.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

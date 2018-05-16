@@ -5,12 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.sellerinfo.dao.SellerInfoDaoImpl;
 import com.one.sugarcane.entity.SellerInfo;
+import com.one.sugarcane.entity.SellerLogin;
 
 @Service
 @Transactional(readOnly=false)
 public class SellerInfoServiceImpl {
 	@Resource
-	private SellerInfoDaoImpl sellerInfoDaoImpl;
+	private  SellerInfoDaoImpl sellerInfoDaoImpl;
 	
 	/**
 	 * 培训机构注册
@@ -26,8 +27,23 @@ public class SellerInfoServiceImpl {
 		return sellerInfoDaoImpl.fineByName(name,email);
 	}
 
-	public void updateSellerInfo(SellerInfo sellerinfo) {
+	public  void updateSellerInfo(SellerInfo sellerinfo) {
 		
 		sellerInfoDaoImpl.updateSellerInfo(sellerinfo);
 	}
+
+public  void resetPassword(String email, String randomPasswordString) {
+	
+	SellerInfo s = new SellerInfo();
+	s = sellerInfoDaoImpl.findByEmail(email);
+	
+	SellerLogin sl = s.getSellerLogin();
+	
+	sl.setPassword(randomPasswordString);
+	
+	sellerInfoDaoImpl.updateSellerInfo(s);
+	
+}
+	
+	
 }

@@ -57,7 +57,7 @@
 			</form>
 			<div id="cfoot">
 			<a href="${ctx}/organization/passed.jsp" >查询审核</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" >忘记密码</a>
+			<a href="${ctx}/organization/forget.jsp" >忘记密码</a>
 			</div>
 	</div><!--login-->
 </div> 
