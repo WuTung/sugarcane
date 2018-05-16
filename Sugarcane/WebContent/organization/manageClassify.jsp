@@ -30,7 +30,7 @@
     <div id="list">
      <div class="a1 lefta"><a href="${ctx}/organization/manageIntro.jsp" class="leftb">○&nbsp;管理简介</a></div>
      <div class="a1 lefta selecteda"><a href="${ctx}/organization/manageClassify.jsp" class="leftb selecteda">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta "><a href="${ctx}/organization/manageCourse.jsp" class="leftb">○&nbsp;管理课程</a></div>
+     <div class="a1 lefta "><a href="../course/listCourse?coursePageIndex=1&sellerID=1"class="leftb"" class="leftb">○&nbsp;管理课程</a></div>
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
 
      </div><!--list-->
@@ -39,98 +39,58 @@
      <div id="table">
      <form>
      <table cellspacing="0">
-     	<tr>
-     	<td>课程名称</td>
-        <td>课程所属分类</td>
-     	<td>修改所属分类</td>
-     	<td>修改</td>
-     	<td>删除</td></tr>
-     	<tr>
-     	<td>钢琴</td>
-        <td>音乐</td>
-     	<td>
-     		<select>
-        	<option >所属类型</option>
-        	<option value="音乐">音乐</option>
-        	<option value="舞蹈">舞蹈</option>
-        </select>
-     	</td>
-     	<td><a href="#"> 修改</a></td>
-     	<td><a href="#"> 删除</a></td></tr>
+	     	<tr>
+	     	<td>课程名称</td>
+	        <td>课程所属分类</td>
+	     	<td>修改所属分类</td>
+	     	<td>操作</td></tr>
+	     	<c:forEach var="sellerCourseType" items="${sellerCourseType }">
+		     	<tr>
+			     	<td>${sellerCourseType.courseName}</td>
+			        <td>${sellerCourseType.sellerCourseType.courseTypeName2}</td>
+			     	<td>
+			     		<select>
+				        	<option>所属类型</option>
+				        	
+				        	<c:forEach var="publicCourseType" items="${publicCourseType}">
+					        	<option>${publicCourseType.publicTypeName}</option>
+				        	</c:forEach>
+			        	</select>
+			     	</td>
+			     	<td><a href="${ctx}/sellerCourseType/updateCourseType?id=${sellerCourseType.courseID}">更新</a>&nbsp;/&nbsp;<a href="${ctx}/sellerCourseType/deleteCourseType?id=${sellerCourseType.courseID}">删除</a></td></tr>
+			    </tr>
+        </c:forEach>
         <tr>
-        <td>芭蕾</td>
-        <td>舞蹈</td>
-        <td>
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        <td><a href="#"> 修改</a></td>
-        <td><a href="#"> 删除</a></td></tr>
-     	<tr>
-     	<td>吉他</td>
-        <td>乐器</td>
-     	<td>
-     		 <select>
-        	<option >所属类型</option>
-        	<option value="音乐">音乐</option>
-        	<option value="舞蹈">舞蹈</option>
-        </select>
-     	</td>
-     	<td><a href="#"> 修改</a></td>
-     	<td><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td>吉他</td>
-        <td>乐器</td>
-        <td>
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        <td><a href="#"> 修改</a></td>
-        <td><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td>吉他</td>
-        <td>乐器</td>
-        <td>
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        <td><a href="#"> 修改</a></td>
-        <td><a href="#"> 删除</a></td></tr>
-        <tr>
-        <td><input type="text"/></td>
-        <td></td>
-        <td>
-             <select>
-            <option >所属类型</option>
-            <option value="音乐">音乐</option>
-            <option value="舞蹈">舞蹈</option>
-        </select>
-        </td>
-        <td><a href="#">添加</a></td>
-        <td></td></tr>
+        	<form action="${ctx}/sellerCourseType/addCourseType">
+	        	<div><td><input type="text" name = "courseName"/></td></div>
+	        	<div><td><input type="text" name="publicTypeName"/></td></div>
+	        	<div><td>
+	        		<select>
+				        <option >所属类型</option>
+				        	<c:forEach var="publicCourseType" items="${publicCourseType}">
+					        	<option>${publicCourseType.publicTypeName}</option>
+				        	</c:forEach>
+				    </select>
+				</td></div>
+	        	<!-- 
+	        		        	<td><a href="${ctx}/sellerCourseType/addCourseType">添加</a></td>
+	        	
+	        	 -->
+	        	 <td><input type="submit" value="确认添加" style="border:2px solid #9ACD32;onclick="this.style.background='#D3D3D3';"></td>
+        	</form>
+        </tr>
      </table>
      </form>
-
+<!--  分页       -->
       <div id="pageDivide">
         <ul>
-            <li><a href="">首页</a></li>
-            <li><a href="">上一页</a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">...</a></li>
-            <li><a href="">20</a></li>
-            <li><a href="">下一页</a></li>
-            <li><a href="">尾页</a></li>
+            <li><a href="sellerCourseType?pageNum=1">首页</a></li>
+            <li><a href="sellerCourseType?pageNum=${pageNum}">上一页</a></li>
+            <c:forEach begin="1" end="${pageCount+1}" step="1" var="i">
+            	<li><a href="sellerCourseType?pageNum=${i}">${i}</a></li>
+            </c:forEach>
+            <li><a href="sellerCourseType?pageNum=${pageNum+1}">下一页</a></li>
+            <li><a href="sellerCourseType?pageNum=${pageCount+1}">尾页</a></li>
         </ul>
      </div>
 	 </div><!--table-->
@@ -141,5 +101,4 @@
      ©CopyRight sugarcane <a href="#">联系我们</a>
 </div><!--footer-->
 </body>
-</script>
 </html>

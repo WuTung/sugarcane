@@ -10,6 +10,14 @@
 	height: 40em;
 	
 }
+li{
+	float: left;
+	list-style: none;
+}
+li a{
+	font-size: 20px;
+	padding: 10px;
+}
 .body_left_classify{
 	 margin-left: 5.625em;
 	 margin-top: 3.125em;
@@ -108,6 +116,11 @@ select{
 	margin: 1.25em 0 0 5.625em;
 	height: 1.875em;
 	width: 7.5em;
+}
+#pageDivide{
+	float: left;
+	/*padding-left: 100%;*/
+	padding-left: 9%;
 }
 option{
 	text-align: center;
