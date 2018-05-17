@@ -31,8 +31,7 @@ public class SellerInfo {
 	private String address_detail;
 	private int qualified;
 	private SellerLogin sellerLogin;
-	private Date validatacode;
-	private Date outdate;
+
 
 	@Id
 	@GeneratedValue(generator = "a")
@@ -166,21 +165,9 @@ public class SellerInfo {
 		this.sellerLogin = sellerLogin;
 	}
 
-	public Date getValidatacode() {
-		return validatacode;
-	}
 
-	public void setValidatacode(Date secretKey) {
-		this.validatacode = secretKey;
-	}
 
-	public Date getOutdate() {
-		return outdate;
-	}
 
-	public void setOutdate(Date outdate) {
-		this.outdate = outdate;
-	}
 
 	public SellerInfo() {
 	}
@@ -188,7 +175,7 @@ public class SellerInfo {
 	public SellerInfo(String sellerName, String sellerEmail, String sellerPhoneNumber, String brief,
 			String numberOfEmployees, String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate,
 			String businessLisense, String address_province, String address_city, String address_area,
-			String address_detail, int qualified, SellerLogin sellerLogin, Date validatacode, Date outdate) {
+			String address_detail, int qualified, SellerLogin sellerLogin) {
 		super();
 		this.sellerName = sellerName;
 		this.sellerEmail = sellerEmail;
@@ -205,8 +192,6 @@ public class SellerInfo {
 		this.address_detail = address_detail;
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
-		this.validatacode = validatacode;
-		this.outdate = outdate;
-	}
+		}
 
 }
