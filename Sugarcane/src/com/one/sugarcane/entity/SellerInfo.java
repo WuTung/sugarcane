@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="SELLERINFO")
+@Table(name = "SELLERINFO")
 public class SellerInfo {
 	private Integer sellerID;
 	private String sellerName;
@@ -31,39 +31,47 @@ public class SellerInfo {
 	private String address_detail;
 	private int qualified;
 	private SellerLogin sellerLogin;
-    private Date validatacode;
-    private Date outdate;
- 
+
+
 	@Id
-	@GeneratedValue(generator="a")
-	@GenericGenerator(name="a",strategy="identity")
+	@GeneratedValue(generator = "a")
+	@GenericGenerator(name = "a", strategy = "identity")
 	public Integer getSellerID() {
 		return sellerID;
 	}
+
 	public void setSellerID(Integer sellerID) {
 		this.sellerID = sellerID;
 	}
+
 	public String getSellerName() {
 		return sellerName;
 	}
+
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
 	}
+
 	public String getSellerEmail() {
 		return sellerEmail;
 	}
+
 	public void setSellerEmail(String sellerEmail) {
-		this.sellerEmail= sellerEmail;
+		this.sellerEmail = sellerEmail;
 	}
+
 	public String getSellerPhoneNumber() {
 		return sellerPhoneNumber;
 	}
+
 	public void setSellerPhoneNumber(String sellerPhoneNumber) {
 		this.sellerPhoneNumber = sellerPhoneNumber;
 	}
+
 	public String getBrief() {
 		return brief;
 	}
+
 	public void setBrief(String brief) {
 		this.brief = brief;
 	}
@@ -71,87 +79,103 @@ public class SellerInfo {
 	public String getNumberOfEmployees() {
 		return numberOfEmployees;
 	}
+
 	public void setNumberOfEmployees(String numberOfEmployees) {
 		this.numberOfEmployees = numberOfEmployees;
 	}
+
 	public String getEducationBureauApproved() {
 		return educationBureauApproved;
 	}
+
 	public void setEducationBureauApproved(String educationBureauApproved) {
 		this.educationBureauApproved = educationBureauApproved;
 	}
+
 	public String getProofOfHouse() {
 		return proofOfHouse;
 	}
+
 	public void setProofOfHouse(String proofOfHouse) {
 		this.proofOfHouse = proofOfHouse;
 	}
+
 	public String getFireSafetyCertificate() {
 		return fireSafetyCertificate;
 	}
+
 	public void setFireSafetyCertificate(String fireSafetyCertificate) {
 		this.fireSafetyCertificate = fireSafetyCertificate;
 	}
+
 	public String getBusinessLisense() {
 		return businessLisense;
 	}
+
 	public void setBusinessLisense(String businessLisense) {
 		this.businessLisense = businessLisense;
 	}
+
 	public String getAddress_province() {
 		return address_province;
 	}
+
 	public void setAddress_province(String address_province) {
 		this.address_province = address_province;
 	}
+
 	public String getAddress_city() {
 		return address_city;
 	}
+
 	public void setAddress_city(String address_city) {
 		this.address_city = address_city;
 	}
+
 	public String getAddress_area() {
 		return address_area;
 	}
+
 	public void setAddress_area(String address_area) {
 		this.address_area = address_area;
 	}
+
 	public String getAddress_detail() {
 		return address_detail;
 	}
+
 	public void setAddress_detail(String address_detail) {
 		this.address_detail = address_detail;
 	}
+
 	public int getQualified() {
 		return qualified;
 	}
+
 	public void setQualified(int qualified) {
 		this.qualified = qualified;
 	}
-	@OneToOne(mappedBy="sellerInfo")
+
+	@OneToOne(mappedBy = "sellerInfo")
 	public SellerLogin getSellerLogin() {
 		return sellerLogin;
 	}
+
 	public void setSellerLogin(SellerLogin sellerLogin) {
 		this.sellerLogin = sellerLogin;
 	}
-	    public Date getValidatacode() {
-	    return validatacode;
-	    }
-	    public void setValidatacode(Date secretKey) {
-	    this.validatacode = secretKey;
-	    }
-	    public Date getOutdate() {
-	    return outdate;
-	    }
-	    public void setOutdate(Date outdate) {
-	    this.outdate = outdate;
-	    }
-	public SellerInfo() {}
+
+
+
+
+
+	public SellerInfo() {
+	}
+
 	public SellerInfo(String sellerName, String sellerEmail, String sellerPhoneNumber, String brief,
 			String numberOfEmployees, String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate,
 			String businessLisense, String address_province, String address_city, String address_area,
-			String address_detail, int qualified, SellerLogin sellerLogin,Date validatacode,Date outdate) {
+			String address_detail, int qualified, SellerLogin sellerLogin) {
 		super();
 		this.sellerName = sellerName;
 		this.sellerEmail = sellerEmail;
@@ -168,8 +192,6 @@ public class SellerInfo {
 		this.address_detail = address_detail;
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
-		this.validatacode = validatacode;
-		this.outdate = outdate;
-	}
+		}
 
 }

@@ -65,7 +65,7 @@ public class UserInfoController {
 	public void updateUserInfo(HttpServletRequest request, HttpServletResponse response,@RequestParam int userGender, @RequestParam String birthday, 
 			@RequestParam String userEducation,@RequestParam String userWork, @RequestParam String address_province,
 			@RequestParam String address_city, @RequestParam String address_area, @RequestParam String publicTypeNames) throws IOException {
-		System.out.println(userGender+birthday+userEducation+userWork+address_province+address_city+address_area+publicTypeNames);
+		//System.out.println(userGender+birthday+userEducation+userWork+address_province+address_city+address_area+publicTypeNames);
 		UserInfo userInfo = (UserInfo)request.getSession().getAttribute("user");
 		Set<UserHobby> userHobbies = new HashSet<UserHobby>();
 		String[] p=publicTypeNames.split(",");
@@ -76,7 +76,6 @@ public class UserInfoController {
 			UserHobby userHobby = this.userInfoServiceImpl.saveUserHobby(userInfo, publicType);
 			userHobbies.add(userHobby);
 		}
-		System.out.println("开始");
 		userInfo.setUserGender(userGender);
 		userInfo.setBirthday(birthday);
 		userInfo.setUserEducation(userEducation);
@@ -86,7 +85,6 @@ public class UserInfoController {
 		userInfo.setAddress_area(address_area);
 		userInfo.setUserHobby(userHobbies);
 		this.userInfoServiceImpl.updateUserInfo(userInfo);
-		System.out.println("结束");
 		response.sendRedirect("/Sugarcane/front/home.jsp");
 	}
 }
