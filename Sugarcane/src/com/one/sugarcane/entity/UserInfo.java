@@ -18,15 +18,17 @@ public class UserInfo {
 	private Integer userID;
 	private String userName;
 	private String userEmail;
-	private int userGender;
-	private String userEducation;
-	private String userPhoneNumber;
-	private String birthday;
-	private String address_province;
-	private String address_city;
-	private String address_area;
-	private Set<GradeLevel>gradeLevel = new HashSet<GradeLevel>();
+	private int userGender;			//�Ա�
+	private String userEducation;	//ѧ��
+	private String userWork;		//ְҵ
+	private String userPhoneNumber;	//�绰
+	private String birthday;		//����
+	private String address_province;//ʡ
+	private String address_city;	//��
+	private String address_area;	//��
+	private Set<GradeLevel>gradeLevel = new HashSet<GradeLevel>();	//�꼶ˮƽ
 	private UserLogin userLogin;
+	private Set<UserHobby>userHobby = new HashSet<UserHobby>();		//��Ȥ����
 	@Id
 	@GeneratedValue(generator="a")
 	@GenericGenerator(name="a",strategy="identity")
@@ -60,7 +62,12 @@ public class UserInfo {
 	public void setUserEducation(String userEducation) {
 		this.userEducation = userEducation;
 	}
-	
+	public String getUserWork() {
+		return userWork;
+	}
+	public void setUserWork(String userWork) {
+		this.userWork = userWork;
+	}
 	public String getUserPhoneNumber() {
 		return userPhoneNumber;
 	}
@@ -105,15 +112,23 @@ public class UserInfo {
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
+	@OneToMany(mappedBy="userInfo",targetEntity=UserHobby.class,cascade=CascadeType.MERGE)
+	public Set<UserHobby> getUserHobby() {
+		return userHobby;
+	}
+	public void setUserHobby(Set<UserHobby> userHobby) {
+		this.userHobby = userHobby;
+	}
 	public UserInfo() {}
-	public UserInfo(String userName, String userEmail, int userGender, String userEducation, String userPhoneNumber,
+	public UserInfo(String userName, String userEmail, int userGender, String userEducation, String userWork, String userPhoneNumber,
 			String birthday, String address_province, String address_city, String address_area,
-			Set<GradeLevel> gradeLevel, UserLogin userLogin) {
+			Set<GradeLevel> gradeLevel, UserLogin userLogin, Set<UserHobby> userHobby) {
 		super();
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.userGender = userGender;
 		this.userEducation = userEducation;
+		this.userWork = userWork;
 		this.userPhoneNumber = userPhoneNumber;
 		this.birthday = birthday;
 		this.address_province = address_province;
@@ -121,6 +136,7 @@ public class UserInfo {
 		this.address_area = address_area;
 		this.gradeLevel = gradeLevel;
 		this.userLogin = userLogin;
+		this.userHobby = userHobby;
 	}
-
+	
 }

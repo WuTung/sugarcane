@@ -45,6 +45,12 @@ public class UserLoginServiceImpl {
 	public void updateUserLogin(UserLoginLog userLoginLog) {
 		this.userLoginDaoImpl.updateUserLogin(userLoginLog);
 	}
-
+	/**
+	 * 查看日志，用户登录次数
+	 * @author 冯海晴
+	 */
+	public int findLogCount(UserLogin userLogin) {
+		return this.userLoginDaoImpl.findLogCount(userLogin);
+	}
 	
 }

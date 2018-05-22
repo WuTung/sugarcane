@@ -36,7 +36,16 @@ public class UserLoginDaoImpl {
 		this.sessionFactory.getCurrentSession().save(userLoginLog.getUserLogin());
 	}
 	
-
+	/**
+	 * 查看查看日志，用户登录次数
+	 * @author 冯海晴
+	 */
+	public int findLogCount(UserLogin userLogin) {
+		String hql="select count(u.ID) as number from UserLoginLog u where u.userLogin = ?";
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql).setParameter(0, userLogin);
+		int logCount=((Number)query.iterate().next()).intValue();
+		return logCount;
+	}
 
 
 }

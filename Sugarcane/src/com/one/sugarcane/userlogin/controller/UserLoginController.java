@@ -29,6 +29,7 @@ public class UserLoginController {
 	
 	/**
 	 * user登录
+	 * 若为第一次跳转则跳转到complete.jsp页面完善信息
 	 * @param email
 	 * @param password
 	 * @param model
@@ -62,7 +63,12 @@ public class UserLoginController {
 			userLoginlog.setUserLogin(userLogin);
 			this.userLoginServiceImpl.updateUserLogin(userLoginlog);
 			request.getSession().setAttribute("user", userLogin.getUserInfo());
-			return "front/home";
+			int logCount = this.userLoginServiceImpl.findLogCount(userLogin);
+			if(logCount == 1) {
+				return "redirect:/publicType/listall.do";
+			}else {
+				return "front/home";
+			}
 		}else{
 			model.addAttribute("information", "邮箱或密码错误");
 			return "front/home";

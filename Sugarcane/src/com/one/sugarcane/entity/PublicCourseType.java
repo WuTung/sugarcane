@@ -19,7 +19,7 @@ public class PublicCourseType {
 	private int hidden;
 	private Set<Course>course = new HashSet<Course>();
 	private Set<QuestionBank>questionBank = new HashSet<QuestionBank>();
-	
+	private Set<UserHobby>userHobby = new HashSet<UserHobby>();
 	@Id
 	@GeneratedValue(generator="a")
 	@GenericGenerator(name="a",strategy="identity")
@@ -55,14 +55,22 @@ public class PublicCourseType {
 	public void setQuestionBank(Set<QuestionBank> questionBank) {
 		this.questionBank = questionBank;
 	}
+	@OneToMany(mappedBy="publicType",targetEntity=UserHobby.class,cascade=CascadeType.MERGE)
+	public Set<UserHobby> getUserHobby() {
+		return userHobby;
+	}
+	public void setUserHobby(Set<UserHobby> userHobby) {
+		this.userHobby = userHobby;
+	}
+	
 	public PublicCourseType() {}
-	public PublicCourseType(String publicTypeName, int hidden, Set<Course> course, Set<QuestionBank> questionBank) {
+	public PublicCourseType(String publicTypeName, int hidden, Set<Course> course, Set<QuestionBank> questionBank, Set<UserHobby> userHobby ) {
 		super();
 		this.publicTypeName = publicTypeName;
 		this.hidden = hidden;
 		this.course = course;
 		this.questionBank = questionBank;
+		this.userHobby = userHobby;
 	}
-	
 	
 }
