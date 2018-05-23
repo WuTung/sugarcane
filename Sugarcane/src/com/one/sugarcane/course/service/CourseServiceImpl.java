@@ -8,10 +8,13 @@ package com.one.sugarcane.course.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.course.dao.CourseDaoImpl;
 import com.one.sugarcane.entity.Course;
+import com.one.sugarcane.entity.CourseType;
 import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
@@ -59,6 +62,15 @@ public class CourseServiceImpl {
 		return this.courseDaoImpl.findCourseBySellerCourseType(page,sellerCourseTypeID,sellerID);
 	}
 	/**
+	 * 通过公共分类ID查询课程
+	 * @param page
+	 * @param publicTypeID
+	 * @return
+	 */
+	public List<Course> listCourseByPublicCourseType(int page,int publicTypeID){
+		return this.courseDaoImpl.selectByPublicCourseTypeID(publicTypeID, page);
+	}
+	/**
 	 * 通过ID查询课程商家分类
 	 * @param id
 	 * @return
@@ -75,6 +87,44 @@ public class CourseServiceImpl {
 		return this.courseDaoImpl.selectPublicCourseTypeByID(id);
 	}
 	/**
+	 * 查询所有公共分类
+	 * @return
+	 */
+	public List<PublicCourseType> selectPublicCourseType() {
+		return this.courseDaoImpl.findPublicCourseType();
+	}
+	/**
+	 * 查询所有公共分类
+	 * @return
+	 */
+	public List<PublicCourseType> selectPublicCourseType(int courseTypeID) {
+		return this.courseDaoImpl.findPublicCourseType(courseTypeID);
+	}
+	
+	/**
+	 * 查询所有分类
+	 * @return
+	 */
+	public List<CourseType> selectCourseType() {
+		return this.courseDaoImpl.findCourseType();
+	}
+	/**
+	 * 通过ID查询所有分类
+	 * @param courseTypeID
+	 * @return
+	 */
+	public CourseType selectCourseTypeByID(int courseTypeID) {
+		return this.courseDaoImpl.findCourseTypeByID(courseTypeID);
+	}
+	/**
+	 * 通过大分类ID查找public分类list
+	 * @param courseTypeID
+	 * @return
+	 */
+	public List<PublicCourseType> findPublicTypeByCourseTypeID(int courseTypeID) {
+		return this.courseDaoImpl.selectPublicTypeByCourseTypeID(courseTypeID);
+	}
+	/**
 	 * 通过ID查询商家
 	 * @param id
 	 * @return
@@ -82,6 +132,7 @@ public class CourseServiceImpl {
 	public SellerLogin selectSellerByID(int id) {
 		return this.courseDaoImpl.selectSellerByID(id);
 	}
+	
 	/**
 	 * 通过ID查询商家信息
 	 * @param id
@@ -123,17 +174,46 @@ public class CourseServiceImpl {
 	 * @return
 	 */
 	public int getPageCount() {
-        if((this.courseDaoImpl.findRowsCount())%6==0) {
-		    return (int)(this.courseDaoImpl.findRowsCount()/6);
+        if((this.courseDaoImpl.findRowsCount())%10==0) {
+		    return (int)(this.courseDaoImpl.findRowsCount()/10);
 		}else {
-		    return (int)(this.courseDaoImpl.findRowsCount()/6+1);	
+		    return (int)(this.courseDaoImpl.findRowsCount()/10+1);	
 		}	
 	}
+	/**
+	 * 得到商家分类后课程总页码数
+	 * @param sellerCourseTypeID
+	 * @return
+	 */
 	public int getPageCountBySellerCourseType(int sellerCourseTypeID) {
         if((this.courseDaoImpl.findRowsCountBySellerCourseType(sellerCourseTypeID))%6==0) {
 		    return (int)(this.courseDaoImpl.findRowsCountBySellerCourseType(sellerCourseTypeID)/6);
 		}else {
 		    return (int)(this.courseDaoImpl.findRowsCountBySellerCourseType(sellerCourseTypeID)/6+1);	
+		}	
+	}
+	/**
+	 * 得到商家ID后课程总页码数
+	 * @param sellerID
+	 * @return
+	 */
+	public int getPageCountBySeller(int sellerID) {
+        if((this.courseDaoImpl.findRowsCountBySellerID(sellerID))%6==0) {
+		    return (int)(this.courseDaoImpl.findRowsCountBySellerID(sellerID)/6);
+		}else {
+		    return (int)(this.courseDaoImpl.findRowsCountBySellerID(sellerID)/6+1);	
+		}	
+	}
+	/**
+	 * 得到公共分类后课程总页码数
+	 * @param publicTypeID
+	 * @return
+	 */
+	public int getPageCountByPublicCourseType(int publicTypeID) {
+        if((this.courseDaoImpl.findRowsCountByPublicTypeID(publicTypeID))%6==0) {
+		    return (int)(this.courseDaoImpl.findRowsCountByPublicTypeID(publicTypeID)/6);
+		}else {
+		    return (int)(this.courseDaoImpl.findRowsCountByPublicTypeID(publicTypeID)/6+1);	
 		}	
 	}
 	

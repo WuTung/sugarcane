@@ -105,9 +105,9 @@
             <li><a href="../course/listCourseBySellerCourseType?coursePageIndex=${coursePageIndex+1 }&sellerID=${sellerID}">></a></li>
             </c:if>
             <c:if test="${coursePageIndex+1>coursePageCount}">
-             <li><a href="../course/listCourseBySellerCourseType?coursePageIndex=${coursePageCount }&sellerID=${sellerID}">></a></li>
+             <li><a href="../course/listCourseBySellerCourseType?coursePageIndex=${coursePageCount-1 }&sellerID=${sellerID}">></a></li>
             </c:if>
-            <li><a href="../course/listCourseBySellerCourseType?coursePageIndex=${coursePageCount }&sellerID=${sellerID}">尾页</a></li>
+            <li><a href="../course/listCourseBySellerCourseType?coursePageIndex=${coursePageCount-1 }&sellerID=${sellerID}">尾页</a></li>
         </ul>
      </div>
 

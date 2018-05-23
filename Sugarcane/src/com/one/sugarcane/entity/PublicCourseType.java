@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,6 +19,7 @@ public class PublicCourseType {
 	private Integer publicTypeId;
 	private String publicTypeName;
 	private int hidden;
+	private CourseType courseType;
 	private Set<Course>course = new HashSet<Course>();
 	private Set<QuestionBank>questionBank = new HashSet<QuestionBank>();
 	
@@ -62,6 +65,14 @@ public class PublicCourseType {
 		this.hidden = hidden;
 		this.course = course;
 		this.questionBank = questionBank;
+	}
+	@ManyToOne
+	@JoinColumn(name="courseTypeID")
+	public CourseType getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(CourseType courseType) {
+		this.courseType = courseType;
 	}
 	
 	

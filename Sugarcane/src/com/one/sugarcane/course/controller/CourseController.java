@@ -1,11 +1,13 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.5.15
+ * @date 2018.5.21
  */
 package com.one.sugarcane.course.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.one.sugarcane.course.service.CourseServiceImpl;
 import com.one.sugarcane.entity.Course;
+import com.one.sugarcane.entity.CourseType;
 import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
@@ -27,10 +30,7 @@ import com.one.sugarcane.entity.SellerLogin;
 @RequestMapping("course")
 public class CourseController {
 	@Resource
-	private CourseServiceImpl courseServiceImpl;
-	
-	
-	
+	private CourseServiceImpl courseServiceImpl;	
 	/**
 	 * 查询所有课程
 	 * @param coursePageIndex
@@ -42,7 +42,27 @@ public class CourseController {
 	public void ListAllCourse(
 			@RequestParam("coursePageIndex")Integer coursePageIndex,
 			HttpServletResponse response,HttpSession session) throws IOException {
-		List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);		
+		List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
+		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
+		List<CourseType> courseTypeList=this.courseServiceImpl.selectCourseType();
+		//显示分类
+		int courseTypeLength=courseTypeList.size();
+		System.out.println(courseTypeLength);
+		for(int i = 0;i < courseTypeLength; i++) {
+			CourseType courseType=this.courseServiceImpl.selectCourseTypeByID(i);
+            List<PublicCourseType>publicCourseTypeLists=this.courseServiceImpl.selectPublicCourseType(courseTypeList.get(i).getCourseTypeID()-1);          
+			session.setAttribute("courseType"+i, courseType);
+            session.setAttribute("publicCourseTypeLists"+i, publicCourseTypeLists);
+		}
+//		for(Iterator<CourseType> courseTypeIT=courseTypeList.iterator();courseTypeIT.hasNext(); ) {
+//			if(null!=courseTypeIT.next()) {
+//			CourseType courseType=courseTypeIT.next();
+//			List<PublicCourseType>publicCourseTypeLists=this.courseServiceImpl.selectPublicCourseType(courseTypeIT.next().getCourseTypeID());
+//			session.setAttribute("courseType"+courseTypeIT.next().getCourseTypeID(), courseType);
+//			Integer i=courseTypeIT.next().getCourseTypeID();
+//			session.setAttribute("publicCourseTypeLists"+i, publicCourseTypeLists);
+//			}
+//		}
 		//分页
 		int pageCount=this.courseServiceImpl.getPageCount();	
 		int pageIndex=1;	
@@ -51,11 +71,127 @@ public class CourseController {
 			 
 		 }else {
 			 session.setAttribute("coursePageIndex",coursePageIndex);
-			 	}	
+			 	}
 		session.setAttribute("coursePageIndex",pageIndex);
 		session.setAttribute("coursePageCount",pageCount);
 		session.setAttribute("courseList", courseList);
 		response.sendRedirect("/Sugarcane/front/courseLists.jsp");
+		
+	}
+	/**
+	 * public分类查询所有课程
+	 * @param publicCourseTypeID
+	 * @param coursePageIndex
+	 * @param response
+	 * @param session
+	 * @throws IOException
+	 */
+	@RequestMapping("/listAllCourseByType")
+	public void ListAllCourseByType(
+			@RequestParam("publicCourseTypeID")Integer publicCourseTypeID,
+			@RequestParam(value="coursePageIndex",defaultValue="1")Integer coursePageIndex,
+			HttpServletResponse response,HttpSession session) throws IOException {
+		//List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
+		
+		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
+		List<CourseType> courseTypeList=this.courseServiceImpl.selectCourseType();
+		int courseTypeLength=courseTypeList.size();
+		System.out.println(courseTypeLength);
+		for(int i = 0;i < courseTypeLength; i++) {
+			CourseType courseType=this.courseServiceImpl.selectCourseTypeByID(i);
+            List<PublicCourseType>publicCourseTypeLists=this.courseServiceImpl.selectPublicCourseType(courseTypeList.get(i).getCourseTypeID()-1);          
+			session.setAttribute("courseType"+i, courseType);
+            session.setAttribute("publicCourseTypeLists"+i, publicCourseTypeLists);
+		}
+//		for(Iterator<CourseType> courseTypeIT=courseTypeList.iterator();courseTypeIT.hasNext(); ) {
+//			CourseType courseType=courseTypeIT.next();
+//			List<PublicCourseType>publicCourseTypeLists=this.courseServiceImpl.selectPublicCourseType(courseTypeIT.next().getCourseTypeID());
+//			session.setAttribute("courseType"+courseTypeIT.next().getCourseTypeID(), courseType);
+//          //  session.setAttribute("publicCourseTypeLists"+courseTypeIT.next().getCourseTypeID(), publicCourseTypeLists);
+//		}
+		//分页
+		List<Course> courseList=this.courseServiceImpl.listCourseByPublicCourseType(coursePageIndex,publicCourseTypeID);
+		int pageCount=this.courseServiceImpl.getPageCountByPublicCourseType(publicCourseTypeID);	
+		int pageIndex=1;	
+		 if(0==pageIndex|| pageIndex<0) {
+			 session.setAttribute("coursePageIndex",1);
+			 
+		 }else {
+			 session.setAttribute("coursePageIndex",coursePageIndex);
+			 	}
+//		session.setAttribute("courseTypeList", courseTypeList);
+//		session.setAttribute("publicCourseTypeList", publicCourseTypeList);
+		session.setAttribute("publicCourseTypeID", publicCourseTypeID);
+		session.setAttribute("coursePageIndex",pageIndex);
+		session.setAttribute("coursePageCount",pageCount);
+		session.setAttribute("courseList", courseList);
+		response.sendRedirect("/Sugarcane/front/courseListsByType.jsp");
+		
+	}
+	/**
+	 * 大分类查询所有课程
+	 * @param publicCourseTypeID
+	 * @param coursePageIndex
+	 * @param response
+	 * @param session
+	 * @throws IOException
+	 */
+	@RequestMapping("/listAllCourseByCourseType")
+	public void ListAllCourseByCourseType(
+			@RequestParam("courseTypeID")Integer courseTypeID,
+			@RequestParam(value="coursePageIndex",defaultValue="1")Integer coursePageIndex,
+			HttpServletResponse response,HttpSession session) throws IOException {	
+		List<Course> courseL=this.courseServiceImpl.listAll();		
+		List<Course> courseLists = new ArrayList<Course>();
+		List<PublicCourseType> publicCourseTypeByCourseTypeList=this.courseServiceImpl.findPublicTypeByCourseTypeID(courseTypeID);
+		System.out.println(courseTypeID);
+		for(int i = 1;i<publicCourseTypeByCourseTypeList.size();i++) {
+			int courseTypeIDI=publicCourseTypeByCourseTypeList.get(i).getCourseType().getCourseTypeID();
+			System.out.println(courseTypeIDI);
+			for(Iterator<Course> courseIt=courseL.iterator();courseIt.hasNext();) {
+				Course coursen=courseIt.next();
+				int courseTypeIDJ=coursen.getPublicCourseType().getCourseType().getCourseTypeID();	
+				System.out.println(courseTypeIDJ);
+				if(courseTypeIDJ==courseTypeIDI && null!=courseIt.next()) {
+					courseLists.add(coursen);
+			}
+		}
+		}
+//		for(int i = 1;i<publicCourseTypeByCourseTypeList.size();i++) {
+//			int courseTypeIDI=publicCourseTypeByCourseTypeList.get(i).getCourseType().getCourseTypeID();
+//			System.out.println(courseTypeIDI);
+//			for(int j = 1; j<courseL.size();j++) {
+//				 int courseTypeIDJ = courseL.get(j).getCourseID();
+//				if(this.courseServiceImpl.getCourseById(j)!=null&& courseTypeIDJ==courseTypeIDI) {
+//					Course coursen=courseL.get(j);
+//					courseLists.add(coursen);  
+//			}
+//				
+//		}
+//	}
+		session.setAttribute("courseList", courseLists);
+		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
+		List<CourseType> courseTypeList=this.courseServiceImpl.selectCourseType();
+		int courseTypeLength=courseTypeList.size();
+		for(int i = 0;i < courseTypeLength; i++) {
+			CourseType courseType=this.courseServiceImpl.selectCourseTypeByID(i);
+            List<PublicCourseType>publicCourseTypeLists=this.courseServiceImpl.selectPublicCourseType(courseTypeList.get(i).getCourseTypeID()-1);          
+			session.setAttribute("courseType"+i, courseType);
+            session.setAttribute("publicCourseTypeLists"+i, publicCourseTypeLists);
+		}
+		//分页	
+		int pageCount=this.courseServiceImpl.getPageCountByPublicCourseType(courseLists.size()/6);	
+		int pageIndex=1;	
+		 if(0==pageIndex|| pageIndex<0) {
+			 session.setAttribute("coursePageIndex",1);
+			 
+		 }else {
+			 session.setAttribute("coursePageIndex",coursePageIndex);
+			 	}
+		session.setAttribute("coursePageIndex",pageIndex);
+		session.setAttribute("coursePageCount",pageCount);
+	
+		response.sendRedirect("/Sugarcane/front/courseListsByCourseType.jsp");
 		
 	}
 	/**
@@ -78,6 +214,7 @@ public class CourseController {
 			session.setAttribute("courseDetails", course);
 			response.sendRedirect("/Sugarcane/front/courseDetails.jsp");  
 		}
+
 	
 	
 	
@@ -86,19 +223,7 @@ public class CourseController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -117,8 +242,10 @@ public class CourseController {
 		Integer sellerID=(Integer) session.getAttribute("sellerID");
 		List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex,sellerID);		
 		List<SellerCourseType> sellerCourseTypeList=this.courseServiceImpl.listSellerCourseType(sellerID);
+		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
 		//分页
-		int pageCount=this.courseServiceImpl.getPageCount();	
+		int pageCount=this.courseServiceImpl.getPageCountBySeller(sellerID);
+System.out.println(pageCount);
 		int pageIndex=1;	
 		 if(0==pageIndex|| pageIndex<0) {
 			 session.setAttribute("coursePageIndex",1);
@@ -126,6 +253,7 @@ public class CourseController {
 		 }else {
 			 session.setAttribute("coursePageIndex",coursePageIndex);
 			 	}	
+		session.setAttribute("publicCourseTypeList", publicCourseTypeList);
 		session.setAttribute("sellerCourseTypeList", sellerCourseTypeList);
 		session.setAttribute("coursePageIndex",pageIndex);
 		session.setAttribute("coursePageCount",pageCount);
@@ -166,15 +294,17 @@ public class CourseController {
 			@RequestParam("price")String price,
 			@RequestParam("phoneNumber")String phoneNumber,
 			@RequestParam("teacher")String teacher,
-			@RequestParam("sellerCourseTypeID")Integer sellerCourseTypeID,
-//			@RequestParam("publicCourseType")String publicCourseType,
+			//@RequestParam(value="sellerCourseTypeID",defaultValue="0")Integer sellerCourseTypeID,
+			//@RequestParam(value="publicTypeID",defaultValue="1")Integer publicTypeID,
+		   // @RequestParam("publicCourseType")String publicCourseType,
 			HttpServletResponse response,
 			HttpServletRequest request,HttpSession session) throws IOException {
+		Integer sellerCourseTypeID=Integer.valueOf(request.getParameter("sellerCourseTypeID"));
+		Integer publicTypeID=Integer.valueOf(request.getParameter("publicCourseTypeID"));
 		List<Course> courseList=this.courseServiceImpl.listAll();
 		Integer sellerID=(Integer) session.getAttribute("sellerID");
-		Integer publicCourseTypeID=(Integer) session.getAttribute("publicCourseTypeID");
 		SellerLogin sellerLogin=(SellerLogin) session.getAttribute("sellerLogin");
-	    PublicCourseType publicCourseType=this.courseServiceImpl.selectPublicCourseTypeByID(1);//publicCourseTypeID
+	    PublicCourseType publicCourseType1=this.courseServiceImpl.selectPublicCourseTypeByID(publicTypeID);//publicCourseTypeID
 	    SellerCourseType sellerCourseType=this.courseServiceImpl.selectSellerCourseTypeByID(sellerCourseTypeID);
 		for(Course course:courseList) {
 			if(course.getCourseID() == courseID) {
@@ -183,13 +313,14 @@ public class CourseController {
 				course.setPhoneNumber(phoneNumber);
 				course.setPrice(Double.valueOf(price));
 				course.setTeacher(teacher);
-				course.setPublicCourseType(publicCourseType);
+				course.setPublicCourseType(publicCourseType1);
 				course.setSellerLogin(sellerLogin);
 				course.setSellerCourseType(sellerCourseType);
 				this.courseServiceImpl.updateOneCourse(course);
 				break;
 			}//if
 		}//for
+		//response.sendRedirect("Sugarcane/course/listCourse");
 		response.sendRedirect("/Sugarcane/organization/manageCourse.jsp");
 	
 	}
@@ -202,7 +333,9 @@ public class CourseController {
 			@RequestParam("phoneNumber")String phoneNumber,
 			@RequestParam("teacher")String teacher,
 			@RequestParam("introductionImg1")String introductionImg1,
-			@RequestParam("sellerCourseTypeID")Integer sellerCourseTypeID,
+			@RequestParam(value="sellerCourseTypeID",defaultValue="1")Integer sellerCourseTypeID,
+			@RequestParam(value="publicTypeID",defaultValue="1")Integer publicTypeID,
+			
 //			@RequestParam("introductionImg2")String introductionImg2,
 //			@RequestParam("introductionImg3")String introductionImg3,
 			HttpServletResponse response,
@@ -210,7 +343,7 @@ public class CourseController {
 	Course newCourse=new Course();	
 	SellerCourseType sellerCourseType=this.courseServiceImpl.selectSellerCourseTypeByID(sellerCourseTypeID);
 	SellerLogin sellerLogin=(SellerLogin) session.getAttribute("sellerLogin");
-//   PublicCourseType publicCourseType=this.courseServiceImpl.selectPublicCourseTypeByID(sellerCourseType);
+    PublicCourseType publicCourseType=this.courseServiceImpl.selectPublicCourseTypeByID(publicTypeID);
 	newCourse.setCourseName(courseName);
 	newCourse.setPhoneNumber(phoneNumber);
 	newCourse.setPrice(price);
@@ -219,6 +352,7 @@ public class CourseController {
 	newCourse.setVideo(video);
 	newCourse.setSellerCourseType(sellerCourseType);
 	newCourse.setSellerLogin(sellerLogin);
+	newCourse.setPublicCourseType(publicCourseType);
 //	newCourse.setIntroductionImg2(introductionImg2);
 //	newCourse.setIntroductionImg3(introductionImg3);
 

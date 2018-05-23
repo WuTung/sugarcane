@@ -28,7 +28,7 @@
 			</div>
 		<!--全部课程选项卡-->
 			<div class="allclass">
-				<a href="allclass.html">全部课程</a>
+				<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
 			</div>
 		<!--搜索框-->
 			<div class="sousuo">
@@ -91,57 +91,47 @@
 <!--body-->
     <div class="body">
         <div class="body_left">
-                <div class="body_left_classify">
+     
+               <div class="body_left_classify">
                     <ul>
-                        <li><a href="#">健身</a>
+                        <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType1.courseTypeID}">${courseType1.courseTypeName }</a>
                            <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
+                           <c:forEach items="${publicCourseTypeLists1 }" var="publicCourseType1">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType1.publicTypeId }">${publicCourseType1.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+                       </li>
+                    </ul>
+                </div>
+                 <div class="body_left_classify">
+                    <ul>
+                        <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType2.courseTypeID}">${courseType2.courseTypeName }</a>
+                           <ul>
+                           <c:forEach items="${publicCourseTypeLists2 }" var="publicCourseType2">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType2.publicTypeId }">${publicCourseType2.publicTypeName }</a></li>
+                           </c:forEach>
                            </ul>
                        </li>
                     </ul>
                 </div>
                 <div class="body_left_classify">
                     <ul>
-                        <li><a href="#">健身</a>
+                        <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType3.courseTypeID}">${courseType3.courseTypeName }</a>
                            <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
+                           <c:forEach items="${publicCourseTypeLists3 }" var="publicCourseType3">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType3.publicTypeId }">${publicCourseType3.publicTypeName }</a></li>
+                           </c:forEach>
                            </ul>
                        </li>
                     </ul>
                 </div>
-                <div class="body_left_classify">
+                 <div class="body_left_classify">
                     <ul>
-                        <li><a href="#">健身</a>
+                        <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType0.courseTypeID}">${courseType0.courseTypeName }</a>
                            <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
-                           </ul>
-                       </li>
-                    </ul>
-                </div>
-                <div class="body_left_classify">
-                    <ul>
-                        <li><a href="#">健身</a>
-                           <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
-                           </ul>
-                       </li>
-                    </ul>
-                </div>
-                <div class="body_left_classify">
-                    <ul>
-                        <li><a href="#">健身</a>
-                           <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
+                           <c:forEach items="${publicCourseTypeLists0 }" var="publicCourseType0">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType0.publicTypeId }">${publicCourseType0.publicTypeName }</a></li>
+                           </c:forEach>
                            </ul>
                        </li>
                     </ul>

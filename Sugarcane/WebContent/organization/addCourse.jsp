@@ -45,11 +45,20 @@
 			    <td><input type="text" name="courseName"></td>
 			    </tr>
 			    <tr>
-			    <td>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</td>
+			    <td>机构分类：</td>
 			    <td><select>
 		        	<option >请选择类型</option>
 		        	<c:forEach  items="${sellerCourseTypeList}" var="sellerCourseType" varStatus="i">
 		        		<option name="sellerCourseTypeID" value="${sellerCourseType.sellerCourseTypeID }" selected="true">${sellerCourseType.courseTypeName2 }</option>
+		        	</c:forEach>
+		        </select></td>
+		        </tr>
+		           <tr>
+			    <td>公共分类：</td>
+			    <td><select>
+		        	<option >请选择类型</option>
+		        	<c:forEach  items="${publicCourseTypeList}" var="publicCourseType" varStatus="i">
+		        		<option name="publicCourseTypeID" value="${publicCourseType.publicTypeId }" selected="true">${publicCourseType.publicTypeName }</option>
 		        	</c:forEach>
 		        </select></td>
 		        </tr>
