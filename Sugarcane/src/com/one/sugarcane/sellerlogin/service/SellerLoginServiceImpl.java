@@ -12,33 +12,36 @@ import com.one.sugarcane.MD5Util.MD5Util;
 
 /**
  * 培训机构注册
+ * 
  * @author 张梦洲，王晟宇，崔允松
- * @throws IOException 
+ * @throws IOException
  * @date 2018/4/30
  */
 @Service
-@Transactional(readOnly=false)
+@Transactional(readOnly = false)
 public class SellerLoginServiceImpl {
 	@Resource
 	private SellerLoginDaoImpl sellerLoginDaoImpl;
-	public SellerLogin Login(String name,String password){
+
+	public SellerLogin Login(String name, String password) {
 		SellerLogin sellerLogin = this.sellerLoginDaoImpl.findByName(name);
 		MD5Util md5 = new MD5Util();
-		if(sellerLogin != null){
-			if(md5.verify(password,sellerLogin.getPassword())){
+		if (sellerLogin != null) {
+			if (md5.verify(password, sellerLogin.getPassword())) {
 				return sellerLogin;
-			}else{
+			} else {
 				return null;
 			}
 		}
 		return null;
 	}
+
 	public void saveSellerLogin(SellerLogin sellerLogin) {
 		this.sellerLoginDaoImpl.saveSellerLogin(sellerLogin);
 	}
+
 	public void saveSellerLoginLog(SellerLoginLog sellerLoginLog) {
 		this.sellerLoginDaoImpl.saveSellerLoginLog(sellerLoginLog);
 	}
 
-	
 }

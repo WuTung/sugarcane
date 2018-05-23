@@ -17,13 +17,13 @@ public class PublicCourseTypeDaoImpl {
 
 	@Resource
 	private SessionFactory sessionFactory;
-	
+
 	/**
 	 * 鏌ヨ鎵�鏈夊叕鍏辫绋嬪垎绫�
 	 */
-	public List<PublicCourseType> findAllPublicType(){
-		Query query =this.sessionFactory.getCurrentSession().createQuery("from PublicCourseType where hidden=0");
+	public List<PublicCourseType> findAllPublicType() {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from PublicCourseType where hidden=0");
 		return query.list();
 	}
-	
+
 }

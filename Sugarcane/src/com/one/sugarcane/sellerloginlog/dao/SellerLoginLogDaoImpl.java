@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.one.sugarcane.entity.SellerLoginLog;
+
 @Repository
 public class SellerLoginLogDaoImpl {
 	@Resource

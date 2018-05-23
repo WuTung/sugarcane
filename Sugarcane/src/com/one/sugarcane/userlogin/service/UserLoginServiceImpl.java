@@ -13,44 +13,49 @@ import com.one.sugarcane.MD5Util.MD5Util;
 /**
  * 
  * @author 张梦洲
- * @throws IOException 
+ * @throws IOException
  * @date 2018/4/30
  */
 @Service
-@Transactional(readOnly=false)
+@Transactional(readOnly = false)
 public class UserLoginServiceImpl {
 	@Resource
 	private UserLoginDaoImpl userLoginDaoImpl;
-	
+
 	/*
 	 * 用户登录
-	 *  @author 张梦洲
+	 * 
+	 * @author 张梦洲
+	 * 
 	 * @date 2018/4/30
 	 */
-	public UserLogin Login(String email,String password){
+	public UserLogin Login(String email, String password) {
 		UserLogin userLogin = this.userLoginDaoImpl.findByEmail(email);
 		MD5Util md5 = new MD5Util();
-		if(userLogin != null){
-			if(md5.verify(password,userLogin.getPassword())){
+		if (userLogin != null) {
+			if (md5.verify(password, userLogin.getPassword())) {
 				return userLogin;
-			}else{
+			} else {
 				return null;
 			}
 		}
 		return null;
 	}
+
 	/*
 	 * 更新登录日志
 	 */
 	public void updateUserLogin(UserLoginLog userLoginLog) {
 		this.userLoginDaoImpl.updateUserLogin(userLoginLog);
 	}
+
 	/**
 	 * 查看日志，用户登录次数
+	 * 
 	 * @author 冯海晴
 	 */
 	public int findLogCount(UserLogin userLogin) {
 		return this.userLoginDaoImpl.findLogCount(userLogin);
 	}
-	
+
 }

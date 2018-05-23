@@ -7,7 +7,7 @@ import com.one.sugarcane.sellerloginlog.dao.SellerLoginLogDaoImpl;
 import com.one.sugarcane.entity.SellerLoginLog;
 
 @Service
-@Transactional(readOnly=false)
+@Transactional(readOnly = false)
 public class SellerLoginLogServiceImpl {
 	@Resource
 	private SellerLoginLogDaoImpl sellerLoginLogDaoImpl;

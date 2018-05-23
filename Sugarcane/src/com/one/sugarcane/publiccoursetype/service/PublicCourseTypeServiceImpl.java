@@ -17,11 +17,11 @@ import com.one.sugarcane.publiccoursetype.dao.PublicCourseTypeDaoImpl;
 public class PublicCourseTypeServiceImpl {
 	@Resource
 	private PublicCourseTypeDaoImpl publicCourseTypeDaoImpl;
-	
+
 	/**
 	 * 鏌ヨ鎵�鏈夊叕鍏辫绋嬪垎绫�
 	 */
-	public List<PublicCourseType> findAllPublicType(){
+	public List<PublicCourseType> findAllPublicType() {
 		return this.publicCourseTypeDaoImpl.findAllPublicType();
 	}
 

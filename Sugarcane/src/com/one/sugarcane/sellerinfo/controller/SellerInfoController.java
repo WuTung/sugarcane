@@ -51,18 +51,20 @@ public class SellerInfoController {
 	@Resource
 	private SellerInfoServiceImpl sellerInfoServiceImpl;
 
-	
 	/**
 	 * 培训机构注册
+	 * 
 	 * @author 张梦洲，狗晟儿，傻崔
-	 * @throws IOException 
+	 * @throws IOException
 	 * @date 2018/4/30
 	 */
 	@RequestMapping("/save")
-	public String save(HttpServletRequest request,@RequestParam String name,@RequestParam String mail,@RequestParam String password,
-			@RequestParam String phone,@RequestParam String cmbProvince,@RequestParam String cmbCity,@RequestParam String cmbArea,
-			@RequestParam(required=false) String brief,@RequestParam MultipartFile educationBureauApproved,@RequestParam MultipartFile proofOfHouse,
-			@RequestParam MultipartFile fireSafetyCertificate,@RequestParam MultipartFile businessLisense) throws IOException {
+	public String save(HttpServletRequest request, @RequestParam String name, @RequestParam String mail,
+			@RequestParam String password, @RequestParam String phone, @RequestParam String cmbProvince,
+			@RequestParam String cmbCity, @RequestParam String cmbArea, @RequestParam(required = false) String brief,
+			@RequestParam MultipartFile educationBureauApproved, @RequestParam MultipartFile proofOfHouse,
+			@RequestParam MultipartFile fireSafetyCertificate, @RequestParam MultipartFile businessLisense)
+			throws IOException {
 		SellerInfo sellerInfo = new SellerInfo();
 		SellerLogin sellerLogin = new SellerLogin();
 		sellerInfo.setSellerName(name);
@@ -72,7 +74,7 @@ public class SellerInfoController {
 		sellerInfo.setAddress_city(cmbCity);
 		sellerInfo.setAddress_area(cmbArea);
 		sellerInfo.setBrief(brief);
-		//存储证书
+		// 存储证书
 		ServletContext context = request.getServletContext();
 		String realPath = context.getRealPath("/static/images");
 		if (educationBureauApproved != null) {
@@ -133,86 +135,77 @@ public class SellerInfoController {
 		return "organization/orgLogin";
 	}
 
+	@RequestMapping("/pass")
+	public String pass(@RequestParam String name, @RequestParam String email) {
 
-@RequestMapping("/pass")
-public String pass(@RequestParam String name,@RequestParam String email) {
-	
-	SellerInfo sellerinfo = this.sellerInfoServiceImpl.getpass(name,email);
-	
-	String phone = sellerinfo.getSellerPhoneNumber();
-	
-	if(phone != null) {
+		SellerInfo sellerinfo = this.sellerInfoServiceImpl.getpass(name, email);
+
+		String phone = sellerinfo.getSellerPhoneNumber();
+
+		if (phone != null) {
 			return "organization/dopass";
-	}else {
+		} else {
 			return "organization/passfail";
-	}
-	
+		}
+
 	}
 
-@RequestMapping("/successpass")
-public String dopass() {
-	
-	return "organization/orgLogin";
-	
+	@RequestMapping("/successpass")
+	public String dopass() {
+
+		return "organization/orgLogin";
+
 	}
 
-@RequestMapping("/failpass")
-public String undopass() {
-	
-	return "organization/orgLogin";
-	
+	@RequestMapping("/failpass")
+	public String undopass() {
+
+		return "organization/orgLogin";
+
 	}
 
-@RequestMapping("/updatebrief")
-public String upbrief(@RequestParam String brief,HttpServletRequest request) throws IOException{
-	
-	
-		
-		SellerInfo sellerinfo =(SellerInfo) request.getSession(true).getAttribute("seller");
+	@RequestMapping("/updatebrief")
+	public String upbrief(@RequestParam String brief, HttpServletRequest request) throws IOException {
+
+		SellerInfo sellerinfo = (SellerInfo) request.getSession(true).getAttribute("seller");
 
 		System.out.println(brief);
-		
+
 		sellerinfo.setBrief(brief);
 
 		sellerInfoServiceImpl.updateSellerInfo(sellerinfo);
-	
-	
+
 		return "organization/manageClassify";
-	
+
 	}
 
-@RequestMapping("/forget")
-public String forget(@RequestParam String email,HttpServletRequest request) {
-	
-		
-		String hrefString = request.getScheme() + "://" +request.getServerName()
-		+":"+request.getLocalPort()
-		+request.getServletContext().getContextPath()
-		+"/sellerInfo/getpsd?email=" + email;
+	@RequestMapping("/forget")
+	public String forget(@RequestParam String email, HttpServletRequest request) {
+
+		String hrefString = request.getScheme() + "://" + request.getServerName() + ":" + request.getLocalPort()
+				+ request.getServletContext().getContextPath() + "/sellerInfo/getpsd?email=" + email;
 		System.out.println(hrefString);
-		String href = "<a href='" + hrefString + "'>点击重置密码</a>如果链接不可用，拷贝" + hrefString +"到地址栏";
+		String href = "<a href='" + hrefString + "'>点击重置密码</a>如果链接不可用，拷贝" + hrefString + "到地址栏";
 		String title = "你好，请重置密码";
-		
+
 		System.out.print(hrefString);
 		SendmailUtil.doSendHtmlEmail(email, title, href);
-	
-	return "organization/forgetSuccess";
-}
-@RequestMapping("/getpsd")
-public String getpassword(@RequestParam String email,HttpSession session) {
 
-	
-Random random = new Random();
-String randomPasswordString = random.nextInt(900000) + 100000 + "";
-session.setAttribute("newpassword",randomPasswordString);
-MD5Util md5 = new MD5Util();
-String md5PWD = md5.generate(randomPasswordString);
-sellerInfoServiceImpl.resetPassword(email, md5PWD);
-System.out.print(email+randomPasswordString);
-return "organization/getpassword";
+		return "organization/forgetSuccess";
+	}
 
-}
+	@RequestMapping("/getpsd")
+	public String getpassword(@RequestParam String email, HttpSession session) {
 
+		Random random = new Random();
+		String randomPasswordString = random.nextInt(900000) + 100000 + "";
+		session.setAttribute("newpassword", randomPasswordString);
+		MD5Util md5 = new MD5Util();
+		String md5PWD = md5.generate(randomPasswordString);
+		sellerInfoServiceImpl.resetPassword(email, md5PWD);
+		System.out.print(email + randomPasswordString);
+		return "organization/getpassword";
 
+	}
 
 }

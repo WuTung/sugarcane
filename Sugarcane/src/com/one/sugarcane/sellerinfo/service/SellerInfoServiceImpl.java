@@ -8,13 +8,14 @@ import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 
 @Service
-@Transactional(readOnly=false)
+@Transactional(readOnly = false)
 public class SellerInfoServiceImpl {
 	@Resource
-	private  SellerInfoDaoImpl sellerInfoDaoImpl;
-	
+	private SellerInfoDaoImpl sellerInfoDaoImpl;
+
 	/**
 	 * 培训机构注册
+	 * 
 	 * @author 张梦洲，狗晟儿，傻崔
 	 * @date 2018/4/30
 	 */
@@ -23,27 +24,26 @@ public class SellerInfoServiceImpl {
 	}
 
 	public SellerInfo getpass(String name, String email) {
-		
-		return sellerInfoDaoImpl.fineByName(name,email);
+
+		return sellerInfoDaoImpl.fineByName(name, email);
 	}
 
-	public  void updateSellerInfo(SellerInfo sellerinfo) {
-		
+	public void updateSellerInfo(SellerInfo sellerinfo) {
+
 		sellerInfoDaoImpl.updateSellerInfo(sellerinfo);
 	}
 
-public  void resetPassword(String email, String randomPasswordString) {
-	
-	SellerInfo s = new SellerInfo();
-	s = sellerInfoDaoImpl.findByEmail(email);
-	
-	SellerLogin sl = s.getSellerLogin();
-	
-	sl.setPassword(randomPasswordString);
-	
-	sellerInfoDaoImpl.updateSellerInfo(s);
-	
-}
-	
-	
+	public void resetPassword(String email, String randomPasswordString) {
+
+		SellerInfo s = new SellerInfo();
+		s = sellerInfoDaoImpl.findByEmail(email);
+
+		SellerLogin sl = s.getSellerLogin();
+
+		sl.setPassword(randomPasswordString);
+
+		sellerInfoDaoImpl.updateSellerInfo(s);
+
+	}
+
 }

@@ -22,7 +22,7 @@ import com.one.sugarcane.MD5Util.MD5Util;;
 /**
  * 
  * @author 寮犳ⅵ娲�
- * @throws IOException 
+ * @throws IOException
  * @date 2018/4/30
  */
 
@@ -31,15 +31,17 @@ import com.one.sugarcane.MD5Util.MD5Util;;
 public class UserInfoController {
 	@Resource
 	private UserInfoServiceImpl userInfoServiceImpl;
-	
+
 	/**
 	 * 鐢ㄦ埛娉ㄥ唽
+	 * 
 	 * @author 寮犳ⅵ娲�
-	 * @throws IOException 
+	 * @throws IOException
 	 * @date 2018/5/10
 	 */
 	@RequestMapping("/save")
-	public String save(@RequestParam String username,@RequestParam String email,@RequestParam String password,@RequestParam String phone) {
+	public String save(@RequestParam String username, @RequestParam String email, @RequestParam String password,
+			@RequestParam String phone) {
 		UserInfo userInfo = new UserInfo();
 		UserLogin userLogin = new UserLogin();
 		userInfo.setUserName(username);
@@ -54,22 +56,24 @@ public class UserInfoController {
 		userInfoServiceImpl.saveUserInfo(userInfo);
 		return "front/home";
 	}
-	
+
 	/**
 	 * 完善个人信息
+	 * 
 	 * @author 冯海晴
-	 * @throws IOException 
+	 * @throws IOException
 	 * @date 2018.5.17
 	 */
 	@RequestMapping("/update")
-	public void updateUserInfo(HttpServletRequest request, HttpServletResponse response,@RequestParam int userGender, @RequestParam String birthday, 
-			@RequestParam String userEducation,@RequestParam String userWork, @RequestParam String address_province,
-			@RequestParam String address_city, @RequestParam String address_area, @RequestParam String publicTypeNames) throws IOException {
-		//System.out.println(userGender+birthday+userEducation+userWork+address_province+address_city+address_area+publicTypeNames);
-		UserInfo userInfo = (UserInfo)request.getSession().getAttribute("user");
+	public void updateUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestParam int userGender,
+			@RequestParam String birthday, @RequestParam String userEducation, @RequestParam String userWork,
+			@RequestParam String address_province, @RequestParam String address_city, @RequestParam String address_area,
+			@RequestParam String publicTypeNames) throws IOException {
+		// System.out.println(userGender+birthday+userEducation+userWork+address_province+address_city+address_area+publicTypeNames);
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
 		Set<UserHobby> userHobbies = new HashSet<UserHobby>();
-		String[] p=publicTypeNames.split(",");
-		for(int i=0; i<p.length; i++) {
+		String[] p = publicTypeNames.split(",");
+		for (int i = 0; i < p.length; i++) {
 			String publicTypeName = p[i];
 			System.out.println(publicTypeName);
 			PublicCourseType publicType = this.userInfoServiceImpl.findPublicType(publicTypeName);

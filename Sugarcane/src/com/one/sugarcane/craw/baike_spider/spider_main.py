@@ -1,4 +1,9 @@
 #/usr/bin/python
+'''
+Created on 2018年5月21日
+
+@author: 秦晓宇
+'''
 import html_downloader, html_parser, html_outputer,url_manager
 import re
 import requests
@@ -64,4 +69,4 @@ if __name__ == '__main__':
     root_url = 'http://baike.baidu.com/item/Python/407313'
     obj_spider = SpiderMain()
     obj_spider.craw(root_url)
-    obj_spider.crawPict(root_url)
+#     obj_spider.crawPict(root_url)

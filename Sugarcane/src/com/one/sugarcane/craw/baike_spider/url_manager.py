@@ -1,7 +1,7 @@
 '''
-Created on 2018年1月4日
+Created on 2018年5月21日
 
-@author: ll
+@author: 秦晓宇
 '''
 #需要维护两个列表
 #1.需要爬取得url列表

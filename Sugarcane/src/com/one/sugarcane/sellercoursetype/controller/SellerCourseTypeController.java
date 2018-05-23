@@ -26,6 +26,7 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.sellercoursetype.service.SellerCourseTypeServiceImpl;
 import com.one.sugarcane.test.service.TestService;
+
 @Controller
 @RequestMapping("sellerCourseType")
 public class SellerCourseTypeController {
@@ -36,108 +37,119 @@ public class SellerCourseTypeController {
 
 	/**
 	 * 列表查询
+	 * 
 	 * @author 王孜润
 	 * @date 2018/5/1
-	 * **/
+	 **/
 	@RequestMapping("/sellerCourseType")
-	private String sellerCourseType(Model model,HttpServletResponse response,@RequestParam(value="pageNum",defaultValue="1")Integer page,HttpServletRequest request) {
+	private String sellerCourseType(Model model, HttpServletResponse response,
+			@RequestParam(value = "pageNum", defaultValue = "1") Integer page, HttpServletRequest request) {
 		List<SellerCourseType> list = this.sellerCourseTypeServiceImpl.findAll(page);
-		model.addAttribute("sellerCourseType",list);
+		model.addAttribute("sellerCourseType", list);
 		List<PublicCourseType> list1 = sellerCourseTypeServiceImpl.findTypeAll();
-		model.addAttribute("publicCourseType",list1);
-		for(int i=0;i<list1.size();i++) {
+		model.addAttribute("publicCourseType", list1);
+		for (int i = 0; i < list1.size(); i++) {
 			System.out.println(list1.get(i).getPublicTypeName());
 		}
-		//分页
+		// 分页
 		int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
-		model.addAttribute("pageCount",pageCount);
+		model.addAttribute("pageCount", pageCount);
 		int pageNum = 1;
-		model.addAttribute("pageNum",pageNum);
-		if(pageNum==0 || pageNum<0) {
-			model.addAttribute("pageNum",1);
-		}else {
-			model.addAttribute("pageNum",pageNum);
+		model.addAttribute("pageNum", pageNum);
+		if (pageNum == 0 || pageNum < 0) {
+			model.addAttribute("pageNum", 1);
+		} else {
+			model.addAttribute("pageNum", pageNum);
 		}
 		return "organization/manageClassify";
 	}
+
 	/**
 	 * 添加
+	 * 
 	 * @author 王孜润
 	 * @date 2018/5/7
-	 * **/
+	 **/
 	@RequestMapping("/addCourseType")
-	private String addCourseType(Model model,HttpServletRequest request,HttpServletResponse response) {
+	private String addCourseType(Model model, HttpServletRequest request, HttpServletResponse response) {
 		Course course = new Course();
 		String newCourseName = request.getParameter("courseName");
 		String newCTypeName = request.getParameter("publicTypeName");
 		List<PublicCourseType> pList = sellerCourseTypeServiceImpl.findByName(newCTypeName);
 		PublicCourseType pcype = pList.get(0);
-//		Integer pctId = pcype.getPublicTypeId();
+		// Integer pctId = pcype.getPublicTypeId();
 		course.setCourseName(newCourseName);
 		course.setPublicCourseType(pcype);
 		boolean result = sellerCourseTypeServiceImpl.addNewCourseType(course);
 		System.out.println("走到这里了");
 		System.out.println(result);
-		if(result) {
+		if (result) {
 			System.out.println("成功的走到这里了");
 			return "redirect:sellerCourseType";
-		}else {
+		} else {
 			model.addAttribute("errormsg", "添加失败");
 			return "organization/manageClassify";
 		}
 	}
+
 	/**
 	 * 删除
+	 * 
 	 * @author 王孜润
 	 * @date 2018/5/1
-	 * **/
+	 **/
 	@RequestMapping("/deleteCourseType")
-	private String deleteCourseType(Model model,HttpServletRequest request) {
+	private String deleteCourseType(Model model, HttpServletRequest request) {
 		String id = request.getParameter("id");
 		int cId = Integer.valueOf(id);
 		boolean result = sellerCourseTypeServiceImpl.deleteCourseType(cId);
-		if(result) {
+		if (result) {
 			return "redirect:sellerCourseType";
-		}else {
-			model.addAttribute("errormsg","添加失败");
+		} else {
+			model.addAttribute("errormsg", "添加失败");
 			return "redirect:sellerCourseType";
 		}
 	}
+
 	/**
 	 * 更新课程
+	 * 
 	 * @author 王孜润
 	 * @date 2018/5/15
-	 * **/
-//	@RequestMapping("/updateCourseType")
-//	private String updateCourseType(Model model) {
-//		
-//	}
+	 **/
+	// @RequestMapping("/updateCourseType")
+	// private String updateCourseType(Model model) {
+	//
+	// }
 	/**
 	 * 登录后根据id查询培训机构课程
+	 * 
 	 * @author 王孜润
-	 * @param session 
-	 * @param sellerCourseType 
+	 * @param session
+	 * @param sellerCourseType
 	 * @date 2018/5/16
 	 */
 	@RequestMapping("/sellerCourse")
-	private String sellerCourse(Model model,HttpServletResponse response,@RequestParam(value="pageNum",defaultValue="1")Integer page,HttpServletRequest request, ServletRequest session, Object sellerCourseType) {
-		Integer sellerID=(Integer) session.getAttribute("sellerID");
-		List<Course> courseList=this.sellerCourseTypeServiceImpl.listSellerCourseType(sellerID);
-		List<SellerCourseType> sellerCourseTypeList=this.sellerCourseTypeServiceImpl.listAll(pageNum,sellerID);
-		//分页
-				int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
-				model.addAttribute("pageCount",pageCount);
-				int pageNum = 1;
-				model.addAttribute("pageNum",pageNum);
-				if(pageNum==0 || pageNum<0) {
-					model.addAttribute("pageNum",1);
-				}else {
-					model.addAttribute("pageNum",pageNum);
-				}
-				session.setAttribute("sellerCourseTypeList", sellerCourseTypeList);
-				session.setAttribute("coursePageNum",pageNum);
-				session.setAttribute("coursePageCount",pageCount);
-				session.setAttribute("sellerCourseType", sellerCourseType);
-				return "organization/manageClassify";
+	private String sellerCourse(Model model, HttpServletResponse response,
+			@RequestParam(value = "pageNum", defaultValue = "1") Integer page, HttpServletRequest request,
+			ServletRequest session, Object sellerCourseType) {
+		Integer sellerID = (Integer) session.getAttribute("sellerID");
+		List<Course> courseList = this.sellerCourseTypeServiceImpl.listSellerCourseType(sellerID);
+		List<SellerCourseType> sellerCourseTypeList = this.sellerCourseTypeServiceImpl.listAll(pageNum, sellerID);
+		// 分页
+		int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
+		model.addAttribute("pageCount", pageCount);
+		int pageNum = 1;
+		model.addAttribute("pageNum", pageNum);
+		if (pageNum == 0 || pageNum < 0) {
+			model.addAttribute("pageNum", 1);
+		} else {
+			model.addAttribute("pageNum", pageNum);
+		}
+		session.setAttribute("sellerCourseTypeList", sellerCourseTypeList);
+		session.setAttribute("coursePageNum", pageNum);
+		session.setAttribute("coursePageCount", pageCount);
+		session.setAttribute("sellerCourseType", sellerCourseType);
+		return "organization/manageClassify";
 	}
 }
