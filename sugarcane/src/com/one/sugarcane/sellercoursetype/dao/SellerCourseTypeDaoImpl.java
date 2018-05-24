@@ -105,6 +105,19 @@ public class SellerCourseTypeDaoImpl {
 		return list;
 	}
 	/**
+	 * 查询该企业的课程publicCourseType
+	 * @author 王孜润
+	 * @date 2018/5/6
+	 * **/
+//	public List<PublicCourseType> findBySellerId(int sellerId) {
+//		Session session = sessionFactory.getCurrentSession();
+//		Query query = session.createQuery("from Course where sellerInfo.sellerID=?");
+//		query.setParameter(0, sellerId);
+//		List<PublicCourseType> list = query.list();
+//		return list;
+//	}
+	
+	/**
 	 * 查询课程类型
 	 * @author 王孜润
 	 * @date 2018/5/10
