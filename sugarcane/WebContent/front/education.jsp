@@ -160,7 +160,8 @@ document.onclick=function(){
                                         <tr><td>
                                             <div class="add" >
                                                 <div class="addimg">
-                                             <a href="javascript:showmenu1()">  <img src="${ctx }/static/frontimages/add.jpg"></a>
+                                             <a href="javascript:showmenu1()"> 
+                                             <c:set/><img src="${ctx }/static/frontimages/add.jpg"></a>
                                                 </div>
                                              <div class="wenzi">
                                              	<!--  -->
