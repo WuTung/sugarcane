@@ -26,6 +26,7 @@ public class Course {
 	private String introductionImg2;
 	private String introductionImg3;
 	private SellerCourseType sellerCourseType;
+	private SellerInfo sellerInfo;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
 	private String teacher;
@@ -93,6 +94,14 @@ public class Course {
 		this.sellerCourseType = sellerCourseType;
 	}
 	@ManyToOne
+	@JoinColumn(name="sellerId")
+	public SellerInfo getSellerInfo() {
+		return sellerInfo;
+	}
+	public void setSellerInfo(SellerInfo sellerInfo) {
+		this.sellerInfo = sellerInfo;
+	}
+	@ManyToOne
 	@JoinColumn(name="pub_publicTypeId")
 	public PublicCourseType getPublicCourseType() {
 		return publicCourseType;
@@ -132,7 +141,7 @@ public class Course {
 	public Course() {}
 	public Course(Integer courseID, String courseName, String courseBrief, double price, String phoneNumber,
 			String introductionImg1, String introductionImg2, String introductionImg3,
-			SellerCourseType sellerCourseType, PublicCourseType publicCourseType, SellerLogin sellerLogin,
+			SellerCourseType sellerCourseType, SellerInfo sellerInfo,PublicCourseType publicCourseType, SellerLogin sellerLogin,
 			String teacher, Set<Evaluate> evaluate, Set<UserCollections> userCollections) {
 		super();
 		this.courseID = courseID;
@@ -144,6 +153,7 @@ public class Course {
 		this.introductionImg2 = introductionImg2;
 		this.introductionImg3 = introductionImg3;
 		this.sellerCourseType = sellerCourseType;
+		this.sellerInfo = sellerInfo;
 		this.publicCourseType = publicCourseType;
 		this.sellerLogin = sellerLogin;
 		this.teacher = teacher;

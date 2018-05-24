@@ -28,9 +28,9 @@
 <div id="content">
 <div id="out">
     <div id="list">
-     <div class="a1 lefta"><a href="${ctx}/organization/manageIntro.jsp" class="leftb">○&nbsp;管理简介</a></div>
-     <div class="a1 lefta selecteda"><a href="${ctx}/organization/manageClassify.jsp" class="leftb selecteda">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta "><a href="../course/listCourse?coursePageIndex=1&sellerID=1"class="leftb"" class="leftb">○&nbsp;管理课程</a></div>
+     <div class="a1 lefta"><a href="${ctx }/organization/manageIntro.jsp" class="leftb">○&nbsp;管理简介</a></div>
+     <div class="a1 lefta selecteda"><a href="${ctx}/sellerInfo/sellerFindCourse?sellerID=${sellerLogin.sellerID}" class="leftb selecteda">○&nbsp;管理分类</a></div>
+     <div class="a1 lefta "><a href="../course/listCourse?coursePageIndex=1&sellerID=${sellerLogin.sellerID }"class="leftb"" class="leftb">○&nbsp;管理课程</a></div>
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
 
      </div><!--list-->
@@ -44,7 +44,7 @@
 	        <td>课程所属分类</td>
 	     	<td>修改所属分类</td>
 	     	<td>操作</td></tr>
-	     	<c:forEach var="sellerCourseType" items="${sellerCourseType }">
+	     	<c:forEach var="sellerCourseType" items="${sellerCourselist }">
 		     	<tr>
 			     	<td>${sellerCourseType.courseName}</td>
 			        <td>${sellerCourseType.sellerCourseType.courseTypeName2}</td>
@@ -57,7 +57,7 @@
 				        	</c:forEach>
 			        	</select>
 			     	</td>
-			     	<td><a href="${ctx}/sellerCourseType/updateCourseType?id=${sellerCourseType.courseID}">更新</a>&nbsp;/&nbsp;<a href="${ctx}/sellerCourseType/deleteCourseType?id=${sellerCourseType.courseID}">删除</a></td></tr>
+			     	<td><a href="${ctx}/sellerCourseType/updateCourseType?id=${sellerCourseType.courseID}">更新</a>&nbsp;/&nbsp;<a href="${ctx}/sellerInfo/deleteCourseType?id=${sellerCourseType.courseID}&uid=${sellerLogin.sellerID}">删除</a></td></tr>
 			    </tr>
         </c:forEach>
         <tr>
@@ -72,10 +72,7 @@
 				        	</c:forEach>
 				    </select>
 				</td></div>
-	        	<!-- 
-	        		        	<td><a href="${ctx}/sellerCourseType/addCourseType">添加</a></td>
-	        	
-	        	 -->
+
 	        	 <td><input type="submit" value="确认添加" style="border:2px solid #9ACD32;onclick="this.style.background='#D3D3D3';"></td>
         	</form>
         </tr>
@@ -84,13 +81,13 @@
 <!--  分页       -->
       <div id="pageDivide">
         <ul>
-            <li><a href="sellerCourseType?pageNum=1">首页</a></li>
-            <li><a href="sellerCourseType?pageNum=${pageNum}">上一页</a></li>
+            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=1">首页</a></li>
+            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageNum}">上一页</a></li>
             <c:forEach begin="1" end="${pageCount+1}" step="1" var="i">
-            	<li><a href="sellerCourseType?pageNum=${i}">${i}</a></li>
+            	<li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${i}">${i}</a></li>
             </c:forEach>
-            <li><a href="sellerCourseType?pageNum=${pageNum+1}">下一页</a></li>
-            <li><a href="sellerCourseType?pageNum=${pageCount+1}">尾页</a></li>
+            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageNum+1}">下一页</a></li>
+            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageCount+1}">尾页</a></li>
         </ul>
      </div>
 	 </div><!--table-->
