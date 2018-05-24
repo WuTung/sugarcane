@@ -40,7 +40,9 @@ import org.springframework.web.portlet.ModelAndView;
 
 import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
 import com.one.sugarcane.mailUtil.SendmailUtil;
-
+import com.one.sugarcane.sellercoursetype.service.SellerCourseTypeServiceImpl;
+import com.one.sugarcane.entity.Course;
+import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 import com.one.sugarcane.MD5Util.MD5Util;;
@@ -50,6 +52,7 @@ import com.one.sugarcane.MD5Util.MD5Util;;
 public class SellerInfoController {
 	@Resource
 	private SellerInfoServiceImpl sellerInfoServiceImpl;
+	
 
 	
 	/**
@@ -212,6 +215,87 @@ System.out.print(email+randomPasswordString);
 return "organization/getpassword";
 
 }
+/**
+ * temp 获取所有培训机构
+ * @author 王孜润	 
+ * @date 2018/5/21
+ */
+@RequestMapping("/showOrg")
+public String showOrg(Model model) {
+List<SellerInfo> list = sellerInfoServiceImpl.showOrg();
+model.addAttribute("showOrg",list);
+	return "front/show";
+}
+/**
+ * 通过id查找seller
+ * @name 王孜润
+ */
+@RequestMapping("/findSeller")
+public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest request) {
+	String id = request.getParameter("sellerInfoId");
+	int sellerId = Integer.valueOf(id);
+	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
+	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
+	model.addAttribute("sellerInfo",sellerInfo);
+	model.addAttribute("courselist",list);
+	return "front/education";
+}
+/**
+ * 培训机构根据id查找
+ * @name 王孜润
+ * @param model
+ * @param sellerInfo
+ * @param request
+ * @return
+ */
+@RequestMapping("/sellerFindCourse")
+public String findSellerCourse(Model model,SellerInfo sellerInfo,HttpServletRequest request) {
+	String id = request.getParameter("sellerID");
+	int sellerId = Integer.valueOf(id);
+//	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
+	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
+	List<PublicCourseType> list1 = sellerInfoServiceImpl.findTypeAll();
+	
+	System.out.println(list1);
+	System.out.println(1111);
+//	model.addAttribute("sellerInfo",sellerInfo);
+	model.addAttribute("sellerCourselist",list);
+	model.addAttribute("publicCourseType",list1);
+	//分页
+			int pageCount = this.sellerInfoServiceImpl.getPageCount(sellerId);
+			model.addAttribute("pageCount",pageCount);
+			int pageNum = 1;
+			model.addAttribute("pageNum",pageNum);
+			if(pageNum==0 || pageNum<0) {
+				model.addAttribute("pageNum",1);
+			}else {
+				model.addAttribute("pageNum",pageNum);
+			}
+	
+	
+	return "organization/manageClassify";
+	
+}
+
+/**
+ * 删除
+ * @author 王孜润
+ * @date 2018/5/22
+ * **/
+@RequestMapping("/deleteCourseType")
+private String deleteCourseType(Model model,HttpServletRequest request) {
+	String id = request.getParameter("id");
+	String uid = request.getParameter("uid");
+	int cId = Integer.valueOf(id);
+	boolean result = sellerInfoServiceImpl.deleteCourseType(cId);
+	if(result) {
+		return "redirect:sellerFindCourse?sellerID="+uid;
+	}else {
+		model.addAttribute("errormsg","添加失败");
+		return "redirect:sellerFindCourse?sellerID="+uid;
+	}
+}
+
 
 
 

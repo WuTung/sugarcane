@@ -73,7 +73,7 @@ public class SellerLoginController {
 			sellerLoginServiceImpl.saveSellerLoginLog(sellerLoginlog);
 			sellerLoginServiceImpl.saveSellerLogin(sellerLogin);
 			request.getSession().setAttribute("seller", sellerLogin.getSellerInfo());
-			return "organization/manageClassify";
+			return "organization/manageIntro";
 		}else{
 			model.addAttribute("information", "账号或密码错误");
 			return "organization/orgLogin";

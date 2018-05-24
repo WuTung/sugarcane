@@ -19,7 +19,7 @@
   <img src="${ctx}/static/images/b.png" id="welcomeImg">
   <a href="#" id="exit">退出登录</a>
    <a href="#"><img src="${ctx}/static/images/exit.png" id="exitimg"></a>
-  <a href="#" id="jgName">培训机构名称</a></p>  
+  <a href="#" id="jgName">${sellerLogin.sellerLoginName}</a></p>  
 </div>
 <!--分割线-->
 <div><hr></div>
@@ -27,9 +27,9 @@
 <div id="content">
 <div id="out">
     <div id="list">
-     <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;管理简介</a></div>
-     <div class="a1 lefta"><a href="jgglStyle.html" class="leftb">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta selecteda"><a href="jgglClass.html"class="selecteda leftb">○&nbsp;管理课程</a></div>
+     <div class="a1 lefta selecteda"><a href="${ctx }/organization/manageIntro.jsp" class="selecteda leftb">○&nbsp;管理简介</a></div>
+     <div class="a1 lefta"><a href="${ctx}/sellerInfo/sellerFindCourse?sellerID=${sellerLogin.sellerID}" class="leftb">○&nbsp;管理分类</a></div>
+     <div class="a1 lefta"><a href="../course/listCourse?coursePageIndex=1&sellerID=${sellerLogin.sellerID }"class="leftb">○&nbsp;管理课程</a></div>
      <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
      </div><!--list-->
     <!-- 简介内容 -->

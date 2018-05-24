@@ -2,11 +2,15 @@ package com.one.sugarcane.entity;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,8 +35,7 @@ public class SellerInfo {
 	private String address_detail;
 	private int qualified;
 	private SellerLogin sellerLogin;
-//    private Date validatacode;
-//    private Date outdate;
+	private Set<Course>course = new HashSet<Course>();
  
 	@Id
 	@GeneratedValue(generator="a")
@@ -135,23 +138,18 @@ public class SellerInfo {
 	public void setSellerLogin(SellerLogin sellerLogin) {
 		this.sellerLogin = sellerLogin;
 	}
-//	    public Date getValidatacode() {
-//	    return validatacode;
-//	    }
-//	    public void setValidatacode(Date secretKey) {
-//	    this.validatacode = secretKey;
-//	    }
-//	    public Date getOutdate() {
-//	    return outdate;
-//	    }
-//	    public void setOutdate(Date outdate) {
-//	    this.outdate = outdate;
-//	    }
+	@OneToMany(mappedBy="sellerInfo",targetEntity=Course.class,cascade=CascadeType.MERGE)
+	public Set<Course> getCourse() {
+		return course;
+	}
+	public void setCourse(Set<Course> course) {
+		this.course = course;
+	}
 	public SellerInfo() {}
 	public SellerInfo(String sellerName, String sellerEmail, String sellerPhoneNumber, String brief,
 			String numberOfEmployees, String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate,
 			String businessLisense, String address_province, String address_city, String address_area,
-			String address_detail, int qualified, SellerLogin sellerLogin,Date validatacode,Date outdate) {
+			String address_detail, int qualified, SellerLogin sellerLogin,Set<Course> course,Date validatacode,Date outdate) {
 		super();
 		this.sellerName = sellerName;
 		this.sellerEmail = sellerEmail;
@@ -168,8 +166,7 @@ public class SellerInfo {
 		this.address_detail = address_detail;
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
-//		this.validatacode = validatacode;
-//		this.outdate = outdate;
+		this.course = course;
 	}
 
 }

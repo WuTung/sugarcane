@@ -56,6 +56,7 @@ document.onclick=function(){
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
+				<a href="#" id="jgName">${userLogin.userName}</a>
 				<a href="javascript:void(0)" onClick="showBox()">登录</a>
 				<a href="javascript:void(0)" onClick="registBox()">注册</a>
 			</div>
@@ -114,7 +115,7 @@ document.onclick=function(){
                             </div>   
 
                             <div class="edutext1">
-                                    <p>XXXXX教育</p>
+                                    <p>${sellerInfo.sellerName }</p>
                                      <div class="edutext2">
                                     <p>我们的宣言：XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                                     </div>
@@ -148,7 +149,7 @@ document.onclick=function(){
                                 </div>
                         </div>
                         <div class="content">
-                                    <p>如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它。</p>
+                                    <p>${sellerInfo.brief}</p>
                         </div>
                     </div>
 
@@ -162,70 +163,14 @@ document.onclick=function(){
                                              <a href="javascript:showmenu1()">  <img src="${ctx }/static/frontimages/add.jpg"></a>
                                                 </div>
                                              <div class="wenzi">
-                                                <a href="#"><p>语言</p></a>
+                                             	<!--  -->
+                                             	
+                                                <a href="#"><p>分类</p></a>                                             	
+                                             	
                                             </div>
                                             </div>
-                                            <div class="xiala ">
-                                            <div  id="menu1">
-                                                <a href="#">给我留言</a><br>
-                                                <a href="#">在线聊天</a><br>
-                                                <a href="#">网上图片</a><br>
-                                                <a href="#">关于我们</a><br>
-                                            </div>
-                                        </div></td></tr>
-                                         <tr><td>
-                                            <div class="add" >
-                                                <div class="addimg">
-                                             <a href="javascript:showmenu2()">  <img src="${ctx }/static/frontimages/add.jpg"></a>
-                                                </div>
-                                             <div class="wenzi">
-                                                <a href="#"><p>语言</p></a>
-                                            </div>
-                                            </div>
-                                            <div class="xiala ">
-                                            <div  id="menu2">
-                                                <a href="#">给我留言</a><br>
-                                                <a href="#">在线聊天</a><br>
-                                                <a href="#">网上图片</a><br>
-                                                <a href="#">关于我们</a><br>
-                                            </div>
-                                        </div></td></tr>
-                                         <tr><td>
-                                            <div class="add" >
-                                                <div class="addimg">
-                                             <a href="javascript:showmenu3()">  <img src="${ctx }/static/frontimages/add.jpg"></a>
-                                                </div>
-                                             <div class="wenzi">
-                                                <a href="#"><p>语言</p></a>
-                                            </div>
-                                            </div>
-                                            <div class="xiala ">
-                                            <div  id="menu3">
-                                                <a href="#">给我留言</a><br>
-                                                <a href="#">在线聊天</a><br>
-                                                <a href="#">网上图片</a><br>
-                                                <a href="#">关于我们</a><br>
-                                            </div>
-                                        </div></td></tr>
-                                         <tr><td>
-                                            <div class="add" >
-                                                <div class="addimg">
-                                             <a href="javascript:showmenu4()">  <img src="${ctx }/static/frontimages/add.jpg"></a>
-                                                </div>
-                                             <div class="wenzi">
-                                                <a href="#"><p>语言</p></a>
-                                            </div>
-                                            </div>
-                                            <div class="xiala ">
-                                            <div  id="menu4">
-                                                <a href="#">给我留言</a><br>
-                                                <a href="#">在线聊天</a><br>
-                                                <a href="#">网上图片</a><br>
-                                                <a href="#">关于我们</a><br>
-                                            </div>
-                                        </div></td></tr>
-                                    
-
+                                            </td>
+                                            </tr>
                                     </table>
                         </div>
                         <div class="tline">
@@ -244,13 +189,10 @@ document.onclick=function(){
                                                 </div>
                                                 <div class="three">
                                                              <table>
-
-                                                                    <tr><td><div class="conimg"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context"><a href="#">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</a></div></td></tr> 
-                                                                    <tr><td><div class="conimg1"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context1"><a href="#">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</a></div></td></tr> 
-                                                                    <tr><td><div class="conimg2"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context2"><a href="#">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</a></div></td></tr> 
-                                                                    <tr><td><div class="conimg3"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context3"><a href="#">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</a></div></td></tr> 
-                                                                    <tr><td><div class="conimg4"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context4"><a href="#">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</a></div></td></tr>  
-
+																	<c:forEach var="list" items="${courselist }">
+																		<tr><td><div class="conimg"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context"><a>${list.courseName }</a></div></td></tr>
+																	</c:forEach>
+                                                                    
                                                              </table>       
                                                 </div>
                                                 <div class="four">
