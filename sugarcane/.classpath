@@ -91,5 +91,13 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/zipfs.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.10.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-analyzers-common-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-analyzers-smartcn-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-core-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-highlighter-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-join-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-memory-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-queries-7.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-queryparser-7.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
