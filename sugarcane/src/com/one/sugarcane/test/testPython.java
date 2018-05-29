@@ -14,7 +14,7 @@ public class testPython {
 		File directory = new File("");
 		//获取文件根目录
         String courseFile = directory.getCanonicalPath();
-		String[] args1 = new String[] { "python", courseFile + "\\src\\com\\one\\sugarcane\\test\\k-means\\test3.py" };
+		String[] args1 = new String[] { "python", courseFile+"\\src\\com\\one\\sugarcane\\test\\k-means\\test3.py" };
 		ProcessBuilder builder = new ProcessBuilder();
 		builder.command(args1);
 		Process process;
@@ -30,7 +30,6 @@ public class testPython {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 	}
 }
