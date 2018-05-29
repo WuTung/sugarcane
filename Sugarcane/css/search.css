@@ -1,0 +1,67 @@
+.body{
+	width: 75%;
+	height: 55em;
+	margin: 0 auto;
+	background-color: rgba(248,248,255,0.5);
+}
+.body_right{ 
+	margin-left: 14%;
+	height: 70%;
+   	width: 78%;
+}
+.righttwo {
+	position:relative;
+	top:1em;
+}
+.righttwotable{
+	float: left;
+	width: 30%;
+	margin-top: 2%;
+	margin-left: 10%
+}
+.result{
+	padding-top: 3%;
+	padding-left:8% ;
+	color: #696969;
+}
+.pic img{
+	width: 100%;
+	height: 40%
+}
+.h3{
+	width: 100%;
+	text-align: center;
+	background-color: white
+}
+.p{
+	width: 100%;
+	font-weight: lighter;
+	background-color: white;
+	font-size: 78%
+}
+.rightthree{
+	float: left;
+	margin: 2% 0 0 35%;
+}
+.pager li {
+	float: left;
+	margin-left: 1.25em;
+}
+.pager a{
+	height: 1.25em;
+	width:2.5em;
+	background-color: white;
+	border: none;
+	color: black;
+}
+select{
+	padding: 0 2%;
+	margin: 1.25em 0 0 5.625em;
+	height: 1.875em;
+	width: 7.5em;
+}
+option{
+	text-align: center;
+}
+
+

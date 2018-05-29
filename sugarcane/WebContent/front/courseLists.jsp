@@ -180,16 +180,16 @@
         <ul> 
             <li><a href="../course/listAllCourse?coursePageIndex=1" class="pagea">首页</a></li>
             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex-1 }"><</a></li>          
-             <c:forEach begin="${coursePageIndex }" end="${coursePageCount-1}" step="1" var="i">
+             <c:forEach begin="${coursePageIndex }" end="${coursePageCount}" step="1" var="i">
             	<li><a href="../course/listAllCourse?coursePageIndex=${i}">${i}</a></li>
             </c:forEach>
-            <c:if test="${coursePageIndex+1<=coursePageCount-1}">
+            <c:if test="${coursePageIndex<=coursePageCount}">
             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex+1 }">></a></li>
             </c:if>
             <c:if test="${coursePageIndex+1>coursePageCount}">
-             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount-1 }">></a></li>
+             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount }">></a></li>
             </c:if>
-            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount-1 }">尾页</a></li>
+            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount }">尾页</a></li>
         </ul>
             </div>
         </div>

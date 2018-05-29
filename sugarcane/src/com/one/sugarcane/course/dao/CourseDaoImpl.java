@@ -36,8 +36,8 @@ public class CourseDaoImpl{
 	 */
 	public List<Course> findAll(int page){
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from Course");
-		q.setFirstResult((page-1)*10);
-		q.setMaxResults(10);	
+		q.setFirstResult((page-1)*6);
+		q.setMaxResults(6);	
 		return q.list();
 	}	
 	/**
@@ -169,6 +169,18 @@ public class CourseDaoImpl{
 		q.setMaxResults(6);	
 		return q.list();
 	}
+	/**
+	 * 通过大分类查询课程
+	 * @param courseTypeID
+	 * @param page
+	 * @return
+	 */
+	public List<Course> findCourseByCourseTypeID(int courseTypeID,int page){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Course where publicCourseType.courseType.courseTypeID="+courseTypeID);
+		q.setFirstResult((page-1)*6);
+		q.setMaxResults(6);	
+		return q.list();
+	}
 	
 	/**
 	 * 查询课程总数
@@ -213,6 +225,18 @@ public class CourseDaoImpl{
 		int count = number.intValue();
 		return count;
 		}
+	/**
+	 * 通过大分类查询课程总数
+	 * @param sellerCourseTypeID
+	 * @return
+	 */
+	public int findRowsCountByCourseType(int courseTypeID){
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from Course where publicCourseType.courseType.courseTypeID="+courseTypeID);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+		}
+	
 	
 	/**
 	 * 通过ID删除一门课程
