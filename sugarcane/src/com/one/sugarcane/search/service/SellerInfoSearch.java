@@ -2,6 +2,7 @@ package com.one.sugarcane.search.service;
 
 import java.io.StringReader;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
@@ -20,17 +21,19 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.search.highlight.SimpleSpanFragmenter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.springframework.stereotype.Repository;
 
 /**
  * 根据索引搜索培训机构 并且高亮显示 TODO
  * 
  * @author 秦晓宇
- * @date 2018年5月15日
+ * @date 2018年5月29日
  * 
  */
+
 public class SellerInfoSearch {
-	public String[] search(String indexDir, String q) throws Exception {
-		String b [] = null;
+	public ArrayList<String[]> search(String indexDir, String q) throws Exception {
+
 		// 得到读取索引文件的路径
 		Directory dir = FSDirectory.open(Paths.get(indexDir));
 		// 通过dir得到的路径下的所有的文件
@@ -73,7 +76,7 @@ public class SellerInfoSearch {
 
 		// 设置片段
 		highlighter.setTextFragmenter(fragmenter);
-
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		// 高亮显示end
 
 		// 遍历topDocs
@@ -82,8 +85,9 @@ public class SellerInfoSearch {
 		 * 
 		 * @throws Exception
 		 */
+		int i = 0;
 		for (ScoreDoc scoreDoc : hits.scoreDocs) {
-
+			String b[] = new String[3];
 			// 获取文档
 			Document document = is.doc(scoreDoc.doc);
 			// 输出全路径
@@ -99,9 +103,10 @@ public class SellerInfoSearch {
 				// 获取最高的片段
 //				System.out.println(highlighter.getBestFragment(tokenStream, contents));
 			}
-
+			list.add(b);
+			i++;
 			// 关闭reader
 		}
-		return b;
+		return list;
 	}
 }

@@ -151,7 +151,7 @@ public class TestCourse {
 		//获取文件根目录
         try {
 			String courseFile = directory.getCanonicalPath();
-			String pt = courseFile + "\\src\\com\\one\\sugarcane\\search\\dataIndex" ;
+			String pt = courseFile + "\\src\\com\\one\\sugarcane\\search\\dataIndex\\courseIndex" ;
 			TestCourse t = new TestCourse();
 			t.setINDEX_DIR(pt);
 			t.getResults();

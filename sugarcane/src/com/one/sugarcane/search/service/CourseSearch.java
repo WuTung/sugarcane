@@ -2,11 +2,10 @@ package com.one.sugarcane.search.service;
 
 import java.io.StringReader;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -22,17 +21,19 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.search.highlight.SimpleSpanFragmenter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.springframework.stereotype.Repository;
 
 /**
  * 根据索引搜索课程 并且高亮显示 TODO
  * 
  * @author 秦晓宇
- * @date 2018年5月15日
+ * @date 2018年5月29日
  * 
  */
+
 public class CourseSearch {
-	public String[] search(String indexDir, String q) throws Exception {
-		String b [] = new String[5];
+	public ArrayList<String[]>search(String indexDir, String q) throws Exception {
+		
 		// 得到读取索引文件的路径
 		Directory dir = FSDirectory.open(Paths.get(indexDir));
 		// 通过dir得到的路径下的所有的文件
@@ -57,7 +58,7 @@ public class CourseSearch {
 		TopDocs hits = is.search(query, 10);
 		// 计算索引结束时间
 		long end = System.currentTimeMillis();
-		b[3] = "匹配 " + q + " ，总共花费" + (end - start) + "毫秒" + "查询到" + hits.totalHits + "个记录";
+		
 		// 高亮显示start
 
 		// 算分
@@ -75,8 +76,7 @@ public class CourseSearch {
 
 		// 设置片段
 		highlighter.setTextFragmenter(fragmenter);
-		
-		
+		ArrayList<String[]> list = new ArrayList<String[]>();
 		// 高亮显示end
 
 		// 遍历topDocs
@@ -85,8 +85,9 @@ public class CourseSearch {
 		 * 
 		 * @throws Exception
 		 */
+		int i = 0;
 		for (ScoreDoc scoreDoc : hits.scoreDocs) {
-
+			String b[] = new String[3];
 			// 获取文档
 			Document document = is.doc(scoreDoc.doc);
 			// 输出全路径
@@ -104,9 +105,12 @@ public class CourseSearch {
 //				System.out.println(highlighter.getBestFragment(tokenStream, contents));
 				
 			}
+			list.add(b);
 			// 关闭reader
 			//reader.close();
+			i = i + 1;
 		}
-		return b;
+//		b[i][3] = "匹配 " + q + " ，总共花费" + (end - start) + "毫秒" + "查询到" + hits.totalHits + "个记录";
+		return list;
 	}
 }
