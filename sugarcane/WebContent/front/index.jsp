@@ -10,8 +10,7 @@
 </head>
 <body>
 	<table>
-		<tr><td><a href="${ctx }/sellerInfo/showOrg">name</a></td></tr>
-		
+		<tr><td><a href="${ctx }/sellerInfo/showOrg">name</a></td></tr>	
 	</table>
 </body>
 </html>

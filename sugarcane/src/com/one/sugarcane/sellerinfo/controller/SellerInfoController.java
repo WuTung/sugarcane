@@ -231,13 +231,24 @@ model.addAttribute("showOrg",list);
  * @name 王孜润
  */
 @RequestMapping("/findSeller")
-public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest request) {
+public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest request,@RequestParam(value="pageNum",defaultValue="1")Integer page) {
 	String id = request.getParameter("sellerInfoId");
 	int sellerId = Integer.valueOf(id);
 	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
-	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
+	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId,page);
 	model.addAttribute("sellerInfo",sellerInfo);
 	model.addAttribute("courselist",list);
+	//分页
+	int pageCount = this.sellerInfoServiceImpl.getPageCount(sellerId);
+	model.addAttribute("pageCount",pageCount);
+	int pageNum = 1;
+	model.addAttribute("pageNum",pageNum);
+	if(pageNum==0 || pageNum<0) {
+		model.addAttribute("pageNum",1);
+	}else {
+		model.addAttribute("pageNum",pageNum);
+	}
+
 	return "front/education";
 }
 /**
@@ -249,20 +260,19 @@ public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest re
  * @return
  */
 @RequestMapping("/sellerFindCourse")
-public String findSellerCourse(Model model,SellerInfo sellerInfo,HttpServletRequest request) {
-	String id = request.getParameter("sellerID");
-	int sellerId = Integer.valueOf(id);
-//	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
-	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
+public String findSellerCourse(Model model,SellerInfo sellerInfo,HttpServletResponse response,HttpServletRequest request,@RequestParam("pageNum")Integer page,HttpSession session) {
+//	String id = request.getParameter("sellerID");
+//	int sellerId = Integer.valueOf(id);
+	Integer sellerId=(Integer) session.getAttribute("sellerID");
+	System.out.println("SellerId是什么哈哈哈："+sellerId);
+	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId,page);
 	List<PublicCourseType> list1 = sellerInfoServiceImpl.findTypeAll();
-	
-	System.out.println(list1);
-	System.out.println(1111);
-//	model.addAttribute("sellerInfo",sellerInfo);
 	model.addAttribute("sellerCourselist",list);
 	model.addAttribute("publicCourseType",list1);
 	//分页
+	System.out.println("ID::"+sellerId);
 			int pageCount = this.sellerInfoServiceImpl.getPageCount(sellerId);
+			System.out.println("pageCount"+pageCount);
 			model.addAttribute("pageCount",pageCount);
 			int pageNum = 1;
 			model.addAttribute("pageNum",pageNum);
@@ -271,10 +281,7 @@ public String findSellerCourse(Model model,SellerInfo sellerInfo,HttpServletRequ
 			}else {
 				model.addAttribute("pageNum",pageNum);
 			}
-	
-	
-	return "organization/manageClassify";
-	
+	return "organization/manageClassify";	
 }
 
 /**
@@ -295,6 +302,11 @@ private String deleteCourseType(Model model,HttpServletRequest request) {
 		return "redirect:sellerFindCourse?sellerID="+uid;
 	}
 }
+/**
+ * 查找课程分类
+ * @author 王孜润
+ * @date 2018/5/27
+ */
 
 
 

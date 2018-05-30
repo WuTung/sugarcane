@@ -67,8 +67,8 @@ public SellerInfo selectById(int id) {
  * 通过SellerId查找course
  * @name 王孜润
  */
-public List<Course> findBySellerId(int id){
-	List<Course> list = sellerInfoDaoImpl.findBySellerId(id);
+public List<Course> findBySellerId(int sellerId,int page){
+	List<Course> list = sellerInfoDaoImpl.findBySellerId(sellerId,page);
 	return list;
 }
 /**
@@ -93,8 +93,8 @@ public boolean deleteCourseType(int id) {
  * 得到页码数
  * @return
  */
-	public int getPageCount(int id) {
-		 return (int) Math.ceil((this.sellerInfoDaoImpl.findCount(id)/10));		
+	public int getPageCount(int sellerId) {
+		 return (int) Math.ceil((this.sellerInfoDaoImpl.findCount(sellerId)/6));		
 	}
 
 }

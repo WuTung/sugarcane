@@ -74,14 +74,14 @@ public class SellerInfoDaoImpl {
 	 * 通过id查找course
 	 * @name 王孜润
 	 */
-	public List<Course> findBySellerId(int sellerId) {
+	public List<Course> findBySellerId(int sellerId,int page) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Course where sellerInfo.sellerID=?");
-		query.setParameter(0, sellerId);
+		Query query = session.createQuery("from Course where sellerID="+sellerId);
+		query.setFirstResult((page-1)*6);
+		query.setMaxResults(6);
 		List<Course> list = query.list();
 		return list;
 	}
-	
 	
 	/**
 	 * 查询所有课程publicCourseType
@@ -115,9 +115,9 @@ public class SellerInfoDaoImpl {
 	 * 查询课程数
 	 * @return
 	 */
-	public int findCount(int id) {
-		Query fc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(courseID) from Course where sellerId=?");	
-		fc.setParameter(0, id);
+	public int findCount(int sellerId) {
+		Query fc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from Course where sellerId=?");	
+		fc.setParameter(0, sellerId);
 		Number number = (Number)fc.uniqueResult();
 		int count = number.intValue();
 		return count;		 
