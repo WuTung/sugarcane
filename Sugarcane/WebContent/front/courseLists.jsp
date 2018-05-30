@@ -125,6 +125,17 @@
                        </li>
                     </ul>
                 </div>
+                <div class="body_left_classify">
+                    <ul>
+                        <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType4.courseTypeID}">${courseType4.courseTypeName }</a>
+                           <ul>
+                           <c:forEach items="${publicCourseTypeList4 }" var="publicCourseType3">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType4.publicTypeId }">${publicCourseType4.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+                       </li>
+                    </ul>
+                </div>
                  <div class="body_left_classify">
                     <ul>
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType0.courseTypeID}">${courseType0.courseTypeName }</a>
@@ -183,10 +194,11 @@
              <c:forEach begin="${coursePageIndex }" end="${coursePageCount}" step="1" var="i">
             	<li><a href="../course/listAllCourse?coursePageIndex=${i}">${i}</a></li>
             </c:forEach>
-            <c:if test="${coursePageIndex<=coursePageCount}">
+    
+            <c:if test="${coursePageIndex<coursePageCount}">
             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex+1 }">></a></li>
             </c:if>
-            <c:if test="${coursePageIndex+1>coursePageCount}">
+            <c:if test="${coursePageIndex>coursePageCount}">
              <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount }">></a></li>
             </c:if>
             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount }">尾页</a></li>

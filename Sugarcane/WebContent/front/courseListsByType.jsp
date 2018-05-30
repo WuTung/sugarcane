@@ -125,52 +125,6 @@
                        </li>
                     </ul>
                 </div>
-                
-
-                <!--  div class="body_left_classify">
-                    <ul>
-                        <li><a href="#">健身</a>
-                           <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
-                           </ul>
-                       </li>
-                    </ul>
-                </div>
-                <div class="body_left_classify">
-                    <ul>
-                        <li><a href="#">健身</a>
-                           <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
-                           </ul>
-                       </li>
-                    </ul>
-                </div>
-                <div class="body_left_classify">
-                    <ul>
-                        <li><a href="#">健身</a>
-                           <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
-                           </ul>
-                       </li>
-                    </ul>
-                </div>
-                <div class="body_left_classify">
-                    <ul>
-                        <li><a href="#">健身</a>
-                           <ul>
-                                <li><a href="#">英语</a></li>
-                                <li><a href="#">法语</a></li>
-                                <li><a href="#">汉语</a></li>
-                           </ul>
-                       </li>
-                    </ul>
-                </div-->
         </div>
         <div class="body_center"></div>
         <div class="body_right">
@@ -218,10 +172,10 @@
              <c:forEach begin="${coursePageIndex }" end="${coursePageCount}" step="1" var="i">
             	<li><a href="../course/listAllCourseByType?coursePageIndex=${i}&publicCourseTypeID=${publicCourseTypeID }">${i}</a></li>
             </c:forEach>
-            <c:if test="${coursePageIndex<=coursePageCount}">
+            <c:if test="${coursePageIndex<=coursePageCount+1}">
             <li><a href="../course/listAllCourseByType?coursePageIndex=${coursePageIndex+1 }&publicCourseTypeID=${publicCourseTypeID }">></a></li>
             </c:if>
-            <c:if test="${coursePageIndex>coursePageCount}">
+            <c:if test="${coursePageIndex>coursePageCount+1}">
              <li><a href="../course/listAllCourseByType?coursePageIndex=${coursePageCount }&publicCourseTypeID=${publicCourseTypeID }">></a></li>
             </c:if>
             <li><a href="../course/listAllCourseByType?coursePageIndex=${coursePageCount }&publicCourseTypeID=${publicCourseTypeID }">尾页</a></li>
