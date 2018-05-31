@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.one.sugarcane.entity.Searcher;
+
 /**
  * 根据索引搜索培训机构 并且高亮显示 TODO
  * 
@@ -23,7 +25,7 @@ public class SellerInfoSearchService {
 	
 	private SellerInfoSearch sellerInfoSearch = new SellerInfoSearch() ;
 
-	public ArrayList<String[]> searchBySellerName(String name) throws Exception {
+	public ArrayList<Searcher>  searchBySellerName(String name) throws Exception {
 		pt = "E:\\gitRepository\\sugarcane\\sugarcane\\src\\com\\one\\sugarcane\\search\\dataIndex\\courseIndex";
 		return sellerInfoSearch.search(pt, name);
 	}

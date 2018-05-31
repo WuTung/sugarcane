@@ -21,7 +21,8 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.search.highlight.SimpleSpanFragmenter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.springframework.stereotype.Repository;
+
+import com.one.sugarcane.entity.Searcher;
 
 /**
  * 根据索引搜索培训机构 并且高亮显示 TODO
@@ -32,7 +33,7 @@ import org.springframework.stereotype.Repository;
  */
 
 public class SellerInfoSearch {
-	public ArrayList<String[]> search(String indexDir, String q) throws Exception {
+	public ArrayList<Searcher> search(String indexDir, String q) throws Exception {
 
 		// 得到读取索引文件的路径
 		Directory dir = FSDirectory.open(Paths.get(indexDir));
@@ -76,7 +77,7 @@ public class SellerInfoSearch {
 
 		// 设置片段
 		highlighter.setTextFragmenter(fragmenter);
-		ArrayList<String[]> list = new ArrayList<String[]>();
+		ArrayList<Searcher> list = new ArrayList<Searcher>();
 		// 高亮显示end
 
 		// 遍历topDocs
@@ -87,23 +88,24 @@ public class SellerInfoSearch {
 		 */
 		int i = 0;
 		for (ScoreDoc scoreDoc : hits.scoreDocs) {
-			String b[] = new String[3];
+			Searcher searcher = new Searcher();
 			// 获取文档
 			Document document = is.doc(scoreDoc.doc);
 			// 输出全路径
 //			System.out.println(document.get("courseName"));
-			b[0] = document.get("sellerName");
-			b[2] = document.get("brief");
+			searcher.setNoHighLighteTitle(document.get("sellerName"));
+			searcher.setBrief(document.get("brief"));
+			searcher.setId(document.get("sellerId"));
 			String contents = document.get("sellerName");
 			if (contents != null) {
 				// 把全部得分高的摘要给显示出来
 				// 第一个参数是对哪个参数进行设置；第二个是以流的方式读入
 				TokenStream tokenStream = analyzer.tokenStream("sellerName", new StringReader(contents));
-				b[1] = highlighter.getBestFragment(tokenStream, contents);
+				searcher.setTitle(highlighter.getBestFragment(tokenStream, contents));
 				// 获取最高的片段
 //				System.out.println(highlighter.getBestFragment(tokenStream, contents));
 			}
-			list.add(b);
+			list.add(searcher);
 			i++;
 			// 关闭reader
 		}

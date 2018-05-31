@@ -44,7 +44,6 @@ function checkSearch2(){
 	return true;
 }
 </script>
-
 <style type="text/css">
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;}
@@ -79,19 +78,20 @@ a,img{border:0;}
 		<li><a href="#">培训机构</a></li>
 	</ul>
 	<div class="bodys">
-	    <form onsubmit="return checkSearch1()">
-		    <p><input type="text" value="" id="content_course" class="one" placeholder="输入课程关键字" /><button class="one1">搜索</button></p>
+	    <form action="${ctx }/search/searchByCourse" onsubmit="return checkSearch1()">
+		    <p><input type="text" value="" id="content_course" class="one" name="searchName" placeholder="输入课程关键字" /><button class="one1">搜索</button></p>
 		</form>
-		<form onsubmit="return checkSearch2()">
-		    <p><input type="text" value="" id="content_org" class="two" placeholder="输入培训机构关键字" /><button class="two2">搜索</button></p>
+		<form action="${ctx }/search/searchBySeller" onsubmit="return checkSearch2()">
+		    <p><input type="text" value="" id="content_org" class="two" name="searchName" placeholder="输入培训机构关键字" /><button class="two2">搜索</button></p>
 	    </form>
 	</div>
 </div>
 <div class="backhome"><a href="home.jsp">返回主页>></a></div>
-</div>
+</div>	
 <!--footer-->
     <div class="footer">
     	<div class="footer_text">Copyright©2018-2019&nbsp;&nbsp;&nbsp;sugarcane&nbsp;&nbsp;&nbsp;联系我们</div>
     </div>
+</body>
 </body>
 </html>
