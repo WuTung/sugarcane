@@ -93,16 +93,30 @@
     <div class="result">共有<span style="font-weight:bolder;color:#9ACD32">***</span>门包含"<span style="color:#9ACD32;font-weight:bolder">***</span>"的课程</div>
         <div class="body_right">
             <div class="righttwo">
+            <c:forEach items="${courseSearcher }" var="s">
                 <div class="righttwotable">
                     <div class="pic">
                         <img src="${ctx }/static/frontimages/zhuolinsheji.jpg">
                     </div>
-                    <div class="h3"><h3>卓林设计</h3></div>
+                    <div class="h3"><h3><a href="../course/courseDetails?courseID=${s.id }">${s.title }</a></h3></div>
                     <div class="p">
-                        <p>本系列课程全面系统的讲解了卓琳设计卓琳设计卓琳设计琳设计设计计</p>
+                        <p>${s.brief }</p>
                     </div>
                     <div class="others"><span>浏览xxx次</span></div>
                 </div>
+            </c:forEach>
+            <c:forEach items="${sellerSearcher }" var="s">
+                <div class="righttwotable">
+                    <div class="pic">
+                        <img src="${ctx }/static/frontimages/zhuolinsheji.jpg">
+                    </div>
+                    <div class="h3"><h3><a href="../course/courseDetails?courseID=${s.id }">${s.title }</a></h3></div>
+                    <div class="p">
+                        <p>${s.brief }</p>
+                    </div>
+                    <div class="others"><span>浏览xxx次</span></div>
+                </div>
+            </c:forEach>      
             </div>
         </div>
             <div class="rightthree">

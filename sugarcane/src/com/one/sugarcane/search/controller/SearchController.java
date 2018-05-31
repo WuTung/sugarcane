@@ -33,7 +33,7 @@ public class SearchController {
 //			System.out.println(strings[2]);
 //		}
 		sessione.setAttribute("courseSearcher", list);
-		response.sendRedirect("/Sugarcane/front/NewFile.jsp");
+		response.sendRedirect("/Sugarcane/front/searchResult。jsp");
 	}
 
 	@RequestMapping("/searchBySeller")
@@ -41,6 +41,6 @@ public class SearchController {
 			HttpSession sessione) throws Exception {
 		list = this.SellerInfoSearchService.searchBySellerName(name);
 		sessione.setAttribute("sellerSearcher", list);
-		response.sendRedirect("/Sugarcane/front/NewFile.jsp");
+		response.sendRedirect("/Sugarcane/front/searchResult.jsp");
 	}
 }
