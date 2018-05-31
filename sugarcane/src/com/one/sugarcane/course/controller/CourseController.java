@@ -174,7 +174,7 @@ public class CourseController {
 	 * @param response
 	 * @throws IOException
 	 */
-	 @RequestMapping("courseDetails")
+	 @RequestMapping("/courseDetails")
 		public void listsinglecake(@RequestParam(value="courseID")Integer courseID,
 				HttpSession session,
 				HttpServletRequest request,

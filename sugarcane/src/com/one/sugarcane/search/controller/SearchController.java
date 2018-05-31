@@ -10,13 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.one.sugarcane.entity.Searcher;
 import com.one.sugarcane.search.service.CourseSearchService;
 import com.one.sugarcane.search.service.SellerInfoSearchService;
 
 @Controller
 @RequestMapping("search")
 public class SearchController {
-	public ArrayList<String[]> list = new ArrayList<String[]>();
+	public ArrayList<Searcher> list = new ArrayList<Searcher>();
 	@Resource
 	private CourseSearchService courseSearchService;
 	@Resource
@@ -32,7 +33,7 @@ public class SearchController {
 //			System.out.println(strings[2]);
 //		}
 		sessione.setAttribute("courseSearcher", list);
-		//response.sendRedirect("/Sugarcane/front/");
+		response.sendRedirect("/Sugarcane/front/NewFile.jsp");
 	}
 
 	@RequestMapping("/searchBySeller")
@@ -40,6 +41,6 @@ public class SearchController {
 			HttpSession sessione) throws Exception {
 		list = this.SellerInfoSearchService.searchBySellerName(name);
 		sessione.setAttribute("sellerSearcher", list);
-		response.sendRedirect("/Sugarcane/front/");
+		response.sendRedirect("/Sugarcane/front/NewFile.jsp");
 	}
 }
