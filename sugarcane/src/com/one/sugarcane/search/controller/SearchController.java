@@ -33,7 +33,7 @@ public class SearchController {
 //			System.out.println(strings[2]);
 //		}
 		sessione.setAttribute("courseSearcher", list);
-		response.sendRedirect("/Sugarcane/front/searchResult。jsp");
+		response.sendRedirect("/Sugarcane/front/searchResult.jsp");
 	}
 
 	@RequestMapping("/searchBySeller")
