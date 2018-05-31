@@ -94,7 +94,7 @@ public class Course {
 		this.sellerCourseType = sellerCourseType;
 	}
 	@ManyToOne
-	@JoinColumn(name="sellerId")
+	@JoinColumn(name="sellerId",insertable = false, updatable = false)
 	public SellerInfo getSellerInfo() {
 		return sellerInfo;
 	}

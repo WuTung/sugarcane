@@ -170,14 +170,23 @@ public class CourseServiceImpl {
 	return this.courseDaoImpl.selectByCourseID(id);
 	}
 	/**
+	 * 通过大分类查询课程
+	 * @param courseTypeID
+	 * @param page
+	 * @return
+	 */
+	public List<Course> listCourseByCourseTypeID(int courseTypeID,int page){
+		return this.courseDaoImpl.findCourseByCourseTypeID(courseTypeID,page);
+	}
+	/**
 	 * 得到总页码数
 	 * @return
 	 */
 	public int getPageCount() {
-        if((this.courseDaoImpl.findRowsCount())%10==0) {
-		    return (int)(this.courseDaoImpl.findRowsCount()/10);
+        if((this.courseDaoImpl.findRowsCount())%6==0) {
+		    return (int)(this.courseDaoImpl.findRowsCount()/6);
 		}else {
-		    return (int)(this.courseDaoImpl.findRowsCount()/10+1);	
+		    return (int)(this.courseDaoImpl.findRowsCount()/6+1);	
 		}	
 	}
 	/**
@@ -214,6 +223,18 @@ public class CourseServiceImpl {
 		    return (int)(this.courseDaoImpl.findRowsCountByPublicTypeID(publicTypeID)/6);
 		}else {
 		    return (int)(this.courseDaoImpl.findRowsCountByPublicTypeID(publicTypeID)/6+1);	
+		}	
+	}
+	/**
+	 * 得到公共分类后课程总页码数
+	 * @param publicTypeID
+	 * @return
+	 */
+	public int getPageCountByCourseType(int courseTypeID) {
+        if((this.courseDaoImpl.findRowsCountByCourseType(courseTypeID))%6==0) {
+		    return (int)(this.courseDaoImpl.findRowsCountByCourseType(courseTypeID)/6);
+		}else {
+		    return (int)(this.courseDaoImpl.findRowsCountByCourseType(courseTypeID)/6+1);	
 		}	
 	}
 	

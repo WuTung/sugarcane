@@ -1,7 +1,7 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.5.21
+ * @date 2018.5.30
  */
 package com.one.sugarcane.course.controller;
 
@@ -91,8 +91,6 @@ public class CourseController {
 			@RequestParam("publicCourseTypeID")Integer publicCourseTypeID,
 			@RequestParam(value="coursePageIndex",defaultValue="1")Integer coursePageIndex,
 			HttpServletResponse response,HttpSession session) throws IOException {
-		//List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
-		
 		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
 		List<CourseType> courseTypeList=this.courseServiceImpl.selectCourseType();
 		int courseTypeLength=courseTypeList.size();
@@ -129,7 +127,7 @@ public class CourseController {
 		
 	}
 	/**
-	 * 大分类查询所有课程
+	 * 起始分类查询所有课程
 	 * @param publicCourseTypeID
 	 * @param coursePageIndex
 	 * @param response
@@ -141,35 +139,9 @@ public class CourseController {
 			@RequestParam("courseTypeID")Integer courseTypeID,
 			@RequestParam(value="coursePageIndex",defaultValue="1")Integer coursePageIndex,
 			HttpServletResponse response,HttpSession session) throws IOException {	
-		List<Course> courseL=this.courseServiceImpl.listAll();		
-		List<Course> courseLists = new ArrayList<Course>();
-		List<PublicCourseType> publicCourseTypeByCourseTypeList=this.courseServiceImpl.findPublicTypeByCourseTypeID(courseTypeID);
-		System.out.println(courseTypeID);
-		for(int i = 1;i<publicCourseTypeByCourseTypeList.size();i++) {
-			int courseTypeIDI=publicCourseTypeByCourseTypeList.get(i).getCourseType().getCourseTypeID();
-			System.out.println(courseTypeIDI);
-			for(Iterator<Course> courseIt=courseL.iterator();courseIt.hasNext();) {
-				Course coursen=courseIt.next();
-				int courseTypeIDJ=coursen.getPublicCourseType().getCourseType().getCourseTypeID();	
-				System.out.println(courseTypeIDJ);
-				if(courseTypeIDJ==courseTypeIDI && null!=courseIt.next()) {
-					courseLists.add(coursen);
-			}
-		}
-		}
-//		for(int i = 1;i<publicCourseTypeByCourseTypeList.size();i++) {
-//			int courseTypeIDI=publicCourseTypeByCourseTypeList.get(i).getCourseType().getCourseTypeID();
-//			System.out.println(courseTypeIDI);
-//			for(int j = 1; j<courseL.size();j++) {
-//				 int courseTypeIDJ = courseL.get(j).getCourseID();
-//				if(this.courseServiceImpl.getCourseById(j)!=null&& courseTypeIDJ==courseTypeIDI) {
-//					Course coursen=courseL.get(j);
-//					courseLists.add(coursen);  
-//			}
-//				
-//		}
-//	}
-		session.setAttribute("courseList", courseLists);
+		List<Course> courseList=this.courseServiceImpl.listCourseByCourseTypeID(courseTypeID,coursePageIndex);	
+		session.setAttribute("courseList", courseList);
+		session.setAttribute("courseTypeID", courseTypeID);
 		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
 		List<CourseType> courseTypeList=this.courseServiceImpl.selectCourseType();
 		int courseTypeLength=courseTypeList.size();
@@ -180,7 +152,7 @@ public class CourseController {
             session.setAttribute("publicCourseTypeLists"+i, publicCourseTypeLists);
 		}
 		//分页	
-		int pageCount=this.courseServiceImpl.getPageCountByPublicCourseType(courseLists.size()/6);	
+		int pageCount=this.courseServiceImpl.getPageCountByCourseType(courseTypeID);	
 		int pageIndex=1;	
 		 if(0==pageIndex|| pageIndex<0) {
 			 session.setAttribute("coursePageIndex",1);
@@ -190,7 +162,7 @@ public class CourseController {
 			 	}
 		session.setAttribute("coursePageIndex",pageIndex);
 		session.setAttribute("coursePageCount",pageCount);
-	
+
 		response.sendRedirect("/Sugarcane/front/courseListsByCourseType.jsp");
 		
 	}
@@ -217,16 +189,7 @@ public class CourseController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * 分页查询机构所有课程

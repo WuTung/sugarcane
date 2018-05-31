@@ -270,6 +270,7 @@ color: black;
 	height: 8%;
 	width: 100%;
 	float: left;
+	margin-left:17%;
 }
 .one p{
 
@@ -286,7 +287,7 @@ color: black;
 .twoline{
 	height: 100%;
 	width: 120px;
-	margin-left: 160px;
+	margin-left: 13%;
 	float: left;
 	background-color: gray;
 }
@@ -310,8 +311,8 @@ color: black;
 	width: 30%;
 }
 .conimg img {
-	height: 90px;
-	width: 100px;
+	height: 8em;
+	width: 12em;
 }
 .context{
 	float: left;

@@ -39,27 +39,28 @@ public class SellerCourseTypeController {
 	 * @author 王孜润
 	 * @date 2018/5/1
 	 * **/
-	@RequestMapping("/sellerCourseType")
-	private String sellerCourseType(Model model,HttpServletResponse response,@RequestParam(value="pageNum",defaultValue="1")Integer page,HttpServletRequest request) {
-		List<SellerCourseType> list = this.sellerCourseTypeServiceImpl.findAll(page);
-		model.addAttribute("sellerCourseType",list);
-		List<PublicCourseType> list1 = sellerCourseTypeServiceImpl.findTypeAll();
-		model.addAttribute("publicCourseType",list1);
-		for(int i=0;i<list1.size();i++) {
-			System.out.println(list1.get(i).getPublicTypeName());
-		}
-		//分页
-		int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
-		model.addAttribute("pageCount",pageCount);
-		int pageNum = 1;
-		model.addAttribute("pageNum",pageNum);
-		if(pageNum==0 || pageNum<0) {
-			model.addAttribute("pageNum",1);
-		}else {
-			model.addAttribute("pageNum",pageNum);
-		}
-		return "organization/manageClassify";
-	}
+//	@RequestMapping("/sellerCourseType")
+//	private String sellerCourseType(Model model,HttpServletResponse response,@RequestParam(value="pageNum",defaultValue="1")Integer page,HttpServletRequest request) {
+//		List<SellerCourseType> list = this.sellerCourseTypeServiceImpl.findAll(page);
+//		model.addAttribute("sellerCourseType",list);
+//		List<PublicCourseType> list1 = sellerCourseTypeServiceImpl.findTypeAll();
+//		model.addAttribute("publicCourseType",list1);
+//		for(int i=0;i<list1.size();i++) {
+//			System.out.println(list1.get(i).getPublicTypeName());
+//		}
+//		//分页
+//		int pageCount = this.sellerCourseTypeServiceImpl.getPageCount();
+//		model.addAttribute("pageCount",pageCount);
+//		int pageNum = 1;
+//		model.addAttribute("pageNum",pageNum);
+//		if(pageNum==0 || pageNum<0) {
+//			model.addAttribute("pageNum",1);
+//		}else {
+//			model.addAttribute("pageNum",pageNum);
+//		}
+//		return "organization/manageClassify";
+//	}
+	
 	/**
 	 * 添加
 	 * @author 王孜润

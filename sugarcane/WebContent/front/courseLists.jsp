@@ -125,6 +125,17 @@
                        </li>
                     </ul>
                 </div>
+                <div class="body_left_classify">
+                    <ul>
+                        <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType4.courseTypeID}">${courseType4.courseTypeName }</a>
+                           <ul>
+                           <c:forEach items="${publicCourseTypeList4 }" var="publicCourseType3">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType4.publicTypeId }">${publicCourseType4.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+                       </li>
+                    </ul>
+                </div>
                  <div class="body_left_classify">
                     <ul>
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType0.courseTypeID}">${courseType0.courseTypeName }</a>
@@ -180,16 +191,17 @@
         <ul> 
             <li><a href="../course/listAllCourse?coursePageIndex=1" class="pagea">首页</a></li>
             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex-1 }"><</a></li>          
-             <c:forEach begin="${coursePageIndex }" end="${coursePageCount-1}" step="1" var="i">
+             <c:forEach begin="${coursePageIndex }" end="${coursePageCount}" step="1" var="i">
             	<li><a href="../course/listAllCourse?coursePageIndex=${i}">${i}</a></li>
             </c:forEach>
-            <c:if test="${coursePageIndex+1<=coursePageCount-1}">
+    
+            <c:if test="${coursePageIndex<coursePageCount}">
             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageIndex+1 }">></a></li>
             </c:if>
-            <c:if test="${coursePageIndex+1>coursePageCount}">
-             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount-1 }">></a></li>
+            <c:if test="${coursePageIndex>coursePageCount}">
+             <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount }">></a></li>
             </c:if>
-            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount-1 }">尾页</a></li>
+            <li><a href="../course/listAllCourse?coursePageIndex=${coursePageCount }">尾页</a></li>
         </ul>
             </div>
         </div>

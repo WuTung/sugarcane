@@ -36,6 +36,7 @@ public class SellerCourseTypeDaoImpl {
 //		List<SellerCourseType> list = query.list();
 //		return list;
 	}
+	
 	/**
 	 * 查询课程数
 	 * @return

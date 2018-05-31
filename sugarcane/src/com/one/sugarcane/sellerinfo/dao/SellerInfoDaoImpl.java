@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
+import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 
 @Repository
@@ -70,6 +71,13 @@ public class SellerInfoDaoImpl {
 		SellerInfo sellerInfo = (SellerInfo)session.get(SellerInfo.class, id);
 		return sellerInfo;
 	}
+	public List<SellerCourseType> selectSellerCourseTypeById(int id) {
+		Session session  = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from SellerCourseType where sellerInfo.sellerID=?");
+		q.setParameter(0, id);
+		List<SellerCourseType> list = q.list();
+		return list;
+	}
 	/**
 	 * 通过id查找course
 	 * @name 王孜润
@@ -81,6 +89,8 @@ public class SellerInfoDaoImpl {
 		List<Course> list = query.list();
 		return list;
 	}
+	
+
 	
 	
 	/**
@@ -122,7 +132,19 @@ public class SellerInfoDaoImpl {
 		int count = number.intValue();
 		return count;		 
 	}
-	
+	/**
+	 * 培训机构详情分类列表查询
+	 * @author 王孜润
+	 * @date 2018/5/30
+	 * @param model
+	 * @return
+	 */
+	public List<SellerCourseType> selectType(int sellerID){	
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from SellerCourseType where sellerID="+sellerID);
+		List<SellerCourseType> list = query.list();
+		return list;
+	}
 	
 }
 

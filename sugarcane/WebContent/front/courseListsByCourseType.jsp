@@ -220,7 +220,7 @@
             <c:if test="${coursePageIndex<=coursePageCount}">
             <li><a href="../course/listAllCourseByCourseType?coursePageIndex=${coursePageIndex+1 }&courseTypeID=${courseTypeID }">></a></li>
             </c:if>
-            <c:if test="${coursePageIndex>coursePageCount}">
+            <c:if test="${coursePageIndex>coursePageCount+1}">
              <li><a href="../course/listAllCourseByCourseType?coursePageIndex=${coursePageCount }&courseTypeID=${courseTypeID }">></a></li>
             </c:if>
             <li><a href="../course/listAllCourseByCourseType?coursePageIndex=${coursePageCount }&courseTypeID=${courseTypeID }">尾页</a></li>
