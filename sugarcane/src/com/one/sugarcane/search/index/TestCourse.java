@@ -26,7 +26,7 @@ import com.mysql.jdbc.Statement;
 /**
  * 为course表创建索引
  * 
- * @author 秦雄宇
+ * @author 秦晓宇
  * @date 2018.5.29
  */
 public class TestCourse {
