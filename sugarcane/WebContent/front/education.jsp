@@ -150,21 +150,19 @@ document.onclick=function(){
                 <div class="third">
                         <div class="tleft">
                                     <table>
-                                    <c:forEach var="courseType" items="${courselist }">
-                                    <c:if test="">                                        
+                                    <c:forEach var="courseType" items="${seller }">
                                         <tr>
                                         <td>
                                             <div class="add" >
                                                 <div class="addimg">
-                                             </div>
-                                             <div class="wenzi">
-                                                <a href="#"><p>${courseType.sellerCourseType.courseTypeName2}</p></a>                                             	
-                                             </div>
-                                             
-                                            </div>
-                                            </td>
-                                            </tr>
-                                            </c:forEach>
+                                             	</div>
+                                            	<div class="wenzi">
+                                                	<a href="#"><p>${courseType.courseTypeName2}</p></a>                                             	
+                                             	</div>
+                                           </div>
+                                       </td>
+                                       </tr>
+                                    </c:forEach>
                                     </table>
                         </div>
                         <div class="tline">

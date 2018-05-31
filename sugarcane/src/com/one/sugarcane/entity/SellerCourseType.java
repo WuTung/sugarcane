@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +21,7 @@ public class SellerCourseType {
 	private String courseTypeName2;
 	private int hidden;
 	private Set<Course>course = new HashSet<Course>();
+	private SellerInfo sellerInfo;
 	
 	@Id
 	@GeneratedValue(generator="a")
@@ -47,6 +50,14 @@ public class SellerCourseType {
 	}
 	public void setCourse(Set<Course> course) {
 		this.course = course;
+	}
+	@ManyToOne
+	@JoinColumn(name="sellerID",insertable = false, updatable = false)
+	public SellerInfo getSellerInfo() {
+		return sellerInfo;
+	}
+	public void setSellerInfo(SellerInfo sellerInfo) {
+		this.sellerInfo = sellerInfo;
 	}
 	public SellerCourseType() {}
 	public SellerCourseType(String courseTypeName2, int hidden, Set<Course> course) {

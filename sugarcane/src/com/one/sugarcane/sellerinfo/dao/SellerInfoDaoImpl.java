@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
+import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 
 @Repository
@@ -70,18 +71,27 @@ public class SellerInfoDaoImpl {
 		SellerInfo sellerInfo = (SellerInfo)session.get(SellerInfo.class, id);
 		return sellerInfo;
 	}
+	public List<SellerCourseType> selectSellerCourseTypeById(int id) {
+		Session session  = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from SellerCourseType where sellerInfo.sellerID=?");
+		q.setParameter(0, id);
+		List<SellerCourseType> list = q.list();
+		return list;
+	}
 	/**
 	 * 通过id查找course
 	 * @name 王孜润
 	 */
-	public List<Course> findBySellerId(int sellerId,int page) {
+	public List<Course> findBySellerId(int sellerId) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Course where sellerID="+sellerId);
-		query.setFirstResult((page-1)*6);
-		query.setMaxResults(6);
+		Query query = session.createQuery("from Course where sellerInfo.sellerID=?");
+		query.setParameter(0, sellerId);
 		List<Course> list = query.list();
 		return list;
 	}
+	
+
+	
 	
 	/**
 	 * 查询所有课程publicCourseType
@@ -115,14 +125,26 @@ public class SellerInfoDaoImpl {
 	 * 查询课程数
 	 * @return
 	 */
-	public int findCount(int sellerId) {
-		Query fc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from Course where sellerId=?");	
-		fc.setParameter(0, sellerId);
+	public int findCount(int id) {
+		Query fc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(courseID) from Course where sellerId=?");	
+		fc.setParameter(0, id);
 		Number number = (Number)fc.uniqueResult();
 		int count = number.intValue();
 		return count;		 
 	}
-	
+	/**
+	 * 培训机构详情分类列表查询
+	 * @author 王孜润
+	 * @date 2018/5/30
+	 * @param model
+	 * @return
+	 */
+	public List<SellerCourseType> selectType(int sellerID){	
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from SellerCourseType where sellerID="+sellerID);
+		List<SellerCourseType> list = query.list();
+		return list;
+	}
 	
 }
 
