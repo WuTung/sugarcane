@@ -35,7 +35,7 @@
 				<form> 
                     <input type="text" placeholder="搜索">
                     <div class="s_img">
-                        <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a href="${ctx }/front/search.jsp"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>
