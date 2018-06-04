@@ -80,9 +80,11 @@ a,img{border:0;}
 	<div class="bodys">
 	    <form action="${ctx }/search/searchByCourse" onsubmit="return checkSearch1()">
 		    <p><input type="text" value="" id="content_course" class="one" name="searchName" placeholder="输入课程关键字" /><button class="one1">搜索</button></p>
+		    <input type="hidden" name="currentPage" value="1">
 		</form>
 		<form action="${ctx }/search/searchBySeller" onsubmit="return checkSearch2()">
 		    <p><input type="text" value="" id="content_org" class="two" name="searchName" placeholder="输入培训机构关键字" /><button class="two2">搜索</button></p>
+		    <input type="hidden" name="currentPage" value="1">
 	    </form>
 	</div>
 </div>

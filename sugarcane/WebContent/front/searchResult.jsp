@@ -90,7 +90,7 @@
     <div id="backgroundImg"></div>
 <!--body-->
 <div class="body">
-    <div class="result">共有<span style="font-weight:bolder;color:#9ACD32">***</span>门包含"<span style="color:#9ACD32;font-weight:bolder">***</span>"的课程</div>
+    <div class="result">共找到<span style="font-weight:bolder;color:#9ACD32">${totalNumber}</span>门包含"<span style="color:#9ACD32;font-weight:bolder">${courseName}</span>"关键字的课程</div>
         <div class="body_right">
             <div class="righttwo">
             <c:forEach items="${courseSearcher }" var="s">
@@ -104,33 +104,20 @@
                     </div>
                     <div class="others"><span>浏览xxx次</span></div>
                 </div>
-            </c:forEach>
-            <c:forEach items="${sellerSearcher }" var="s">
-                <div class="righttwotable">
-                    <div class="pic">
-                        <img src="${ctx }/static/frontimages/zhuolinsheji.jpg">
-                    </div>
-                    <div class="h3"><h3><a href="../course/courseDetails?courseID=${s.id }">${s.title }</a></h3></div>
-                    <div class="p">
-                        <p>${s.brief }</p>
-                    </div>
-                    <div class="others"><span>浏览xxx次</span></div>
-                </div>
-            </c:forEach>      
+            </c:forEach>    
             </div>
         </div>
             <div class="rightthree">
                 <ul class="pager">
-                  <li><a href="#">首页</a></li>
-                  <li><a href="#">上一页</a></li>
+                  <li><a href="../search/searchByCourse?currentPage=1&searchName=${courseName }">首页</a></li>
+                  <li><a href="../search/searchByCourse?currentPage=${currentPage-1 }&searchName=${courseName }">上一页</a></li>
                   <li>
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">...</a>
-                    <a href="#">10</a>
+						<c:forEach begin="1" end="${pageIndex }" var="i" step="1">
+							<a href="../search/searchByCourse?currentPage=${i}&searchName=${courseName }">${i}</a>
+						</c:forEach>
                   </li>
-                  <li><a href="#">下一页</a></li>
-                  <li><a href="#">尾页</a></li>
+                  <li><a href="../search/searchByCourse?currentPage=${currentPage+1 }&searchName=${courseName }">下一页</a></li>
+                  <li><a href="../search/searchByCourse?currentPage=100&searchName=${courseName }">尾页</a></li>
                 </ul>
             </div>
         </div>

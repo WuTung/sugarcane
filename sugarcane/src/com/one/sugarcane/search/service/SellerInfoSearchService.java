@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,11 @@ public class SellerInfoSearchService {
 	
 	private SellerInfoSearch sellerInfoSearch = new SellerInfoSearch() ;
 
-	public ArrayList<Searcher>  searchBySellerName(String name) throws Exception {
-		pt = "E:\\gitRepository\\sugarcane\\sugarcane\\src\\com\\one\\sugarcane\\search\\dataIndex\\courseIndex";
-		return sellerInfoSearch.search(pt, name);
+	public ArrayList<Searcher>  searchBySellerName(String name,int currentPage) throws Exception {
+		pt = "E:\\gitRepository\\sugarcane\\sugarcane\\src\\com\\one\\sugarcane\\search\\dataIndex\\sellerIndex";
+		return sellerInfoSearch.search(pt, name,currentPage);
+	}
+	public String[] totalNumber(String name) throws IOException, ParseException {
+		return this.sellerInfoSearch.findIndex(pt, name);
 	}
 }
