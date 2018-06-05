@@ -28,16 +28,10 @@ public class SearchController {
 			@RequestParam("currentPage") Integer currentPage, HttpServletResponse response, HttpSession sessione)
 			throws Exception {
 		list = this.courseSearchService.searchByCourseName(name, currentPage);
-		// for (String[] strings : list) {
-		// System.out.println(strings[0]);
-		// System.out.println(strings[1]);
-		// System.out.println(strings[2]);
-		// }
-
 		String b[] = this.courseSearchService.totalNumber(name);
 		sessione.setAttribute("pageIndex", b[0]);
 		sessione.setAttribute("totalNumber", b[1]);
-
+		sessione.setAttribute("currentPage", currentPage);
 		sessione.setAttribute("courseName", name);
 		sessione.setAttribute("courseSearcher", list);
 		response.sendRedirect("/Sugarcane/front/searchResult.jsp");
@@ -51,7 +45,7 @@ public class SearchController {
 		String b[] = this.SellerInfoSearchService.totalNumber(name);
 		sessione.setAttribute("pageIndex1", b[0]);
 		sessione.setAttribute("totalNumber1", b[1]);
-
+		sessione.setAttribute("currentPage", currentPage);
 		sessione.setAttribute("sellerName", name);
 		sessione.setAttribute("sellerSearcher", list);
 		response.sendRedirect("/Sugarcane/front/searchResult1.jsp");
