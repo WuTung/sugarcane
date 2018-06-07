@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="COURSE")
+@Table(name="COURSE") 
 public class Course {
 	private Integer courseID;
 	private String courseName;
