@@ -49,7 +49,7 @@ public class CourseController {
 		Evaluate evaluate=new Evaluate();
 		Course course=(Course) session.getAttribute("courseDetails");
 		UserInfo userInfo=(UserInfo) session.getAttribute("user");
-        evaluate.setUserInfo(userInfo);
+        evaluate.setUserInfo(userInfo); 
 		evaluate.setCourse(course);
 		//evaluate.setEvaluateImg(evaluateImg);
 		evaluate.setRender(render);
