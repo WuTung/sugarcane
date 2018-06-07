@@ -17,7 +17,7 @@ public class Evaluate {
 	private String content;
 	private String evaluateImg;
 	private int render;
-	private UserLogin userLogin;
+	private UserInfo userInfo;
 	private Course course;
 	@Id
 	@GeneratedValue(generator="a")
@@ -48,11 +48,11 @@ public class Evaluate {
 	}
 	@ManyToOne
 	@JoinColumn(name="userID")
-	public UserLogin getUserLogin() {
-		return userLogin;
+	public UserInfo getUserInfo() {
+		return userInfo;
 	}
-	public void setUserLogin(UserLogin userLogin) {
-		this.userLogin = userLogin;
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 	@ManyToOne
 	@JoinColumn(name="courseID")
@@ -63,12 +63,12 @@ public class Evaluate {
 		this.course = course;
 	}
 	public Evaluate() {}
-	public Evaluate(String content, String evaluateImg, int render, UserLogin userLogin, Course course) {
+	public Evaluate(String content, String evaluateImg, int render, UserInfo userInfo, Course course) {
 		super();
 		this.content = content;
 		this.evaluateImg = evaluateImg;
 		this.render = render;
-		this.userLogin = userLogin;
+		this.userInfo = userInfo;
 		this.course = course;
 	}
 	

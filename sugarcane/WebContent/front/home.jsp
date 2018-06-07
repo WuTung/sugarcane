@@ -33,8 +33,9 @@
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
+                    <input type="text" placeholder="搜索">
                     <div class="s_img">
-                        <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>
@@ -57,7 +58,7 @@
 					    <input type="submit" name="" id="" value="登录" class="btn" />
 					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="">
 					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="" onClick="regist()">
-				    </form>
+				    </form> 
 				</div>
 			</div>
 			<div class="event" id="regist_box" style="display: none;">

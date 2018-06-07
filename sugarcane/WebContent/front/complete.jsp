@@ -35,8 +35,9 @@
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
+                    <input type="text" placeholder="搜索">
                     <div class="s_img">
-                        <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>
@@ -92,56 +93,56 @@
 <!--body-->
     <div class="body">
         <div class="toptip">完善个人信息</div>
-        <form action="${pageContext.request.contextPath}/userInfo/complete" method="post">
+        <form action="">
             <div class="top_form">
                 <div class="sex">
                     <span style="color:#F30">*</span><span>性别：</span>
-                    <input type="radio" value="0" name="userGender" checked="checked"/>男
-                    <input type="radio" value="1" name="userGender"/>女
+                    <input type="radio" value="male" name="sex" checked="checked"/>男
+                    <input type="radio" value="famale" name="sex"/>女
                 </div>
                 <div class="age">
                     <span style="color:#F30">*</span><span>生日：</span>
-                    <select name="birthday" id="year" onchange="changeday()">
+                    <select name="YYYY" id="year" onchange="changeday()">
                         <option value="">请选择 年</option>
                     </select>
-                    <select name="birthday" id="month" onchange="changeday()">
+                    <select name="MM" id="month" onchange="changeday()">
                         <option value="">请选择 月</option>
                     </select>
-                    <select name="birthday" id="day">
+                    <select name="DD" id="day">
                         <option value="">请选择 日</option>
                     </select>
                 </div>
                 <div class="edurank">
                     <span style="color:#F30">*</span><span>学历：</span>
-                    <select name="userEducation">
+                    <select name="edurank">
                         <option value="0" selected="selected">请选择</option>
-                        <option value="小学">小学</option>
-                        <option value="初中">初中</option>
-                        <option value="高中">高中</option>
-                        <option value="本科">本科</option>
-                        <option value="专科">专科</option>
-                        <option value="研究生">研究生</option>
-                        <option value="博士生及以上">博士生及以上</option>
+                        <option value="1">小学</option>
+                        <option value="2">初中</option>
+                        <option value="3">高中</option>
+                        <option value="4">本科</option>
+                        <option value="5">专科</option>
+                        <option value="6">研究生</option>
+                        <option value="7">博士生及以上</option>
                     </select>
                 </div>
                 <div class="work">
                     <span style="color:#F30">*</span><span>职业：</span>
-                    <select name="userWork">
+                    <select name="work">
                         <option value="0" selected="selected">请选择</option>
-                        <option value="学生">学生</option>
-                        <option value="会计">会计</option>
-                        <option value="IT">IT</option>
-                        <option value="医生">医生</option>
-                        <option value="老师">老师</option>
-                        <option value="律师">律师</option>
-                        <option value="其他">其他</option>
+                        <option value="1">学生</option>
+                        <option value="2">会计</option>
+                        <option value="3">IT</option>
+                        <option value="4">医生</option>
+                        <option value="5">老师</option>
+                        <option value="6">律师</option>
+                        <option value="7">其他</option>
                     </select>
                 </div>
                 <div class="address">
                     <span style="color:#F30">*</span><span>地址：</span>
-                    <select id="cmbProvince" name="address_province"></select>    
-                    <select id="cmbCity" name="address_city"></select>    
-                    <select id="cmbArea" name="address_area"></select>    
+                    <select id="cmbProvince" name="cmbProvince"></select>    
+                    <select id="cmbCity" name="cmbCity"></select>    
+                    <select id="cmbArea" name="cmbArea"></select>    
                     <script type="text/javascript">    
                         addressInit('cmbProvince', 'cmbCity', 'cmbArea');    
                     </script>
@@ -150,15 +151,109 @@
             <div class="top_select">
                 <div class="interest">兴趣爱好</div>
                 <div class="mixselect">
-	                <c:forEach items="${listPublicType }" var="courseType">
-	                	<label class="demo--label">
-	                        <input class="demo--radio" type="checkbox" name="publicTypeName" value="${courseType.publicTypeName }">
-	                        <span class="demo--checkbox demo--radioInput"></span>${courseType.publicTypeName }
-	                    </label>
-	                </c:forEach>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>舞蹈
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>音乐
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox1">
+                        <span class="demo--checkbox demo--radioInput"></span>文艺
+                    </label>
                 </div>
                 <div class="save">
-                    <input type="submit" value="保存" id="btn_save"></input>
+                    <input type="button" value="保存" id="btn_save"></input>
                 </div>
             </div>
         </form>
@@ -168,7 +263,6 @@
     <div class="footer">
         <div class="footer_text">Copyright©2018-2019&nbsp;&nbsp;&nbsp;sugarcane&nbsp;&nbsp;&nbsp;联系我们</div>
     </div>
-  </div>
 </body>
 
 <!--生日下拉框-->

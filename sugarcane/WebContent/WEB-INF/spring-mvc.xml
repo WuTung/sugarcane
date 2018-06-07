@@ -31,15 +31,9 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 	<!-- 文件上传 -->
-	<!-- <bean id="multipartResolver"
+	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-		p:defaultEncoding="utf-8" /> -->
-	<!-- 冯海晴   文件上传修改    2018.5.31 -->	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UTF-8"/> 
-		<!-- 指定所上传文件的总大小不能超过10000KB。-->
-        <property name="maxUploadSize" value="10240000"/>
-    </bean>	
+		p:defaultEncoding="utf-8" />
 		
 		
 		

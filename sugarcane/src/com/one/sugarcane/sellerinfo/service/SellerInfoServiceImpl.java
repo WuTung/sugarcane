@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.sellerinfo.dao.SellerInfoDaoImpl;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
-import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 
@@ -64,10 +63,6 @@ public List<SellerInfo> showOrg() {
 public SellerInfo selectById(int id) {
 	return sellerInfoDaoImpl.findById(id);
 }
-public List<SellerCourseType> findSellerById(int id) {
-	return sellerInfoDaoImpl.selectSellerCourseTypeById(id);
-	
-}
 /**
  * 通过SellerId查找course
  * @name 王孜润
@@ -101,15 +96,5 @@ public boolean deleteCourseType(int id) {
 	public int getPageCount(int id) {
 		 return (int) Math.ceil((this.sellerInfoDaoImpl.findCount(id)/10));		
 	}
-	/**
-	 * 培训机构详情分类列表查询
-	 * @author 王孜润
-	 * @date 2018/5/30
-	 * @param model
-	 * @return
-	 */
-	public List<SellerCourseType> findType(int sellerID){
-		List<SellerCourseType> list = sellerInfoDaoImpl.selectType(sellerID);	
-		return list;
-	}
+
 }

@@ -78,7 +78,7 @@
 				</tr-->
 				<tr>
 				<td>简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介：</td>
-				<td><textarea rows="4" cols="27">请输入课程简介</textarea></td>
+				<td><textarea rows="4" cols="27" name="courseBrief">请输入课程简介</textarea></td>
 				</tr>
 				<!-- 上传文件 -->
 				<tr>

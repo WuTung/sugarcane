@@ -19,17 +19,15 @@ public class UserInfo {
 	private String userName;
 	private String userEmail;
 	private int userGender;
-	private String userWork;
-	private String userPicture;
 	private String userEducation;
 	private String userPhoneNumber;
 	private String birthday;
 	private String address_province;
 	private String address_city;
 	private String address_area;
+	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
 	private Set<GradeLevel>gradeLevel = new HashSet<GradeLevel>();
 	private UserLogin userLogin;
-	private Set<UserHobby> userHobby = new HashSet<UserHobby>();	//冯海晴
 	@Id
 	@GeneratedValue(generator="a")
 	@GenericGenerator(name="a",strategy="identity")
@@ -38,6 +36,13 @@ public class UserInfo {
 	}
 	public void setUserID(Integer userID) {
 		this.userID = userID;
+	}
+	@OneToMany(mappedBy="userInfo",targetEntity=Evaluate.class,cascade=CascadeType.MERGE)
+	public Set<Evaluate> getEvaluate() {
+		return evaluate;
+	}
+	public void setEvaluate(Set<Evaluate> evaluate) {
+		this.evaluate = evaluate;
 	}
 	public String getUserName() {
 		return userName;
@@ -124,36 +129,6 @@ public class UserInfo {
 		this.address_area = address_area;
 		this.gradeLevel = gradeLevel;
 		this.userLogin = userLogin;
-	}
-	/**
-	 * 添加属性职业
-	 * @author 冯海晴
-	 * @return
-	 */
-	public String getUserWork() {
-		return userWork;
-	}
-	public void setUserWork(String userWork) {
-		this.userWork = userWork;
-	}
-	/**
-	 * 添加用户信息与用户爱好的一对多关联
-	 * @author 冯海晴
-	 * @date 2018.5.24
-	 * @return
-	 */
-	@OneToMany(mappedBy="userInfo",targetEntity=UserHobby.class,cascade=CascadeType.MERGE)
-	public Set<UserHobby> getUserHobby() {
-		return userHobby;
-	}
-	public void setUserHobby(Set<UserHobby> userHobby) {
-		this.userHobby = userHobby;
-	}
-	public String getUserPicture() {
-		return userPicture;
-	}
-	public void setUserPicture(String userPicture) {
-		this.userPicture = userPicture;
 	}
 
 }

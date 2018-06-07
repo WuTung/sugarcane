@@ -122,12 +122,55 @@ h3{
 .intro_text3 span {
 	font-family: "幼圆";
 }
+/*复选框的总div*/
+.mixselect{
+	width: 40.625em;
+	height: 2em;
+	margin:0 auto;
+	padding-left: 5em;
+}
 
+/*复选框样式*/
+.demo--label{
+	width: 6.25em;
+	position: relative;
+	margin:1.25em 1.25em 0 0;
+	display:inline-block;
+}
+
+.demo--radio{
+	display:none;
+}
+.demo--radioInput{
+	background-color:#fff;
+	border:0.0625em solid rgba(0,0,0,0.15);
+	border-radius:100%;
+	display:inline-block;
+	height:1em;
+	position: relative;
+	top:-0.0625em;
+	right: 0.625em;
+	vertical-align:middle;
+	width:1em;
+	line-height:1;
+}
+.demo--radio:checked + .demo--radioInput:after{
+	background-color:#57ad68;
+	border-radius:100%;
+	content:"";
+	display:inline-block;
+	height:0.75em;
+	margin:0.125em;
+	width:0.75em;
+}
+.demo--checkbox.demo--radioInput,.demo--radio:checked + .demo--checkbox.demo--radioInput:after{
+	border-radius:0;
+}
 .evaluate{
 	border-top:0.1em solid rgba(220,220,220,0.5);
 	margin:0 auto;
-	width: 90%;
-	height: 45em;
+	width: 100%;
+	height: 20em;
 	position: relative;
 	top:2em;
 }
@@ -145,27 +188,15 @@ h3{
 }
 .evaluate_top a {
 	height: 1.75em;
-	width: 6.25em;
+	width: 8em;
 	font-size: 0.9375em;
-	background-color:white;
-	color: #ADFF2F;
+	background-color:#ADFF2F;
+	color: white;
 	position: relative;
 	left:-15em;
 	top:1em;
 	margin-right: 1em;
-}
-.evaluate_top a input {
-	display:inline;
-	height: 1.75em;
-	width: 6.25em;
-	line-height:1.75em; 
-	text-align:center; 
-	font-size:0.9375em; 
-	background:rgba(120,195,0,0.5);
-	color:#fff; 
-	text-decoration:none; 
-	cursor:pointer;
-
+	
 	border-width:0.0625;
 	border-style:solid;
 	border-color:rgba(120,195,0,0.5);
@@ -200,7 +231,7 @@ h3{
 .evaluate_content_text{
 	float: left;
 	height: 4.5em;
-	width: 18.75em;
+	width: 33.75em;
 	position: relative;
 	top:1em;
 	left: 11em;

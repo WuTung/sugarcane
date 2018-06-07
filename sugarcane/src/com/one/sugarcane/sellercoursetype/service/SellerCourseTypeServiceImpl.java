@@ -37,7 +37,6 @@ public class SellerCourseTypeServiceImpl {
 //		return list;
 		return this.sellerCourseTypeDaoImpl.select(page);
 	}
-	
 	/**
 	 * 通过Name查询type
 	 * @author 王孜润

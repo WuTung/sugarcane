@@ -1,7 +1,7 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.5.15
+ * @date 2018.5.31
  */
 package com.one.sugarcane.course.service;
 
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.course.dao.CourseDaoImpl;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.CourseType;
+import com.one.sugarcane.entity.Evaluate;
 import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
@@ -25,6 +26,54 @@ import com.one.sugarcane.entity.SellerLogin;
 public class CourseServiceImpl {
 	@Resource
 	private CourseDaoImpl courseDaoImpl;
+	public void saveEvaluate(Evaluate evaluate) {
+		this.courseDaoImpl.saveEvaluate(evaluate);
+	}
+	/**
+	 * 通过课程ID查询评价
+	 * @param courseID
+	 * @param page
+	 * @return
+	 */
+	public List<Evaluate> listEvaluateByCourseID(int courseID,int page){
+		return this.courseDaoImpl.findEvaluateByCourseID(courseID, page);
+	}
+	/**
+	 * 通过课程ID和render查询评价
+	 * @param courseID
+	 * @param render
+	 * @param page
+	 * @return
+	 */
+	public List<Evaluate> listEvaluateByCourseIDAndRender(int courseID,int render,int page){
+		return this.courseDaoImpl.findEvaluateByCourseIDAndRender(courseID,render, page);
+	}
+	/**
+	 * 通过课程ID确定评价页数
+	 * @param courseID
+	 * @return
+	 */
+	public int getEvaluatePageCountByCourse(int courseID) {
+        if((this.courseDaoImpl.findEvaluateRowsCountByCourseID(courseID))%3==0) {
+		    return (int)(this.courseDaoImpl.findEvaluateRowsCountByCourseID(courseID)/3);
+		}else {
+		    return (int)(this.courseDaoImpl.findEvaluateRowsCountByCourseID(courseID)/3+1);	
+		}	
+	}
+	/**
+	 * 通过课程ID和render确定评价页数
+	 * @param courseID
+	 * @param render
+	 * @return
+	 */
+	public int getEvaluatePageCountByCourseAndRender(int courseID,int render) {
+        if((this.courseDaoImpl.findEvaluateRowsCountByCourseIDAndRender(courseID,render))%3==0) {
+		    return (int)(this.courseDaoImpl.findEvaluateRowsCountByCourseIDAndRender(courseID,render)/3);
+		}else {
+		    return (int)(this.courseDaoImpl.findEvaluateRowsCountByCourseIDAndRender(courseID,render)/3+1);	
+		}	
+	}
+///////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 查询所有课程
 	 * @return
