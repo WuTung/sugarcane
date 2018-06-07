@@ -154,7 +154,7 @@
 					<c:forEach var="evaluateList"  items="${evaluateList }">
 					<div class="evaluate_content">
 						<div class="evaluate_content_person">
-							<img src="${ctx }/static/frontimages/peiqi.jpg" alt="" /><br>
+							<img src="${ctx }/static/${evaluateList.userInfo.userPicture}" alt="" /><br>
 							<span>${evaluateList.userInfo.userName }</span>
 						</div>
 						<div class="evaluate_content_text">
