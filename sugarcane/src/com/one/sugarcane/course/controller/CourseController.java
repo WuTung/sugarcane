@@ -1,7 +1,7 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.5.30
+ * @date 2018.6.7
  */
 package com.one.sugarcane.course.controller;
 
@@ -22,15 +22,49 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.one.sugarcane.course.service.CourseServiceImpl;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.CourseType;
+import com.one.sugarcane.entity.Evaluate;
 import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserInfo;
+import com.one.sugarcane.io.ride.sensitive.SensitiveWordFilter;
+
+
+
 @Controller
 @RequestMapping("course")
 public class CourseController {
 	@Resource
-	private CourseServiceImpl courseServiceImpl;	
+	private CourseServiceImpl courseServiceImpl;
+	@RequestMapping("/savaEvaluate")
+	public void addOneEvaluate(
+			@RequestParam(value="render",defaultValue="1")Integer render,
+//			@RequestParam("userID")Integer userID,
+			//@RequestParam("courseID")Integer courseID,
+			//@RequestParam("evaluateImg")String evaluateImg,
+			@RequestParam("content")String content,HttpServletResponse response,
+			HttpServletRequest request,HttpSession session) throws IOException
+			 {
+		Evaluate evaluate=new Evaluate();
+		Course course=(Course) session.getAttribute("courseDetails");
+		UserInfo userInfo=(UserInfo) session.getAttribute("user");
+        evaluate.setUserInfo(userInfo);
+		evaluate.setCourse(course);
+		//evaluate.setEvaluateImg(evaluateImg);
+		evaluate.setRender(render);
+		//绝对路径
+		SensitiveWordFilter filter = new SensitiveWordFilter("G:/javaEESpace/sugarcane0607/sugarcane/resource/key.txt");
+		//相对路径不成功
+		//SensitiveWordFilter filter = new SensitiveWordFilter("../../../../../resource/key.txt");
+        String res = filter.replaceSensitiveWords(content,2);
+        System.out.println(res);
+				
+	     evaluate.setContent(res);
+		 this.courseServiceImpl.saveEvaluate(evaluate);
+		 response.sendRedirect("/Sugarcane/front/courseDetails.jsp");  
+		
+	}
 	/**
 	 * 查询所有课程
 	 * @param coursePageIndex
@@ -176,14 +210,79 @@ public class CourseController {
 	 */
 	 @RequestMapping("/courseDetails")
 		public void listsinglecake(@RequestParam(value="courseID")Integer courseID,
+				@RequestParam(value="evaluatePageIndex",defaultValue="1")Integer evaluatePageIndex,
 				HttpSession session,
 				HttpServletRequest request,
 				HttpServletResponse response) throws IOException {
 		    Course course=this.courseServiceImpl.getCourseById(courseID);
+		   
 		    Integer sellerID=course.getSellerLogin().getSellerID();
 		    SellerInfo sellerInfo=this.courseServiceImpl.selectSellerInfoByID(sellerID);
 		    session.setAttribute("sellerInfo",sellerInfo);
 			session.setAttribute("courseDetails", course);
+			//评价
+	
+			List<Evaluate> evaluateList=this.courseServiceImpl.listEvaluateByCourseID(courseID, evaluatePageIndex);
+			session.setAttribute("evaluateList", evaluateList);
+			//分页
+			int pageCount=this.courseServiceImpl.getEvaluatePageCountByCourse(courseID);	
+			int pageIndex=1;	
+			 if(0==pageIndex|| pageIndex<0) {
+				 session.setAttribute("evaluatePageIndex",1);
+				 
+			 }else {
+				 session.setAttribute("evaluatePageIndex",evaluatePageIndex);
+				 	}
+			 System.out.print(evaluatePageIndex);
+			 System.out.println(pageCount);
+			//session.setAttribute("evaluatePageIndex",pageIndex);
+			session.setAttribute("evaluatePageCount",pageCount);
+			
+			
+			response.sendRedirect("/Sugarcane/front/courseDetails.jsp");  
+		}
+	 
+	 /**
+	  * 评价分类显示课程详情
+	  * @param render
+	  * @param courseID
+	  * @param evaluatePageIndex
+	  * @param session
+	  * @param request
+	  * @param response
+	  * @throws IOException
+	  */
+	 @RequestMapping("/courseDetailsByEvaluateRender")
+		public void listsinglecakeByEvaluateRender(@RequestParam(value="render",defaultValue="1")Integer render,
+				@RequestParam(value="courseID")Integer courseID,
+				@RequestParam(value="evaluatePageIndex",defaultValue="1")Integer evaluatePageIndex,
+				HttpSession session,
+				HttpServletRequest request,
+				HttpServletResponse response) throws IOException {
+		    Course course=this.courseServiceImpl.getCourseById(courseID);
+		   
+		    Integer sellerID=course.getSellerLogin().getSellerID();
+		    SellerInfo sellerInfo=this.courseServiceImpl.selectSellerInfoByID(sellerID);
+		    session.setAttribute("sellerInfo",sellerInfo);
+			session.setAttribute("courseDetails", course);
+			//评价
+			List<Evaluate> evaluateList=this.courseServiceImpl.listEvaluateByCourseIDAndRender(courseID,render,evaluatePageIndex);
+			session.setAttribute("evaluateList", evaluateList);
+			//分页
+			int pageCount=this.courseServiceImpl.getEvaluatePageCountByCourseAndRender(courseID,render);	
+			int pageIndex=1;	
+			 if(0==pageIndex|| pageIndex<0) {
+				 session.setAttribute("evaluatePageIndex",1);
+				 
+			 }else {
+				 session.setAttribute("evaluatePageIndex",evaluatePageIndex);
+				 	}
+			 System.out.print(evaluatePageIndex);
+			 System.out.println(pageCount);
+			//session.setAttribute("evaluatePageIndex",pageIndex);
+			session.setAttribute("evaluatePageCount",pageCount);
+			
+			
 			response.sendRedirect("/Sugarcane/front/courseDetails.jsp");  
 		}
 
@@ -287,7 +386,22 @@ System.out.println(pageCount);
 		response.sendRedirect("/Sugarcane/organization/manageCourse.jsp");
 	
 	}
-	//需要解决问题sellerCourseTypeID
+    /**
+     * 在培训机构中添加一门课程
+     * @param courseName
+     * @param price
+     * @param video
+     * @param phoneNumber
+     * @param teacher
+     * @param introductionImg1
+     * @param sellerCourseTypeID
+     * @param publicTypeID
+     * @param courseBrief
+     * @param response
+     * @param request
+     * @param session
+     * @throws IOException
+     */
 	@RequestMapping("/addOneCourse")
 	public void AddOneCourse(
 			@RequestParam("courseName")String courseName,
@@ -298,7 +412,7 @@ System.out.println(pageCount);
 			@RequestParam("introductionImg1")String introductionImg1,
 			@RequestParam(value="sellerCourseTypeID",defaultValue="1")Integer sellerCourseTypeID,
 			@RequestParam(value="publicTypeID",defaultValue="1")Integer publicTypeID,
-			
+			@RequestParam("courseBrief")String courseBrief,
 //			@RequestParam("introductionImg2")String introductionImg2,
 //			@RequestParam("introductionImg3")String introductionImg3,
 			HttpServletResponse response,
@@ -316,6 +430,7 @@ System.out.println(pageCount);
 	newCourse.setSellerCourseType(sellerCourseType);
 	newCourse.setSellerLogin(sellerLogin);
 	newCourse.setPublicCourseType(publicCourseType);
+	newCourse.setCourseBrief(courseBrief);
 //	newCourse.setIntroductionImg2(introductionImg2);
 //	newCourse.setIntroductionImg3(introductionImg3);
 

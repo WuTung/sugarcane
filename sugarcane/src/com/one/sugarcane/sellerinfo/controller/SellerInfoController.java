@@ -43,7 +43,6 @@ import com.one.sugarcane.mailUtil.SendmailUtil;
 import com.one.sugarcane.sellercoursetype.service.SellerCourseTypeServiceImpl;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
-import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 import com.one.sugarcane.MD5Util.MD5Util;;
@@ -236,9 +235,7 @@ public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest re
 	String id = request.getParameter("sellerInfoId");
 	int sellerId = Integer.valueOf(id);
 	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
-	List<SellerCourseType> seller = sellerInfoServiceImpl.findSellerById(sellerId);
 	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
-	model.addAttribute("seller",seller);
 	model.addAttribute("sellerInfo",sellerInfo);
 	model.addAttribute("courselist",list);
 	return "front/education";
@@ -298,22 +295,7 @@ private String deleteCourseType(Model model,HttpServletRequest request) {
 		return "redirect:sellerFindCourse?sellerID="+uid;
 	}
 }
-/**
- * 培训机构详情分类列表查询
- * @author 王孜润
- * @date 2018/5/30
- * @param model
- * @return
- */
-@RequestMapping("/sellerCourseType")
-private String sellerCourseType(HttpServletRequest request,Model model,int sellerID) {
-	String id = request.getParameter("sellerID");
-	int sellerID1 = Integer.valueOf(id);
-	List<SellerCourseType> list = this.sellerInfoServiceImpl.findType(7);
-	model.addAttribute("courseType",list);	
-	System.out.println("输出courseType"+list);
-	return "front/education";
-}
+
 
 
 

@@ -1,7 +1,7 @@
 /**
  * 
  * @auther 杜凯玲
- * @date 2018.5.15
+ * @date 2018.5.31
  */
 package com.one.sugarcane.course.dao;
 
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.CourseType;
+import com.one.sugarcane.entity.Evaluate;
 import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
@@ -21,6 +22,58 @@ import com.one.sugarcane.entity.SellerLogin;
 public class CourseDaoImpl{
 	@Resource
 	private SessionFactory sessionFactory;
+	public void saveEvaluate(Evaluate evaluate) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(evaluate);
+	}
+	/**
+	 * 通过课程ID查找所有评价
+	 * @param courseID
+	 * @param page
+	 * @return
+	 */
+	public List<Evaluate> findEvaluateByCourseID(int courseID,int page){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Evaluate where course.courseID="+courseID);
+		q.setFirstResult((page-1)*3);
+		q.setMaxResults(3);	
+		return q.list();
+	}
+	/**
+	 * 通过课程ID和render查找评价
+	 * @param courseID
+	 * @param render
+	 * @param page
+	 * @return
+	 */
+	public List<Evaluate> findEvaluateByCourseIDAndRender(int courseID,int render,int page){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Evaluate where course.courseID="+courseID+"and render="+render);
+		q.setFirstResult((page-1)*3);
+		q.setMaxResults(3);	
+		return q.list();
+	}
+	/**
+	 * 通过课程ID计算评价条数
+	 * @param courseID
+	 * @return
+	 */
+	public int findEvaluateRowsCountByCourseID(int courseID){
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from Evaluate where course.courseID="+courseID);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+		}
+	/**
+	 * 通过课程ID和render计算评价条数
+	 * @param courseID
+	 * @param render
+	 * @return
+	 */
+	public int findEvaluateRowsCountByCourseIDAndRender(int courseID,int render){
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from Evaluate where course.courseID="+courseID+"and render="+render);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+		}
+///////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 查询所有课程
 	 * @return

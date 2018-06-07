@@ -34,8 +34,9 @@
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
+                    <input type="text" placeholder="搜索">
                     <div class="s_img">
-                        <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>
@@ -83,7 +84,7 @@
 			</div>
 			<div class="bg_color" onClick="deleteLogin()" id="bg_filter" style="display: none;"></div>
 		<!--培训机构登录-->
-			<div class="org_login">
+			<div class="org_lo gin">
 				<a href="orgLogin.html">培训机构登录</a>
 			</div>
 		</div>
@@ -141,64 +142,69 @@
 					</div>
 				</div>
 			</div>
-			<div class="evaluate">
-				<form>
+				
+				
 					<div class="evaluate_top">
-						<span>评价</span> <a href="#"><input type="button" value="好评"></input></a>
-						<a href="#"><input type="button" value="中评"></input></a> <a
-							href="#"><input type="button" value="差评"></input></a> <a href="#"><input
-							type="button" value="其他"></input></a>
+						<span>评价</span> <a href="../course/courseDetailsByEvaluateRender?courseID=${courseDetails.courseID }&evaluatePageIndex=1&render=1" class="evaluateRender">好评</a>
+						<a href="../course/courseDetailsByEvaluateRender?courseID=${courseDetails.courseID }&evaluatePageIndex=1&render=2">中评</a> 
+						<a href="../course/courseDetailsByEvaluateRender?courseID=${courseDetails.courseID }&evaluatePageIndex=1&render=3">差评</a>
+						<a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=1">其他</a>
 					</div>
+					
+					<c:forEach var="evaluateList"  items="${evaluateList }">
 					<div class="evaluate_content">
 						<div class="evaluate_content_person">
 							<img src="${ctx }/static/frontimages/peiqi.jpg" alt="" /><br>
-							<span>大脑腐</span>
+							<span>${evaluateList.userInfo.userName }</span>
 						</div>
 						<div class="evaluate_content_text">
-							<span>好评好评，喜欢喜欢</span>
+							<span>${evaluateList.content }</span>
 						</div>
-						<div class="evaluate_content_img">
-							<img src="${ctx }/static/frontimages/peiqi1.jpg" alt="" />
-						</div>
-					</div>
-					<div class="evaluate_content">
-						<div class="evaluate_content_person">
-							<img src="${ctx }/static/frontimages/peiqi.jpg" alt="" /><br>
-							<span>大脑腐</span>
-						</div>
-						<div class="evaluate_content_text">
-							<span>老师教的很好，疯狂打call</span>
-						</div>
-						<div class="evaluate_content_img">
-							<img src="${ctx }/static/frontimages/peiqi1.jpg" alt="" width="200"
+						<!-- div class="evaluate_content_img">
+							<img src="${ctx }/static/${evaluateList.evaluateImg }" alt="" width="200"
 								height="100" />
-						</div>
+						</div -->
 					</div>
-					<div class="evaluate_content">
-						<div class="evaluate_content_person">
-							<img src="${ctx }/static/frontimages/peiqi.jpg" alt="" /><br>
-							<span>大脑腐</span>
-						</div>
-						<div class="evaluate_content_text">
-							<span>厉害了这个课，受益匪浅！！！</span>
-						</div>
-						<div class="evaluate_content_img">
-							<img src="${ctx }/static/frontimages/peiqi1.jpg" alt="" width="200"
-								height="100" />
-						</div>
-					</div>
+					</c:forEach>
+
 					<div class="evaluate_page">
 						<ul class="evaluate_page_list">
-							<li><a href="#">首页</a></li>
-							<li><a href="#">上一页</a></li>
-							<li><a href="#">下一页</a></li>
-							<li><a href="#">尾页</a></li>
+							<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=1">首页</a></li>
+							<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex-1}">上一页</a></li>
+							<!--li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex+1}">下一页</a></li-->
+					
+             <c:if test="${evaluatePageIndex<evaluatePageCount}">
+            <li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex+1}">下一页</a></li>
+            </c:if>
+            <c:if test="${evaluatePageIndex>=evaluatePageCount}">
+             <li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageCount }">下一页</a></li>
+            </c:if>
+							<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageCount}">尾页</a></li>
 						</ul>
 					</div>
+								<div class="evaluate">
+				<form action="../course/savaEvaluate">
+				 <div class="mixselect">
+                    <label class="demo--label">
+                        <input class="demo--radio" type="radio" name="render" value="1">
+                        <span class="demo--checkbox demo--radioInput"></span>好评
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="radio" name="render" value="2">
+                        <span class="demo--checkbox demo--radioInput"></span>中评
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="radio" name="render" value="3">
+                        <span class="demo--checkbox demo--radioInput"></span>差评
+                    </label>
+                 </div>
 					<div class="evaluate_write">
 						<div class="evaluate_write_textarea">
-							<textarea cols="100" rows="10"></textarea>
+							<textarea cols="100" rows="10" name="content"></textarea>
 						</div>
+					    <div>
+					    
+					    </div>
 						<div class="evaluate_write_submit">
 							<input type="submit" value="发表" />
 						</div>

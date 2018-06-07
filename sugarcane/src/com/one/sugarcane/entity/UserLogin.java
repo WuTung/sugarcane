@@ -21,7 +21,7 @@ public class UserLogin {
 	private String password;
 	private String lastTime;
 	private String lastIP;
-	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
+	
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();
 	private UserInfo userInfo;
 	private Set<UserLoginLog>userLoginLog = new HashSet<UserLoginLog>();
@@ -58,13 +58,6 @@ public class UserLogin {
 	public void setLastIP(String lastIP) {
 		this.lastIP = lastIP;
 	}
-	@OneToMany(mappedBy="userLogin",targetEntity=Evaluate.class,cascade=CascadeType.MERGE)
-	public Set<Evaluate> getEvaluate() {
-		return evaluate;
-	}
-	public void setEvaluate(Set<Evaluate> evaluate) {
-		this.evaluate = evaluate;
-	}
 	@OneToMany(mappedBy="userLogin",targetEntity=UserCollections.class,cascade=CascadeType.MERGE)
 	public Set<UserCollections> getUserCollections() {
 		return userCollections;
@@ -88,14 +81,13 @@ public class UserLogin {
 		this.userLoginLog = userLoginLog;
 	}
 	public UserLogin() {}
-	public UserLogin(String userEmail, String password, String lastTime, String lastIP, Set<Evaluate> evaluate,
+	public UserLogin(String userEmail, String password, String lastTime, String lastIP,
 			Set<UserCollections> userCollections, UserInfo userInfo, Set<UserLoginLog> userLoginLog) {
 		super();
 		this.userEmail = userEmail;
 		this.password = password;
 		this.lastTime = lastTime;
 		this.lastIP = lastIP;
-		this.evaluate = evaluate;
 		this.userCollections = userCollections;
 		this.userInfo = userInfo;
 		this.userLoginLog = userLoginLog;

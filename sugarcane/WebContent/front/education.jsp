@@ -48,8 +48,9 @@ document.onclick=function(){
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
+                    <input type="text" placeholder="搜索">
                     <div class="s_img">
-                        <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>
@@ -102,20 +103,25 @@ document.onclick=function(){
 				<a href="orgLogin.html">培训机构登录</a>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
 <!--body-->
     <div class="body">
                 <div class="first">
+
                     <div class="firstroom">
                             <div class="eduimg">
                                     <img src="${ctx }/static/frontimages/timg0.jpg" >
                             </div>   
+
                             <div class="edutext1">
                                     <p>${sellerInfo.sellerName }</p>
                                      <div class="edutext2">
                                     <p>我们的宣言：XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                                     </div>
-                            </div>                         
+                            </div>
+                           
+
                             <div class="count">
                                     <p>1234</p>
                             </div>
@@ -124,6 +130,7 @@ document.onclick=function(){
                                         <a href="#">❤</a>
                                         </div>
                             </div>
+
                     </div>
                 </div>
                 <div class="line">
@@ -145,58 +152,76 @@ document.onclick=function(){
                                     <p>${sellerInfo.brief}</p>
                         </div>
                     </div>
+
                 </div>
                 <div class="third">
                         <div class="tleft">
                                     <table>
-                                    <c:forEach var="courseType" items="${seller }">
-                                        <tr>
-                                        <td>
+                                        <tr><td>
                                             <div class="add" >
                                                 <div class="addimg">
-                                             	</div>
-                                            	<div class="wenzi">
-                                                	<a href="#"><p>${courseType.courseTypeName2}</p></a>                                             	
-                                             	</div>
-                                           </div>
-                                       </td>
-                                       </tr>
-                                    </c:forEach>
+                                             <a href="javascript:showmenu1()"> 
+                                             <c:set/><img src="${ctx }/static/frontimages/add.jpg"></a>
+                                                </div>
+                                             <div class="wenzi">
+                                             	<!--  -->
+                                             	
+                                                <a href="#"><p>分类</p></a>                                             	
+                                             	
+                                            </div>
+                                            </div>
+                                            </td>
+                                            </tr>
                                     </table>
                         </div>
                         <div class="tline">
+
                         </div>
                         <div class="tright">
                                                 <div class="one">
                                                         <p>课程</p>
+
+
                                                 </div>
                                                 <div class="two">
                                                     <div class="twoline">
+
                                                     </div>
                                                 </div>
                                                 <div class="three">
                                                              <table>
 																	<c:forEach var="list" items="${courselist }">
-																		<tr><td>
-																		<div class="conimg">
-																		<c:set var="url" value="${list.introductionImg1}"/>
-					                                             		<img src="${ctx }/static/images/${url}">
-					                                             		</div>
-					                                             		<div class="context"><a>${list.courseName }</a></div></td></tr>
-																	</c:forEach>                                                              
+																		<tr><td><div class="conimg"><img src="${ctx }/static/frontimages/timg0.jpg"></div><div class="context"><a>${list.courseName }</a></div></td></tr>
+																	</c:forEach>
+                                                                    
                                                              </table>       
                                                 </div>
                                                 <div class="four">
-                                                    <div class="list">                    
-                                                       	<a href="findSeller?sellerInfoId=${sellerInfo.sellerID}&pageNum=${pageNum+1}"><</a>  
-                                                       	<c:forEach begin="1" end="${pageCount+1}" step="1" var="i">
-            												<a href="findSeller?sellerInfoId=${sellerInfo.sellerID}&pageNum=${i}">${i}</a>
-            											</c:forEach>
-                                                       	<a href="findSeller?sellerInfoId=${sellerInfo.sellerID}&pageNum=${pageNum+1}">></a>                                                             
-                                                    </div>                                                                
+                                                            <div class="list">
+                            
+                            
+                                                                     <a href="#"><</a>  
+                                                                     <a href="#">1</a>  
+                                                                     <a href="#">2</a>  
+                                                                     <a href="#">3</a>  
+                                                                     <a href="#">4</a>  
+                                                                     <a href="#">...</a>  
+                                                                     <a href="#">20</a>  
+                                                                     <a href="#">></a>  
+                         
+                                  
+                                                             </div>
+                                                                
+
                                                 </div>
+
+
                         </div>
+
+
+
                 </div>
+
     </div>
 </div>
     <div id="backgroundImg"></div>
