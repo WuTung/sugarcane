@@ -9,9 +9,70 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="${ctx }/static/frontcss/style.css">
     <link rel="stylesheet" type="text/css" href="${ctx }/static/frontcss/personinfor.css">
+    <link rel="stylesheet" type="text/css" href="${ctx }/static/frontcss/person-complete.css">
+    <script type="text/javascript" src="${ctx }/static/frontjs/xiala.js"></script> 
+    <script type="text/javascript" src="${ctx }/static/frontjs/birthday.js"></script>
+    <script type="text/javascript" src="${ctx }/static/js/address.js"></script> 
     <script src='${ctx }/static/frontjs/jquery-1.9.0.min.js'></script>
     <script src="${ctx }/static/frontjs/html5shiv.min.js"></script>
     <script src="${ctx }/static/frontjs/home.js"></script>
+    <script>
+        function initradio(rName,rValue){
+            var rObj = document.getElementsByName(rName);
+                for(var i = 0;i < rObj.length;i++){
+                    if(rObj[i].value == rValue){
+                        rObj[i].checked =  'checked';
+                    }
+                }
+        }
+        //下拉菜单回选/年份
+        function change1(idname,idvalue){
+			var address = idvalue;
+		    var a1 = document.getElementById(idname);
+		    for(i = 0;i<=a1.length;i++){
+		        if(a1.options[i].value == address){
+		        	a1.options[i].selected = true;
+		        	break;
+		        }
+		    }
+		}
+        //出现文件上传界面
+        function tempClick(){  
+            //IE浏览器实现点击图片出现文件上传界面  
+            document.getElementById('img_1').click();
+            document.getElementById('touxiang').submit()
+        } 
+        //预览图片  
+        function PreviewImg(obj) {
+            var newPreview = document.getElementById("img_2");   
+            var imgPath = getPath(obj);
+            /* var imgPath = obj.value; */
+            alert(imgPath);
+            if( !obj.value.match( /.jpg|.gif|.png|.bmp/i ) ){  
+                alert("图片格式错误！");  
+                return false;  
+            }  
+              
+            newPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";      
+            newPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgPath; 
+        }    
+       //得到图片绝对路径  
+        function getPath(obj){   
+            if(obj) {     
+                if(navigator.userAgent.indexOf("MSIE")>0) {    
+                    obj.select();     
+                    //IE下取得图片的本地路径     
+                    return document.selection.createRange().text;    
+                } else if(isFirefox=navigator.userAgent.indexOf("Firefox")>0) {    
+                     if (obj.files) {  // Firefox下取得的是图片的数据     
+                        return files.item(0).getAsDataURL();     
+                     }     
+                     return obj.value;     
+                 }    
+                 return obj.value;     
+            }     
+        } 
+    </script>
 </head>
 <body>
 <div class="overall">
@@ -90,79 +151,196 @@
 <!--body-->
     <div class="body">
         <div class="left">
-            <div class="personimg"><img src="${ctx }/static/frontimages/timg0.jpg"></div>
-            <div class="nickname"><p>我的昵称</p></div>
-            <div class="reinfor"><a href="#">修改个人信息</a></div>
+        	<div class="personimg">
+            <!-- 上传头像 -->
+            <form action="${pageContext.request.contextPath}/userInfo/userpic" method="post" id="touxiang" enctype="multipart/form-data">
+	            <img id="img_2" src="${userPicture }" onclick="tempClick()">
+	            <div><input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="img_1" name="main_img" onchange="PreviewImg(main_img)"></div>
+            </form>
+            </div>
+            <div class="nickname"><p>${user.userName }</p></div>
+            <div class="reinfor"><a href="${pageContext.request.contextPath}/publicCourseType/list1">修改个人信息</a></div>
             <div class="collect"><a href="#">我的收藏</a></div>
         </div>
         <div class="line"></div>
         <div class="right">
             <div class="infor"><p>个人信息</p></div>
-             <div class="inforline"></div>
-             <div class="information">
-                <form>
-                <table>
-                    <tr><td>昵称</td><td><input type="text" name="name"></td></tr>
-                    <tr><td>邮箱</td><td><input type="text" name="mail"></td></tr>
-                    <tr><td>性别</td><td><input type="radio" name="sex" value="男">男<input type="radio" name="sex" value="女">女</td></tr>
-                    <tr><td>年龄</td><td><select name="year">
-                            <option value="year">1990</option>
-                            <option value="year">1995</option>
-                            <option value="year">1997</option>
-                            <option value="year">1998</option>
-                            </select><select name="month">
-                            <option value="month">5月</option>
-                            <option value="month">6月</option>
-                            <option value="month">7月</option>
-                            <option value="month">8月</option>
-                            </select><select name="day">
-                            <option value="day">10日</option>
-                            <option value="day">11日</option>
-                            <option value="day">12日</option>
-                            <option value="day">13日</option>
-                            </select></td></tr>
-                    <tr><td>学历</td><td><select name="education">
-                            <option value="本科">本科</option>
-                            <option value="硕士">硕士</option>
-                            <option value="博士">博士</option>
-                            <option value="小学">小学</option>
-                            </select></td></tr>
-                      <tr><td>职业</td><td><select name="vocation">
-                            <option value="医生">医生</option>
-                            <option value="教师">教师</option>
-                            <option value="司机">司机</option>
-                            <option value="白领">白领</option>
-                            </select></td></tr>
-                    <tr><td>地址</td><td><input type="text" name="address"></td></tr>
-                    <tr><td>手机号</td><td><input type="text" name="phone"></td></tr>
-
-
-                </table>
-            </form>
-            </div>   
-            <div class="inforline2"></div> 
-                <div class="infor2"><p>兴趣爱好</p></div>
-                <div class="inforline3"></div>
-                <div class="fuxuankuang">
-                    <form>
-                        <table>
-                                <tr><td>1<input type="checkbox" name=""></td><td>2<input type="checkbox" name=""></td><td>3<input type="checkbox" name=""></td></tr>
-                                 <tr><td>4<input type="checkbox" name=""></td><td>5<input type="checkbox" name=""></td><td>6<input type="checkbox" name=""></td></tr>
-                                <tr><td>7<input type="checkbox" name=""></td><td>8<input type="checkbox" name=""></td><td>9<input type="checkbox" name=""></td></tr>
-                        </table>
-                    </form></div>
-                    <div class="tijiao">
-                            <input type="submit" name="提交" value="保存">
-                    </div>
-
-
+            <div class="information">
+            <form action="${pageContext.request.contextPath}/userInfo/edit" method="post">
+            <div class="top_form">
+            	<div class="username">
+                    <span>昵称：</span>
+                    <input type="text" name="userName" placeholder="${user.userName }"/>
+                </div>
+                <div class="useremail">
+                    <span>邮箱：</span>
+                    <input type="text" name="userEmail" placeholder="${user.userEmail }"/>
+                </div>
+                <div class="sex">
+                    <span>性别：</span>
+                    <input type="radio" value="0" name="userGender"/>男
+                    <input type="radio" value="1" name="userGender"/>女
+                </div>
+                <div class="age">
+                    <span>生日：</span>
+                    <select name="birthday" id="year" onchange="changeday()">
+                        <option value="${bir[0] }">${bir[0] }</option>
+                    </select>
+                    <select name="birthday" id="month" onchange="changeday()">
+                        <option value="${bir[1] }">${bir[1] }</option>
+                    </select>
+                    <select name="birthday" id="day">
+                        <option value="${bir[2] }">${bir[2] }</option>
+                    </select>
+                </div>
+                <div class="edurank">
+                    <span>学历：</span>
+                    <select name="userEducation">
+                        <option value="${user.userEducation }" selected="selected">${user.userEducation }</option>
+                        <option value="小学">小学</option>
+                        <option value="初中">初中</option>
+                        <option value="高中">高中</option>
+                        <option value="本科">本科</option>
+                        <option value="专科">专科</option>
+                        <option value="研究生">研究生</option>
+                        <option value="博士生及以上">博士生及以上</option>
+                    </select>
+                </div>
+                <div class="work">
+                    <span>职业：</span>
+                    <select name="userWork">
+                        <option value="${user.userWork }" selected="selected">${user.userWork }</option>
+                        <option value="学生">学生</option>
+                        <option value="会计">会计</option>
+                        <option value="IT">IT</option>
+                        <option value="医生">医生</option>
+                        <option value="老师">老师</option>
+                        <option value="律师">律师</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="address">
+                    <span>地址：</span>
+                    <select id="cmbProvince" name="address_province"></select>    
+                    <select id="cmbCity" name="address_city"></select>    
+                    <select id="cmbArea" name="address_area"></select>    
+                    <script type="text/javascript">    
+                        addressInit('cmbProvince', 'cmbCity', 'cmbArea');    
+                    </script>
+                </div>
+                <div class="userphone">
+                    <span>手机号：</span>
+                    <input type="text" name="userPhoneNumber" placeholder="${user.userPhoneNumber }"/>
+                </div>
             </div>
-        
+            <div class="top_select">
+                <div class="infor"><p>兴趣爱好</p></div>
+                <div class="mixselect">
+	                <c:forEach items="${listPublicTypeP }" var="courseType">
+	                		<label class="demo--label">	
+								<input class="demo--radio" type="checkbox" name="publicTypeName" value="${courseType.publicTypeName }"/>
+		                        <span class="demo--checkbox demo--radioInput"></span>${courseType.publicTypeName }
+		                    </label>            	
+	                </c:forEach>
+                </div>
+                <div class="tijiao">
+                    <input type="submit" name="提交" value="保存">
+                </div>
+            </div>
+        	</form>   
+    		</div>
+    	</div>
     </div>
-     <div id="backgroundImg"></div>
+    <div id="backgroundImg"></div>
+<!-- 性别初始化单选 -->
+<script>
+	//性别初始化
+    initradio('userGender', '${user.userGender}' );
+	//下拉菜单年份回选
+	change1('cmbProvince', '${user.address_province}' );
+</script>
+<!-- 兴趣爱好复选框回选 -->
+<script>
+$(function(){
+	var boxObj = $("input:checkbox[name='publicTypeName']");  
+    var cbs = '${checkboxs}';
+    var cb = cbs.split(',');  
+    $.each(cb, function(index, c){  
+       boxObj.each(function () {  
+            if($(this).val() == c) {  
+               $(this).attr("checked",true);  
+            }  
+        });  
+    });  
+});
+</script>
+<!--生日下拉框-->
+<script type="text/javascript" language="javascript">
+    var curdate = new Date();
+    var year = document.getElementById("year");
+    var month = document.getElementById("month");
+    var day = document.getElementById("day");
+    //绑定年份月分的默认
+    function add() {
+        var curyear = curdate.getFullYear();
+        var minyear = curyear - 99;
+        var maxyear = curyear;
+        for (maxyear; maxyear >= minyear; maxyear = maxyear - 1) {
+        year.options.add(new Option(maxyear, maxyear));
+        }
+        for (var mindex = 1; mindex <= 12; mindex++) {
+            month.options.add(new Option(mindex, mindex));
+        }
+    }
+
+    //判断是否是闰年
+    function leapyear(intyear) {
+        var result = false;
+        if (((intyear % 400 == 0) && (intyear % 100 != 0)) || (intyear % 4 == 0)) {
+            result = true;
+        }
+        else {
+            result = false;
+        }
+            return result;
+    }
+    //绑定天数
+    function addday(maxday) {
+        day.options.length = 1;
+        for (var dindex = 1; dindex <= maxday; dindex++) {
+            day.options.add(new Option(dindex, dindex));
+        }
+    }
+    function changeday() {
+        if (year.value == null || year.value == "") {
+            alert("请先选择年份！");
+            return false;
+        }
+        else {
+            if (month.value == 1 || month.value == 3 || month.value == 5 || month.value == 7 || month.value == 8 || month.value == 10 || month.value == 12) {
+                addday(31);
+            }
+            else {
+                if (month.value == 4 || month.value == 6 || month.value == 9 || month.value == 11) {
+                    addday(30);
+                }
+                else {
+                    if (leapyear(year.value)) {
+                        addday(29);
+                    }
+                    else {
+                        addday(28);
+                    }
+                }
+            }
+        }
+    }
+    window.onload = add();
+</script>
 <!--footer-->
     <div class="footer">
         <div class="footer_text">Copyright©2018-2019&nbsp;&nbsp;&nbsp;sugarcane&nbsp;&nbsp;&nbsp;联系我们</div>
     </div>
+   </div>
 </body>
 </html>

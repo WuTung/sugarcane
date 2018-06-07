@@ -1,5 +1,7 @@
 package com.one.sugarcane.userlogin.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -24,8 +26,16 @@ public class UserLoginDaoImpl {
 	 * @return
 	 */
 	public UserLogin findByEmail(String email){
+		/*Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userEmail='"+email+"'");
+		return (UserLogin) query.uniqueResult();*/
+		/**
+		 * 修改
+		 * 冯海晴
+		 */
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userEmail='"+email+"'");
-		return (UserLogin) query.uniqueResult();
+		List<UserLogin> ulist = query.list();
+		UserLogin userLogin = ulist.get(0);
+		return userLogin;
 	}
 	/**
 	 * 更新登录日志

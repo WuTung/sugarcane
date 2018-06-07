@@ -22,7 +22,7 @@ public class PublicCourseType {
 	private CourseType courseType;
 	private Set<Course>course = new HashSet<Course>();
 	private Set<QuestionBank>questionBank = new HashSet<QuestionBank>();
-	
+	private Set<UserHobby> userHobby = new HashSet<UserHobby>();	//冯海晴
 	@Id
 	@GeneratedValue(generator="a")
 	@GenericGenerator(name="a",strategy="identity")
@@ -74,6 +74,18 @@ public class PublicCourseType {
 	public void setCourseType(CourseType courseType) {
 		this.courseType = courseType;
 	}
-	
+	/**
+	 * 添加映射
+	 * @author 冯海晴
+	 * @date 2018.5.24
+	 * @return
+	 */
+	@OneToMany(mappedBy="publicType",targetEntity=UserHobby.class,cascade=CascadeType.MERGE )
+	public Set<UserHobby> getUserHobby() {
+		return userHobby;
+	}
+	public void setUserHobby(Set<UserHobby> userHobby) {
+		this.userHobby = userHobby;
+	}
 	
 }
