@@ -17,7 +17,7 @@ $(function(){
 		if(index==0){
 			$(this).find("a").addClass("style1");
 			$("li").eq(1).find("a").removeClass("style2");
-		}
+		} 
 		if(index==1){
 			$(this).find("a").addClass("style2");
 			$("li").eq(0).find("a").removeClass("style1");
