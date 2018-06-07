@@ -26,6 +26,7 @@ import org.apache.lucene.store.FSDirectory;
 
 import com.one.sugarcane.entity.Searcher;
 
+
 /**
  * 根据索引搜索课程 并且高亮显示 TODO
  * 
