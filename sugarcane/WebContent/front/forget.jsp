@@ -34,9 +34,8 @@
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
-                    <input type="text" placeholder="搜索">
                     <div class="s_img">
-                        <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>

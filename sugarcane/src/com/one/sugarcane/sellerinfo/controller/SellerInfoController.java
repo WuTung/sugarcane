@@ -39,10 +39,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.portlet.ModelAndView;
 
 import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
+import com.one.sugarcane.sellerinfo.service.SellerInfoTypeServiceImpl;
 import com.one.sugarcane.mailUtil.SendmailUtil;
 import com.one.sugarcane.sellercoursetype.service.SellerCourseTypeServiceImpl;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
+import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 import com.one.sugarcane.MD5Util.MD5Util;;
@@ -52,7 +54,8 @@ import com.one.sugarcane.MD5Util.MD5Util;;
 public class SellerInfoController {
 	@Resource
 	private SellerInfoServiceImpl sellerInfoServiceImpl;
-	
+	@Resource
+	private SellerInfoTypeServiceImpl sellerInfoTypeServiceImpl;
 
 	
 	/**
@@ -227,21 +230,43 @@ model.addAttribute("showOrg",list);
 	return "front/show";
 }
 /**
- * 通过id查找seller
+ * 前台：通过id查找seller
+ * @param page 
  * @name 王孜润
  */
 @RequestMapping("/findSeller")
-public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest request) {
+public String findSeller(HttpSession session,Model model,SellerInfo sellerInfo,HttpServletRequest request,@RequestParam(value="pageNum",defaultValue="1")Integer page) {
+//	Integer sellerId1=(Integer) session.getAttribute("sellerID");
 	String id = request.getParameter("sellerInfoId");
-	int sellerId = Integer.valueOf(id);
-	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
-	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
+	int sellerId1 = Integer.valueOf(id);
+	sellerInfo = sellerInfoServiceImpl.selectById(sellerId1);
+	System.out.println("----------------------------------------");
+	List<SellerCourseType> seller = sellerInfoServiceImpl.findSellerById(sellerId1);
+	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId1,page);
+	model.addAttribute("seller",seller);
 	model.addAttribute("sellerInfo",sellerInfo);
 	model.addAttribute("courselist",list);
+	
+	//分页
+	int pageCount = this.sellerInfoServiceImpl.getPageCount(sellerId1);
+	model.addAttribute("pageCount",pageCount);
+	int pageN = Integer.valueOf(page);
+	model.addAttribute("pageNum",pageN);
+	if(pageN < 1) {
+		pageN = 1;
+	}else if(pageN > pageCount){
+		pageN = pageCount;
+	}else {
+		pageN = pageN;
+	}
+	model.addAttribute("page", pageN);
+	//分类
+	List<SellerCourseType> courseTypeList = this.sellerInfoTypeServiceImpl.listCType();
+	model.addAttribute("courseTypeList",courseTypeList);
 	return "front/education";
 }
 /**
- * 培训机构根据id查找
+ * 后台：培训机构根据id查找
  * @name 王孜润
  * @param model
  * @param sellerInfo
@@ -249,32 +274,26 @@ public String findSeller(Model model,SellerInfo sellerInfo,HttpServletRequest re
  * @return
  */
 @RequestMapping("/sellerFindCourse")
-public String findSellerCourse(Model model,SellerInfo sellerInfo,HttpServletRequest request) {
-	String id = request.getParameter("sellerID");
-	int sellerId = Integer.valueOf(id);
-//	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
-	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId);
-	List<PublicCourseType> list1 = sellerInfoServiceImpl.findTypeAll();
-	
-	System.out.println(list1);
-	System.out.println(1111);
-//	model.addAttribute("sellerInfo",sellerInfo);
+public String findSellerCourse(HttpSession session,Model model,SellerInfo sellerInfo,HttpServletRequest request,@RequestParam(value="pageNum",defaultValue="1")Integer page) {
+	Integer sellerId=(Integer) session.getAttribute("sellerID");
+	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId,page);
+	List<PublicCourseType> list1 = sellerInfoServiceImpl.findTypeAll();	
 	model.addAttribute("sellerCourselist",list);
 	model.addAttribute("publicCourseType",list1);
 	//分页
 			int pageCount = this.sellerInfoServiceImpl.getPageCount(sellerId);
 			model.addAttribute("pageCount",pageCount);
-			int pageNum = 1;
-			model.addAttribute("pageNum",pageNum);
-			if(pageNum==0 || pageNum<0) {
-				model.addAttribute("pageNum",1);
+			int pageN = Integer.valueOf(page);
+			model.addAttribute("pageNum",pageN);
+			if(pageN < 1) {
+				pageN = 1;
+			}else if(pageN > pageCount){
+				pageN = pageCount;
 			}else {
-				model.addAttribute("pageNum",pageNum);
+				pageN = pageN;
 			}
-	
-	
-	return "organization/manageClassify";
-	
+			model.addAttribute("page", pageN);			
+	return "organization/manageClassify";	
 }
 
 /**
@@ -295,8 +314,62 @@ private String deleteCourseType(Model model,HttpServletRequest request) {
 		return "redirect:sellerFindCourse?sellerID="+uid;
 	}
 }
-
-
-
-
+/**
+ * 培训机构详情分类列表查询
+ * @author 王孜润
+ * @date 2018/5/30
+ * @param model
+ * @return
+ */
+@RequestMapping("/selectByType")
+private String selectByType(HttpServletRequest request,Model model,@RequestParam(value="pageNum",defaultValue="1")Integer page,int sellerID,@RequestParam("sellerCourseTypeID")String sellerCourseTypeID,HttpSession session,HttpServletResponse response) {
+		Integer sellerId=(Integer) session.getAttribute("sellerID");
+		List<Course> CourseByTypeList = this.sellerInfoServiceImpl.listByType(Integer.parseInt(sellerCourseTypeID),page);
+		session.setAttribute("typeList",  CourseByTypeList);
+		//分页
+		int pageCount = this.sellerInfoServiceImpl.getPageCount(sellerId);
+		model.addAttribute("pageCount",pageCount);
+		int pageN = Integer.valueOf(page);
+		model.addAttribute("pageNum",pageN);
+		if(pageN < 1) {
+			pageN = 1;
+		}
+		if(pageN > pageCount){
+			pageN = pageCount;
+		}	
+		model.addAttribute("page", pageN);
+		return sellerCourseTypeID;
+	}
+/**
+ * 课程分类
+ * @author 王孜润
+ * @param sellerID 
+ * @date 2018/5/31
+ */
+@RequestMapping("/type")
+public String Type(HttpSession session,Course course,Model model,HttpServletRequest request, SellerInfo sellerInfo) {
+//	Integer sellerId=(Integer) session.getAttribute("sellerID");
+	String id1 = request.getParameter("sellerId");
+	int sellerId = Integer.valueOf(id1);
+	System.out.println("----"+sellerId);
+	
+	String id = request.getParameter("sellerCourseTypeID");
+	int sellerCourseTypeID = Integer.valueOf(id);
+	sellerInfo = sellerInfoServiceImpl.selectById(sellerId);
+	List<SellerCourseType> seller = sellerInfoServiceImpl.findSellerById(sellerId);
+	List<Course> list = sellerInfoServiceImpl.findTypeId(sellerId,sellerCourseTypeID);
+	model.addAttribute("list",list);
+	model.addAttribute("seller",seller);
+	model.addAttribute("sellerInfo",sellerInfo);
+	int pageCount = this.sellerInfoServiceImpl.getTypeCoursePageCount(sellerCourseTypeID);
+	session.setAttribute("pageCount", pageCount);
+	int pageNum = 1;
+	session.setAttribute("pageNum",pageNum);
+	 if(0==pageNum|| pageNum<0) {
+		 session.setAttribute("pageNum",1); 
+	 }else {
+		 session.setAttribute("pageNum",pageNum);
+		 	}
+	return "front/educationType";
+}
 }

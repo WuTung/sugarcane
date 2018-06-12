@@ -82,12 +82,12 @@
       <div id="pageDivide">
         <ul>
             <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=1">首页</a></li>
-            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageNum}">上一页</a></li>
-            <c:forEach begin="1" end="${pageCount+1}" step="1" var="i">
+            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageNum-1}">上一页</a></li>
+            <c:forEach begin="1" end="${pageCount}" step="1" var="i">
             	<li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${i}">${i}</a></li>
             </c:forEach>
             <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageNum+1}">下一页</a></li>
-            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageCount+1}">尾页</a></li>
+            <li><a href="sellerFindCourse?sellerID=${sellerLogin.sellerID}&pageNum=${pageCount}">尾页</a></li>
         </ul>
      </div>
 	 </div><!--table-->
@@ -98,4 +98,5 @@
      ©CopyRight sugarcane <a href="#">联系我们</a>
 </div><!--footer-->
 </body>
+
 </html>

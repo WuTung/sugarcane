@@ -27,13 +27,12 @@
         </div>
     <!--搜索框-->
         <div class="sousuo">
-            <form> 
-                <input type="text" placeholder="搜索">
+			<form> 
                 <div class="s_img">
-                    <a href="#"><img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                    <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
                 </div>
             </form>
-        </div>
+	    </div>
     <!--用户注册登录-->
         <div class="login_regist">
         	<a href="userLogin.html">登录/注册</a>
