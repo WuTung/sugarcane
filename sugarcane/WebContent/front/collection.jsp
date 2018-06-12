@@ -1,7 +1,8 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,11 +95,11 @@
             <div class="personimg"><img src="${ctx }/static/frontimages/timg0.jpg"></div>
             <div class="nickname"><p>我的昵称</p></div>
             <div class="reinfor"><a href="#">修改个人信息</a></div>
-            <div class="collect"><a href="#">我的收藏</a></div>
+            <div class="collect"><a href="../course/showCollections?collectionsPageIndex=1">我的收藏</a></div>
         </div>
         <div class="line"></div>
         <div class="right">
-            <div class="down">
+            <!--  div class="down">
                 <select name="allcollect">
                     <option value="1">全部收藏</option>
                     <option value="1"><a href="#">1</a></option>
@@ -107,105 +108,46 @@
                     <option value="4"><a href="#">4</a></option>
                 </select>
 
-            </div>
+            </div-->
            <!-- 收藏内容--> 
             <div class="coll">
+            <c:forEach var="collectionList" items="${collectionList }">
+            <a href="../course/courseDetails?courseID=${collectionList.course.courseID }">
                 <div class="colls_items">
                     <div class="colls_items_img">
-                        <img src="${ctx }/static/frontimages/timg0.jpg">
+                        <img src="${ctx }/static/${collectionList.course.introductionImg1}">
                     </div>
+                    
                     <div class="colls_items_text">
                         <div class="colls_items_text_content">
-                            <span class="colls_items_text_content_span1">外语</span><br>
-                            <span class="colls_items_text_content_span2">如果时光无法简洁表达你的想法，那只说明你还不够了解它</span>
+                            <span class="colls_items_text_content_span1">${collectionList.course.courseName }</span><br>
+                            <span class="colls_items_text_content_span2">${collectionList.course.courseBrief}</span>
                         </div>
                         <div class="colls_items_text_del">
-                            <a href="#"><img src="${ctx }/static/frontimages/dele.jpg"></a>
+                            <a href="../course/deleteCollection?collectionID=${collectionList.ID }&collectionsPageIndex=1"><img src="${ctx }/static/frontimages/dele.jpg"></a>
                         </div>
                     </div>
                 </div>
-                <div class="colls_items">
-                    <div class="colls_items_img">
-                        <img src="${ctx }/static/frontimages/timg0.jpg">
-                    </div>
-                    <div class="colls_items_text">
-                        <div class="colls_items_text_content">
-                            <span class="colls_items_text_content_span1">外语</span><br>
-                            <span class="colls_items_text_content_span2">如果时光无法简洁表达你的想法，那只说明你还不够了解它</span>
-                        </div>
-                        <div class="colls_items_text_del">
-                            <a href="#"><img src="${ctx }/static/frontimages/dele.jpg"></a>
-                        </div>
-                    </div>
-                </div>    
-                <div class="colls_items">
-                    <div class="colls_items_img">
-                        <img src="${ctx }/static/frontimages/timg0.jpg">
-                    </div>
-                    <div class="colls_items_text">
-                        <div class="colls_items_text_content">
-                            <span class="colls_items_text_content_span1">外语</span><br>
-                            <span class="colls_items_text_content_span2">如果时光无法简洁表达你的想法，那只说明你还不够了解它</span>
-                        </div>
-                        <div class="colls_items_text_del">
-                            <a href="#"><img src="${ctx }/static/frontimages/dele.jpg"></a>
-                        </div>
-                    </div>
-                </div>    
-                <div class="colls_items">
-                    <div class="colls_items_img">
-                        <img src="${ctx }/static/frontimages/timg0.jpg">
-                    </div>
-                    <div class="colls_items_text">
-                        <div class="colls_items_text_content">
-                            <span class="colls_items_text_content_span1">外语</span><br>
-                            <span class="colls_items_text_content_span2">如果时光无法简洁表达你的想法，那只说明你还不够了解它</span>
-                        </div>
-                        <div class="colls_items_text_del">
-                            <a href="#"><img src="${ctx }/static/frontimages/dele.jpg"></a>
-                        </div>
-                    </div>
-                </div>    
-                <div class="colls_items">
-                    <div class="colls_items_img">
-                        <img src="${ctx }/static/frontimages/timg0.jpg">
-                    </div>
-                    <div class="colls_items_text">
-                        <div class="colls_items_text_content">
-                            <span class="colls_items_text_content_span1">外语</span><br>
-                            <span class="colls_items_text_content_span2">如果时光无法简洁表达你的想法，那只说明你还不够了解它</span>
-                        </div>
-                        <div class="colls_items_text_del">
-                            <a href="#"><img src="${ctx }/static/frontimages/dele.jpg"></a>
-                        </div>
-                    </div>
-                </div>    
-                <div class="colls_items">
-                    <div class="colls_items_img">
-                        <img src="${ctx }/static/frontimages/timg0.jpg">
-                    </div>
-                    <div class="colls_items_text">
-                        <div class="colls_items_text_content">
-                            <span class="colls_items_text_content_span1">外语</span><br>
-                            <span class="colls_items_text_content_span2">如果时光无法简洁表达你的想法，那只说明你还不够了解它</span>
-                        </div>
-                        <div class="colls_items_text_del">
-                            <a href="#"><img src="${ctx }/static/frontimages/dele.jpg"></a>
-                        </div>
-                    </div>
-                </div>                           
+                </a>
+                </c:forEach>                                  
             </div>
             <!--分页-->
             <div class="last">
-                <div class="list">
-                    <a href="#"><</a>  
-                    <a href="#">1</a>  
-                    <a href="#">2</a>  
-                    <a href="#">3</a>  
-                    <a href="#">4</a>  
-                    <a href="#">...</a>  
-                    <a href="#">20</a>  
-                    <a href="#">></a>       
+                <div class="collections_page">
+                   <ul class="collections_page_list">
+							<li><a href="../course/showCollections?collectionsPageIndex=1">首页</a></li>
+							<li><a href="../course/showCollections?collectionsPageIndex=${collectionsPageIndex-1}"><</a></li>
+						   <c:forEach begin="${collectionsPageIndex }" end="${collectionsPageCount}" step="1" var="i">
+            	            <li><a href="../course/showCollections?collectionsPageIndex=${i}">${i}</a></li>
+                           </c:forEach>
+						   <c:if test="${collectionsPageIndex<collectionsPageCount}">
+                          <li><a href="../course/showCollections?collectionsPageIndex=${collectionsPageIndex+1}">></a></li>
+                          </c:if>
+                          <c:if test="${collectionsPageIndex>=collectionsPageCount}">
+                          <li><a href="../course/showCollections?collectionsPageIndex=${collectionsPageCount }">></a></li>
+                          </c:if>
+						<li><a href="../course/showCollections?collectionsPageIndex=${ecollectionsPageCount}">尾页</a></li>
+						</ul>    
                 </div>
             </div>
         </div>

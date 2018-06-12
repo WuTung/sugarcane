@@ -95,6 +95,12 @@
 				<div class="videos">
 					<video src="${ctx }/static/video/movie.ogg" controls="controls">
 					Your browser does not support the video tag. </video>
+					<a href="../course/courseDetails?courseID=${courseDetails.courseID }">❤收藏</a>
+					<!--弹出消息-->
+			<div class="fadeud">
+				<p>已收藏</p>
+			</div>
+
 				</div>
 				<div class="course_info">
 					<div class="courseinfos">
@@ -160,10 +166,6 @@
 						<div class="evaluate_content_text">
 							<span>${evaluateList.content }</span>
 						</div>
-						<!-- div class="evaluate_content_img">
-							<img src="${ctx }/static/${evaluateList.evaluateImg }" alt="" width="200"
-								height="100" />
-						</div -->
 					</div>
 					</c:forEach>
 
@@ -172,14 +174,13 @@
 							<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=1">首页</a></li>
 							<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex-1}">上一页</a></li>
 							<!--li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex+1}">下一页</a></li-->
-					
-             <c:if test="${evaluatePageIndex<evaluatePageCount}">
-            <li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex+1}">下一页</a></li>
-            </c:if>
-            <c:if test="${evaluatePageIndex>=evaluatePageCount}">
-             <li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageCount }">下一页</a></li>
-            </c:if>
-							<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageCount}">尾页</a></li>
+                          <c:if test="${evaluatePageIndex<evaluatePageCount}">
+                          <li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageIndex+1}">下一页</a></li>
+                          </c:if>
+                          <c:if test="${evaluatePageIndex>=evaluatePageCount}">
+                          <li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageCount }">下一页</a></li>
+                          </c:if>
+						<li><a href="../course/courseDetails?courseID=${courseDetails.courseID }&evaluatePageIndex=${evaluatePageCount}">尾页</a></li>
 						</ul>
 					</div>
 								<div class="evaluate">
@@ -249,4 +250,41 @@
 		<div class="footer_text">Copyright©2018-2019&nbsp;&nbsp;&nbsp;sugarcane&nbsp;&nbsp;&nbsp;联系我们</div>
 	</div>
 </body>
+<script>
+function updatecar(obj){
+	console.log(obj.getAttribute('goodID'));
+	var goodID = obj.getAttribute('goodID');
+	$.ajax({
+		type:"get",
+		url:"http://datainfo.duapp.com/shopdata/updatecar.php",
+		data:{userID:localStorage.getItem('userID'),goodsID:goodID,number:1},
+		success:function(data){
+			if(data == 0){
+				console.log(0);
+				$('.fadeudfail').fadeIn();
+				setTimeout(function(){$('.fadeudfail').fadeOut();},1500);
+			}else{
+				console.log(1);
+				$('.fadeud').fadeIn();
+				setTimeout(function(){$('.fadeud').fadeOut();},1500);
+			}
+		},
+		error:function(err){
+			console.log(err);
+		}
+	});
+}
+window.onload = function(){
+
+// 绑定事件加点击样式
+var adds = document.getElementsByClassName('addevent');
+console.log(adds);
+for(var i = 0; i < adds.length; i++){
+	(function(i){
+		adds[i].addEventListener('touchstart', function () { });
+		adds[i].addEventListener('touchstop', function () { });
+	}(i))
+}
+}
+</script>
 </html>

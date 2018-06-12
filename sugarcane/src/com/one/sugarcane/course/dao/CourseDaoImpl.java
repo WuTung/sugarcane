@@ -18,10 +18,55 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserCollections;
+import com.one.sugarcane.entity.UserLogin;
 @Repository
 public class CourseDaoImpl{
 	@Resource
 	private SessionFactory sessionFactory;
+	public UserCollections findCollectionByID(int ID) {
+		return this.sessionFactory.getCurrentSession().get(UserCollections.class,ID);
+	}
+
+	public List<UserCollections> findUserCollectionsByUserID(int userID,int page){
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from UserCollections where userLogin.userID="+userID+"and collecting=1");
+		query.setFirstResult((page-1)*6);
+		query.setMaxResults(6);	
+		return query.list();
+		
+	}
+	public List<UserCollections> findUserCollectionsByUserID(int userID){
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from UserCollections where userLogin.userID="+userID+"and collecting=1");
+		return query.list();
+		
+	}
+	public int findCollectionsRowsCountByUserID(int userID){
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from UserCollections where userLogin.userID="+userID);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+		}
+	
+	/**
+	 * 保存一条收藏信息
+	 * @param userCollection
+	 */
+	public void saveUserCollections(UserCollections userCollection) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(userCollection);
+	}
+	/**
+	 * 通过userID查找用户登录信息
+	 * @param userID
+	 * @return
+	 */
+	public UserLogin findUserLoginByuserID(int userID){
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userID="+userID);
+		return (UserLogin) query.uniqueResult();
+	}
+	/**
+	 * 保存一条评价
+	 * @param evaluate
+	 */
 	public void saveEvaluate(Evaluate evaluate) {
 		this.sessionFactory.getCurrentSession().saveOrUpdate(evaluate);
 	}

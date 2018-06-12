@@ -106,6 +106,33 @@
 	height: 100%;
 	border-radius:0.3125em;
 }
+.collections_page{
+	width: 90%;
+	height: 3em;
+	margin: 0 auto;
+	position: relative;
+	top:1em;
+}
+.collections_page_list{
+	position: relative;
+	top:1em;
+	left: 1em;
+}
+.collections_page_list li {
+	width: 5em;
+	float: left;
+	position: relative;
+	left:1em;
+	text-align: center;
+	background-color: white;
+}
+
+.collections_page_list li a{
+	height: 1.25em;
+	width:2.5em;
+	color: black;
+}
+
 .coll{
 
 	width: 100%;

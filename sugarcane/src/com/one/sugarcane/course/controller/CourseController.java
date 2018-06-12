@@ -6,7 +6,9 @@
 package com.one.sugarcane.course.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,7 +29,9 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserCollections;
 import com.one.sugarcane.entity.UserInfo;
+import com.one.sugarcane.entity.UserLogin;
 import com.one.sugarcane.io.ride.sensitive.SensitiveWordFilter;
 
 
@@ -37,6 +41,50 @@ import com.one.sugarcane.io.ride.sensitive.SensitiveWordFilter;
 public class CourseController {
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
+	@RequestMapping("/deleteCollection")
+	public void deleteCollection(@RequestParam("collectionID")Integer collectionID,
+			HttpServletResponse response,
+			HttpServletRequest request,HttpSession session) throws IOException {
+		UserCollections userCollection=this.courseServiceImpl.findCollectionByID(collectionID);
+		userCollection.setCollected(1);
+		userCollection.setCollecting(0);
+		this.courseServiceImpl.saveUserCollections(userCollection);
+		response.sendRedirect("/Sugarcane/front/collection.jsp"); 
+		
+	}
+	@RequestMapping("/showCollections")
+	public void saveCollection(
+			@RequestParam(value="collectionsPageIndex",defaultValue="1")Integer collectionsPageIndex,
+			HttpServletResponse response,
+			HttpServletRequest request,HttpSession session) throws IOException {
+		int userID=4;
+		List<UserCollections> collectionList =this.courseServiceImpl.findUserCollectionsByUserID(userID,collectionsPageIndex);
+		session.setAttribute("collectionList", collectionList);
+		
+		//分页
+				int collectionsPageCount=this.courseServiceImpl.getcollectionsPageCountByUserID(userID);	
+				//int pageIndex=1;	
+				 if(0==collectionsPageIndex|| collectionsPageIndex<0) {
+					 session.setAttribute("collectionsPageIndex",1);
+					 
+				 }else {
+					 session.setAttribute("collectionsPageIndex",collectionsPageIndex);
+					 	}
+				session.setAttribute("collectionsPageIndex",collectionsPageIndex);
+				session.setAttribute("collectionsPageCount",collectionsPageCount);
+		response.sendRedirect("/Sugarcane/front/collection.jsp");  
+		
+	}	
+///////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 提交评论
+	 * @param render
+	 * @param content
+	 * @param response
+	 * @param request
+	 * @param session
+	 * @throws IOException
+	 */
 	@RequestMapping("/savaEvaluate")
 	public void addOneEvaluate(
 			@RequestParam(value="render",defaultValue="1")Integer render,
@@ -220,8 +268,34 @@ public class CourseController {
 		    SellerInfo sellerInfo=this.courseServiceImpl.selectSellerInfoByID(sellerID);
 		    session.setAttribute("sellerInfo",sellerInfo);
 			session.setAttribute("courseDetails", course);
+			//收藏
+			int userID=1;
+//			List<UserCollections> collectionsList=this.courseServiceImpl.findUserCollectionsByUserID(userID);
+//			for(UserCollections collection:collectionsList ) {
+//				System.out.println(collection.getUserLogin().getUserID().equals(userID) && collection.getCourse().getCourseID().equals(courseID));
+//				
+//				if(collection.getUserLogin().getUserID().equals(userID) && collection.getCourse().getCourseID().equals(courseID)) {
+//					System.out.println(collection.getUserLogin().getUserID().equals(userID) && collection.getCourse().getCourseID().equals(courseID));
+//					break;
+//				}else {
+					//获取时间
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String date = df.format(new Date());
+				//	int  userID=((UserInfo) session.getAttribute("user")).getUserID();
+					UserLogin userLogin=this.courseServiceImpl.findUserLoginByuserID(userID);
+					UserCollections userCollection =new UserCollections();
+					userCollection.setCollectTime(date);
+					userCollection.setCollected(0);
+					userCollection.setCollecting(1);
+					userCollection.setCollectionCount(1);
+					userCollection.setCourse(course);
+					userCollection.setUserLogin(userLogin);
+					this.courseServiceImpl.saveUserCollections(userCollection);
+					
+//				}
+//			}
+			
 			//评价
-	
 			List<Evaluate> evaluateList=this.courseServiceImpl.listEvaluateByCourseID(courseID, evaluatePageIndex);
 			session.setAttribute("evaluateList", evaluateList);
 			//分页

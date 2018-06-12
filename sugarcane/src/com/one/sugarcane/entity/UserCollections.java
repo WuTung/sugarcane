@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 @Entity
-@Table(name="USERCOLLECIONS")
+@Table(name="USERCOLLECTIONS")
 public class UserCollections {
 	private Integer ID;
 	private String collectTime;

@@ -30,6 +30,9 @@
 			<div class="allclass">
 				<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
 			</div>
+			<div class="allclass">
+				<a href="../course/showCollections?collectionsPageIndex=1">个人中心</a>
+			</div>
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
