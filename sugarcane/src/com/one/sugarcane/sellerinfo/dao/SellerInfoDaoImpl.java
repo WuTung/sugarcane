@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
+import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 
 @Repository
@@ -71,17 +72,33 @@ public class SellerInfoDaoImpl {
 		return sellerInfo;
 	}
 	/**
+	 * 培训机构详情分类列表查询
+	 * @author 王孜润
+	 * @date 2018/5/30
+	 * @param model
+	 * @return
+	 */
+	public List<SellerCourseType> selectSellerCourseTypeById(int id) {
+		Session session  = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from SellerCourseType where sellerInfo.sellerID=?");
+		q.setParameter(0, id);
+		List<SellerCourseType> list = q.list();
+		return list;
+	}
+	/**
 	 * 通过id查找course
 	 * @name 王孜润
 	 */
-	public List<Course> findBySellerId(int sellerId) {
+	public List<Course> findBySellerId(int sellerId1,int page) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Course where sellerInfo.sellerID=?");
-		query.setParameter(0, sellerId);
+		query.setParameter(0, sellerId1);
+		query.setFirstResult((page-1)*4);
+		query.setMaxResults(4);
 		List<Course> list = query.list();
+
 		return list;
 	}
-	
 	
 	/**
 	 * 查询所有课程publicCourseType
@@ -115,15 +132,54 @@ public class SellerInfoDaoImpl {
 	 * 查询课程数
 	 * @return
 	 */
-	public int findCount(int id) {
-		Query fc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(courseID) from Course where sellerId=?");	
-		fc.setParameter(0, id);
-		Number number = (Number)fc.uniqueResult();
+	public int findRowsCountBySellerID(int sellerId){
+		Session session = sessionFactory.getCurrentSession();
+		Query qc = session.createQuery("select COUNT(courseID) from Course where sellerId="+sellerId);
+		Number number = (Number)qc.uniqueResult();
 		int count = number.intValue();
-		return count;		 
+		return count;
+		}
+	/**
+	 * 培训机构详情分类列表查询
+	 * @author 王孜润
+	 * @date 2018/5/30
+	 * @param model
+	 * @return
+	 */
+	public List<Course> selectType(int sellerCourseTypeID,int page){	
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from Course where sellerCourseTypeID="+sellerCourseTypeID);
+		q.setFirstResult((page-1)*6);
+		q.setMaxResults(6);
+		return q.list();
 	}
 	
-	
-}
+	/**
+	 * 课程分类
+	 * @author 王孜润
+	 * @param sellerId1 
+	 * @date 2018/5/31
+	 */
+	public List<Course> findTypeId(int sellerCourseTypeID, int sellerId){
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Course where sellerInfo.sellerID=? and sellerCourseType.sellerCourseTypeID=?");
+		
+		System.out.println("aaa:"+sellerCourseTypeID+"bbb:"+sellerId);
+		query.setParameter(0, sellerCourseTypeID);
+		query.setParameter(1, sellerId);
 
+		System.out.println("--------"+query.list()+"-------");
+		return query.list();
+	}
+	/**
+	 * 按类别查询总数
+	 * @param g
+	 */
+	public int findTypeCourseCount(int sellerCourseTypeID) {
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(courseID) from Course where sellerCourseTypeID="+sellerCourseTypeID);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+	}
+}
 

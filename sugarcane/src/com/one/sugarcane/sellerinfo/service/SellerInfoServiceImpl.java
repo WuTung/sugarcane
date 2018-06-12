@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.sellerinfo.dao.SellerInfoDaoImpl;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
+import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
 
@@ -63,12 +64,17 @@ public List<SellerInfo> showOrg() {
 public SellerInfo selectById(int id) {
 	return sellerInfoDaoImpl.findById(id);
 }
+public List<SellerCourseType> findSellerById(int id) {
+	return sellerInfoDaoImpl.selectSellerCourseTypeById(id);
+	
+}
 /**
  * 通过SellerId查找course
  * @name 王孜润
  */
-public List<Course> findBySellerId(int id){
-	List<Course> list = sellerInfoDaoImpl.findBySellerId(id);
+public List<Course> findBySellerId(int sellerId1,int page){
+	List<Course> list = sellerInfoDaoImpl.findBySellerId(sellerId1,page);
+
 	return list;
 }
 /**
@@ -93,8 +99,36 @@ public boolean deleteCourseType(int id) {
  * 得到页码数
  * @return
  */
-	public int getPageCount(int id) {
-		 return (int) Math.ceil((this.sellerInfoDaoImpl.findCount(id)/10));		
+	public int getPageCount(int sellerId) {
+		if((this.sellerInfoDaoImpl.findRowsCountBySellerID(sellerId))%4==0) {
+		    return (int)(this.sellerInfoDaoImpl.findRowsCountBySellerID(sellerId)/4);
+		}else {
+		    return (int)(this.sellerInfoDaoImpl.findRowsCountBySellerID(sellerId)/4+1);	
+		}	
+//		 return (int) Math.ceil((this.sellerInfoDaoImpl.findCount(sellerId)/6));		
 	}
-
+	/**
+	 * 培训机构详情分类列表查询
+	 * @author 王孜润
+	 * @date 2018/5/30
+	 * @param model
+	 * @return
+	 */
+	public List<Course> listByType(int sellerCourseTypeID,int page){
+		return sellerInfoDaoImpl.selectType(sellerCourseTypeID,page);	
+	}
+	/**
+	 * 课程分类
+	 * @author 王孜润
+	 * @date 2018/5/31
+	 */
+	public List<Course> findTypeId(int sellerCourseTypeID,int sellerId){
+		return sellerInfoDaoImpl.findTypeId(sellerCourseTypeID,sellerId);
+	}
+	/**
+	 * 分类查询页码数
+	 */
+	public int getTypeCoursePageCount(int sellerCourseTypeID) {
+		return (int) Math.ceil((this.sellerInfoDaoImpl.findTypeCourseCount(sellerCourseTypeID))/3);
+	}	
 }
