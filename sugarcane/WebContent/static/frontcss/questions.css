@@ -1,5 +1,5 @@
 .body{
-	height:50em;
+	height:90em;
 	width: 75%;
 	margin:0 auto;
 	background-color: rgba(248,248,255,0.5);
@@ -14,7 +14,7 @@ h2{
 	width: 60%;
 	height:9.375em;
 	border: 0.0625em solid rgba(220,220,220,0.5);
-	margin:auto;
+	margin:0 auto;
 }
 .one input{
 	margin-top: 0.625em;
