@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,11 +11,8 @@
 </head>
 <body>
 	<table>
-	<!-- 
-	<c:forEach var="sellerInfo" items="${showOrg }">
-			<tr><td><a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName }</a></td></tr>
-	</c:forEach>
-		-->
+		<tr><td><a href="${ctx }/sellerInfo/showOrg">orgName</a></td></tr>
+		
 	</table>
 </body>
 </html>

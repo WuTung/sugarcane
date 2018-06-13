@@ -358,36 +358,29 @@
 			</div>
 			<h2 class="last_2">为您推荐</h2>
 			<table cellpadding="25" cellspacing="25" class="last_3">
-			<tbody>
-				<c:forEach var="sellerInfo"  items="${showOrg}" varStatus="num">
-					<c:if test="${num.count eq 1 ||(num.count-1)%5 eq 0 }">
-						<tr>
-					</c:if>
-						<c:if test="${num.index % 2 == 0}"><td class="black">
-							<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
-						</c:if>
-				        <c:if test="${num.index % 2 == 1}"><td class="white">
-				        	<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
-						</c:if>
-					<c:if test="${num.count % 5 eq 0 ||num.count eq 5 }">
-						</tr>
-					</c:if>  
-				</c:forEach>  
-			</tbody>
-			
+				<tr>
+					<td class="black"><a href="#">第一游泳俱乐部</a></td>
+					<td class="white"><a href="#">计算机之家培训</a></td>
+					<td class="black"><a href="#">辛巴插画班</a></td>
+					<td class="white"><a href="#">LiLi健身</a></td>
+				</tr>
+				<tr>
+					<td class="white"><a href="#">领世培优</a></td>
+					<td class="black"><a href="#">阿里舞蹈</a></td>
+					<td class="gray"><a href="#">financial培训机构</a></td>
+					<td class="black"><a href="#">风浪俱乐部</a></td>
+				</tr>
 				<tr class="changeTr2" style="display:none;">
 					<td class="black"><a href="#">折叠部分</a></td>
 					<td class="white"><a href="#">折叠部分</a></td>
 					<td class="black"><a href="#">折叠部分</a></td>
 					<td class="white"><a href="#">折叠部分</a></td>
-					<td class="black"><a href="#">折叠部分</a></td>
 				</tr>
 				<tr class="changeTr2" style="display:none;">
 					<td class="white"><a href="#">折叠部分</a></td>
 					<td class="black"><a href="#">折叠部分</a></td>
 					<td class="gray"><a href="#">折叠部分</a></td>
 					<td class="black"><a href="#">折叠部分</a></td>
-					<td class="white"><a href="#">折叠部分</a></td>
 				</tr>
 			</table>
 		</div>

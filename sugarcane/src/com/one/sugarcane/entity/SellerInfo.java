@@ -36,6 +36,7 @@ public class SellerInfo {
 	private int qualified;
 	private SellerLogin sellerLogin;
 	private Set<Course>course = new HashSet<Course>();
+	private Set<SellerCourseType> courseType = new HashSet<SellerCourseType>();
  
 	@Id
 	@GeneratedValue(generator="a")
@@ -145,11 +146,18 @@ public class SellerInfo {
 	public void setCourse(Set<Course> course) {
 		this.course = course;
 	}
+	@OneToMany(mappedBy="sellerInfo",targetEntity=SellerCourseType.class,cascade=CascadeType.MERGE)
+	public Set<SellerCourseType> getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(Set<SellerCourseType> courseType) {
+		this.courseType = courseType;
+	}
 	public SellerInfo() {}
 	public SellerInfo(String sellerName, String sellerEmail, String sellerPhoneNumber, String brief,
 			String numberOfEmployees, String educationBureauApproved, String proofOfHouse, String fireSafetyCertificate,
 			String businessLisense, String address_province, String address_city, String address_area,
-			String address_detail, int qualified, SellerLogin sellerLogin,Set<Course> course,Date validatacode,Date outdate) {
+			String address_detail, int qualified, SellerLogin sellerLogin,Set<Course> course,Set<SellerCourseType>courseType,Date validatacode,Date outdate) {
 		super();
 		this.sellerName = sellerName;
 		this.sellerEmail = sellerEmail;
@@ -167,6 +175,7 @@ public class SellerInfo {
 		this.qualified = qualified;
 		this.sellerLogin = sellerLogin;
 		this.course = course;
+		this.courseType = courseType;
 	}
 
 }

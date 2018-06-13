@@ -57,6 +57,15 @@ public  void resetPassword(String email, String randomPasswordString) {
 public List<SellerInfo> showOrg() {
 	return this.sellerInfoDaoImpl.getOrg();
 }
+
+/**
+ * 首页获取所有培训机构
+ * @author 王孜润	 
+ * @date 2018/6/11
+ */
+public List<SellerInfo> findOrg() {
+	return this.sellerInfoDaoImpl.selectOrg();
+}
 /**
  * 通过id查找seller
  * @name 王孜润

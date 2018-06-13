@@ -19,16 +19,13 @@
 <p>
   <img src="${ctx}/static/images/b.png" id="welcomeImg">
 </p>  
+
 </div>
 <!-- 分割线 -->
 <div><hr></div>
 <!-- 内容 -->
-<div id="gtco-header" class="gtco-cover" role="banner" style="background-image: url(${ctx}/static/images/1.png);margin:40px;">
+<div id="gtco-header" class="gtco-cover" role="banner" style="background-image: url(${ctx}/static/images/bgimg.jpg);margin:2%;background-size:contain">
 <div>
-	<div style="height:200px;width:800px;float:left;margin:20px">	
-		<span>培训机构合作</span>
-		<h1>欢迎来到sugarcane甘蔗</h1>	
-	</div>
 	<!-- 登录框 -->
 	<div id="login">
 			<br><br><br><br><br>
@@ -65,4 +62,5 @@
 CopyRight© sugarcane <a href="#">联系我们</a></div>
 </div>
 </body>
+
 </html>

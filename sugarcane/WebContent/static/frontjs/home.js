@@ -105,13 +105,13 @@ $(function()
                 {  
                   $(".changeTr1").removeAttr("style");  
                   $("#zhe1").text("收起");  
-				  $("#triangle1").attr('src','${ctx }/static/frontimages/triangle2.jpg');
+				  $("#triangle1").attr('src','../static/frontimages/triangle2.jpg');
                 }  
             else  
                 {  
                   $(".changeTr1").css("display","none");  
                   $("#zhe1").text("展开剩余分类");  
-				  $("#triangle2").attr('src','${ctx }/static/frontimages/triangle.jpg');
+				  $("#triangle2").attr('src','../static/frontimages/triangle.jpg');
                 }  
             });   
   });  
@@ -123,13 +123,13 @@ $(function()
                 {  
                   $(".changeTr2").removeAttr("style");  
                   $("#zhe2").text("收起");  
-				  $("#triangle2").attr('src','${ctx }/static/frontimages/triangle2.jpg');
+				  $("#triangle2").attr('src','../static/frontimages/triangle2.jpg');
                 }  
             else  
                 {  
                   $(".changeTr2").css("display","none");  
                   $("#zhe2").text("展开查看全部培训机构");  
-				  $("#triangle2").attr('src','${ctx }/static/frontimages/triangle.jpg');
+				  $("#triangle2").attr('src','../static/frontimages/triangle.jpg');
                 }  
             });   
   }); 

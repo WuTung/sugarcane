@@ -61,7 +61,15 @@ public class SellerInfoDaoImpl {
 		Query q = sessionFactory.getCurrentSession().createQuery("from SellerInfo");
 		return q.list();
 	}
-	
+	/**
+	 * 首页获取所有培训机构
+	 * @author 王孜润	 
+	 * @date 2018/6/11
+	 */
+	public List<SellerInfo> selectOrg() {
+		Query q = sessionFactory.getCurrentSession().createQuery("from SellerInfo");
+		return q.list();
+	}
 	/**
 	 * 通过id查找seller
 	 * @name 王孜润
@@ -69,6 +77,7 @@ public class SellerInfoDaoImpl {
 	public SellerInfo findById(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		SellerInfo sellerInfo = (SellerInfo)session.get(SellerInfo.class, id);
+		System.out.println("--------"+sellerInfo+"---------");
 		return sellerInfo;
 	}
 	/**

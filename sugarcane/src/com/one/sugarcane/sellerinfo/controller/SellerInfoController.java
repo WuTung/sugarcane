@@ -227,6 +227,18 @@ return "organization/getpassword";
 public String showOrg(Model model) {
 List<SellerInfo> list = sellerInfoServiceImpl.showOrg();
 model.addAttribute("showOrg",list);
+	return "front/home";
+}
+
+/**
+ * 首页获取所有培训机构
+ * @author 王孜润	 
+ * @date 2018/6/11
+ */
+@RequestMapping("/findOrg")
+public String findOrg(Model model) {
+List<SellerInfo> list = sellerInfoServiceImpl.findOrg();
+model.addAttribute("findOrg",list);
 	return "front/show";
 }
 /**
@@ -239,8 +251,8 @@ public String findSeller(HttpSession session,Model model,SellerInfo sellerInfo,H
 //	Integer sellerId1=(Integer) session.getAttribute("sellerID");
 	String id = request.getParameter("sellerInfoId");
 	int sellerId1 = Integer.valueOf(id);
+	System.out.println("--------"+sellerId1+"--------");
 	sellerInfo = sellerInfoServiceImpl.selectById(sellerId1);
-	System.out.println("----------------------------------------");
 	List<SellerCourseType> seller = sellerInfoServiceImpl.findSellerById(sellerId1);
 	List<Course>list = sellerInfoServiceImpl.findBySellerId(sellerId1,page);
 	model.addAttribute("seller",seller);
