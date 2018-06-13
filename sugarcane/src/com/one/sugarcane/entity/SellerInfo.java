@@ -64,6 +64,7 @@ public class SellerInfo {
 	public void setSellerPhoneNumber(String sellerPhoneNumber) {
 		this.sellerPhoneNumber = sellerPhoneNumber;
 	}
+	
 	public String getBrief() {
 		return brief;
 	}

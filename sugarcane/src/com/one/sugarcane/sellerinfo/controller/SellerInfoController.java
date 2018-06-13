@@ -38,16 +38,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.portlet.ModelAndView;
 
-import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
-import com.one.sugarcane.sellerinfo.service.SellerInfoTypeServiceImpl;
-import com.one.sugarcane.mailUtil.SendmailUtil;
-import com.one.sugarcane.sellercoursetype.service.SellerCourseTypeServiceImpl;
+import com.one.sugarcane.MD5Util.MD5Util;
 import com.one.sugarcane.entity.Course;
 import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
-import com.one.sugarcane.MD5Util.MD5Util;;
+import com.one.sugarcane.mailUtil.SendmailUtil;
+import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
+import com.one.sugarcane.sellerinfo.service.SellerInfoTypeServiceImpl;
 
 @Controller
 @RequestMapping("sellerInfo")
@@ -57,6 +56,7 @@ public class SellerInfoController {
 	@Resource
 	private SellerInfoTypeServiceImpl sellerInfoTypeServiceImpl;
 
+	
 	
 	/**
 	 * 培训机构注册

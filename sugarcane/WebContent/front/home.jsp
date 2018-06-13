@@ -206,35 +206,146 @@
 					<img src="${ctx }/static/frontimages/cloud.jpg" alt="cloud" height="25px"/><h1>课程分类</h1>
 				</td>
 			</tr>
+			
+			
 			<tr>
 				<td colspan="6" class="project_2">
-					<h2>计算机</h2>
-					<ul>
-						<li><a href="#">计算机基础</a></li>
-						<li><a href="#">编程基础</a></li>
-						<li><a href="#">计算机组成</a></li>
-						<li><a href="#">C语言入门</a></li>
-						<li><a href="#">Java工程师</a></li>
-					</ul>
+					<h2>${courseType1.courseTypeName }</h2>
+					 <ul>
+                           <c:forEach items="${publicCourseTypeLists1 }" var="publicCourseType1">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType1.publicTypeId }">${publicCourseType1.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
 				</td>
 			</tr>
 			<tr>
-				<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
-				<td class="project_4"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></a></td>
-				<td class="project_4"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></a></td>
-				<td class="project_4"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></a></td>
-				<td class="project_4"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></a></td>
-				<td class="project_4"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></a></td>
-			</tr>
-			<tr>
-				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
-				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
-				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
-				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
-				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
-			</tr>
 			
+			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
+			<c:forEach  items="${courseList1}" begin="0" end="4" var="courseList1" varStatus="i">		
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList1.courseID }"><img src="${ctx }/static/${courseList1.introductionImg1}" alt="project"/></a></td>
+		    </c:forEach>
+			</tr>
 			<tr>
+			 <c:forEach  items="${courseList1}" begin="0" end="4" var="courseList1" varStatus="i">
+				<td class="project_5">
+				<div class="p"> 
+				<a href="../course/courseDetails?courseID=${courseList1.courseID }">
+				<p>${courseList1.courseName }</p><p>${courseList1.sellerInfo.sellerName }</p>
+	            </a></div></td>
+			</c:forEach>
+			</tr>
+
+            <!-- 第二大类 -->
+			<tr>
+				<td colspan="6" class="project_2">
+					<h2>${courseType2.courseTypeName }</h2>
+					 <ul>
+                           <c:forEach items="${publicCourseTypeLists2 }" var="publicCourseType2">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType2.publicTypeId }">${publicCourseType2.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+				</td>
+			</tr>
+			<tr>
+			
+			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
+			<c:forEach  items="${courseList2}" begin="0" end="4" var="courseList2" varStatus="i">		
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList2.courseID }"><img src="${ctx }/static/${courseList2.introductionImg1}" alt="project"/></a></td>
+		    </c:forEach>
+			</tr>
+			<tr>
+			 <c:forEach  items="${courseList2}" begin="0" end="4" var="courseList2" varStatus="i">
+				<td class="project_5">
+				<div class="p"> 
+				<a href="../course/courseDetails?courseID=${courseList2.courseID }">
+				<p>${courseList2.courseName }</p><p>${courseList2.sellerInfo.sellerName }</p>
+	            </a></div></td>
+			</c:forEach>
+			</tr>
+	       
+	       
+	       <!-- 第三大类 -->
+	       <tr>
+				<td colspan="6" class="project_2">
+					<h2>${courseType3.courseTypeName }</h2>
+					 <ul>
+                           <c:forEach items="${publicCourseTypeLists3 }" var="publicCourseType3">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType3.publicTypeId }">${publicCourseType3.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+				</td>
+			</tr>
+			<tr>
+			
+			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
+			<c:forEach  items="${courseList3}" begin="0" end="4" var="courseList3" varStatus="i">		
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList3.courseID }"><img src="${ctx }/static/${courseList3.introductionImg1}" alt="project"/></a></td>
+		    </c:forEach>
+			</tr>
+			<tr>
+			 <c:forEach  items="${courseList3}" begin="0" end="4" var="courseList3" varStatus="i">
+				<td class="project_5">
+				<div class="p"> 
+				<a href="../course/courseDetails?courseID=${courseList3.courseID }">
+				<p>${courseList3.courseName }</p><p>${courseList3.sellerInfo.sellerName }</p>
+	            </a></div></td>
+			</c:forEach>
+			</tr>
+			<!-- 第四大类 -->
+			<tr class="changeTr1" style="display: none;">
+				<td colspan="6" class="project_2">
+					<h2>${courseType4.courseTypeName }</h2>
+					 <ul>
+                           <c:forEach items="${publicCourseTypeLists4 }" var="publicCourseType4">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType4.publicTypeId }">${publicCourseType4.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+				</td>
+			</tr>
+			<tr class="changeTr1" style="display: none;">
+			
+			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
+			<c:forEach  items="${courseList4}" begin="0" end="4" var="courseList4" varStatus="i">		
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList4.courseID }"><img src="${ctx }/static/${courseList4.introductionImg1}" alt="project"/></a></td>
+		    </c:forEach>
+			</tr>
+			<tr class="changeTr1" style="display: none;">
+			 <c:forEach  items="${courseList4}" begin="0" end="4" var="courseList4" varStatus="i">
+				<td class="project_5">
+				<div class="p"> 
+				<a href="../course/courseDetails?courseID=${courseList4.courseID }">
+				<p>${courseList4.courseName }</p><p>${courseList4.sellerInfo.sellerName }</p>
+	            </a></div></td>
+			</c:forEach>
+			</tr>
+			<!-- 第五大类 -->
+			<tr class="changeTr1" style="display: none;">
+				<td colspan="6" class="project_2">
+					<h2>${courseType5.courseTypeName }</h2>
+					 <ul>
+                           <c:forEach items="${publicCourseTypeLists5 }" var="publicCourseType5">
+                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType5.publicTypeId }">${publicCourseType5.publicTypeName }</a></li>
+                           </c:forEach>
+                           </ul>
+				</td>
+			</tr>
+			<tr class="changeTr1" style="display: none;">
+			
+			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
+			<c:forEach  items="${courseList5}" begin="0" end="4" var="courseList5" varStatus="i">		
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList5.courseID }"><img src="${ctx }/static/${courseList5.introductionImg1}" alt="project"/></a></td>
+		    </c:forEach>
+			</tr>
+			<tr class="changeTr1" style="display: none;">
+			 <c:forEach  items="${courseList5}" begin="0" end="4" var="courseList5" varStatus="i">
+				<td class="project_5">
+				<div class="p"> 
+				<a href="../course/courseDetails?courseID=${courseList5.courseID }">
+				<p>${courseList5.courseName }</p><p>${courseList5.sellerInfo.sellerName }</p>
+	            </a></div></td>
+			</c:forEach>
+			</tr>
+			<!--  tr>
 				<td colspan="6" class="project_2">
 					<h2>经济管理</h2>
 					<ul>
@@ -345,7 +456,7 @@
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
-			</tr>
+			</tr-->
 			
 			<tr>
 				<td rowspan="6" class="project_6"><p id="zhe1">展开剩余分类</p><img src="${ctx }/static/frontimages/triangle.jpg" alt="triangle" id="triangle1"/></td>

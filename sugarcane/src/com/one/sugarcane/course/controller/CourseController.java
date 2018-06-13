@@ -41,6 +41,39 @@ import com.one.sugarcane.io.ride.sensitive.SensitiveWordFilter;
 public class CourseController {
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
+	/**
+	 * 进入首页
+	 * @auther 杜凯玲 6.13
+	 * @param coursePageIndex
+	 * @param response
+	 * @param session
+	 * @throws IOException
+	 */
+	@RequestMapping("/toIndex")
+	public void ToIndex(
+			@RequestParam(value="coursePageIndex",defaultValue="1")Integer coursePageIndex,
+			HttpServletResponse response,HttpSession session) throws IOException {
+		
+		//List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
+		List<PublicCourseType> publicCourseTypeList=this.courseServiceImpl.selectPublicCourseType();
+		List<CourseType> courseTypeList=this.courseServiceImpl.selectCourseType();
+		//显示分类
+		int courseTypeLength=courseTypeList.size();
+		System.out.println(courseTypeLength);
+		for(int i = 0;i < courseTypeLength; i++) {
+			CourseType courseType=this.courseServiceImpl.selectCourseTypeByID(i);
+            List<PublicCourseType>publicCourseTypeLists=this.courseServiceImpl.selectPublicCourseType(courseTypeList.get(i).getCourseTypeID()-1);          
+            List<Course> courseList=this.courseServiceImpl.listCourseByCourseTypeID(i,1);
+            System.out.println(courseList.toString());
+            
+            session.setAttribute("courseList"+i, courseList);
+            session.setAttribute("courseType"+i, courseType);
+            session.setAttribute("publicCourseTypeLists"+i, publicCourseTypeLists);
+		}
+		//session.setAttribute("courseList", courseList);
+		response.sendRedirect("/Sugarcane/front/home.jsp");
+		
+	}
 	@RequestMapping("/deleteCollection")
 	public void deleteCollection(@RequestParam("collectionID")Integer collectionID,
 			HttpServletResponse response,
