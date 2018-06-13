@@ -263,7 +263,10 @@ public class CourseController {
 				HttpServletRequest request,
 				HttpServletResponse response) throws IOException {
 		    Course course=this.courseServiceImpl.getCourseById(courseID);
-		   
+			Integer a = (Integer) session.getAttribute("userId");
+			if (a != null) {
+				this.courseServiceImpl.insert(a, courseID,course.getPublicCourseType().getPublicTypeId());
+			}
 		    Integer sellerID=course.getSellerLogin().getSellerID();
 		    SellerInfo sellerInfo=this.courseServiceImpl.selectSellerInfoByID(sellerID);
 		    session.setAttribute("sellerInfo",sellerInfo);

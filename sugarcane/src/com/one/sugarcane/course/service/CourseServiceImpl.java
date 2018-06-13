@@ -20,6 +20,7 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserClickCourse;
 import com.one.sugarcane.entity.UserCollections;
 import com.one.sugarcane.entity.UserLogin;
 
@@ -313,5 +314,12 @@ public class CourseServiceImpl {
 		    return (int)(this.courseDaoImpl.findRowsCountByCourseType(courseTypeID)/6+1);	
 		}	
 	}
-	
+	/**
+	 * 用户点击某个课程就插入数据库
+	 * @author qin
+	 */
+	public void insert(int userId,int courseId,int a) {
+		UserClickCourse c = new UserClickCourse(userId,courseId,a);
+		this.courseDaoImpl.saveUserClickCourse(c);
+	}
 }

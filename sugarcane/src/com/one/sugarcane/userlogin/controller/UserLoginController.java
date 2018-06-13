@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,8 +39,9 @@ public class UserLoginController {
 	 */
 	@RequestMapping(value = "login")
 	public String login(@RequestParam String email,@RequestParam String password,
-			Model model,HttpServletRequest request)throws IOException{
+			Model model,HttpServletRequest request,HttpSession session)throws IOException{
 		UserLogin userLogin = this.userLoginServiceImpl.Login(email,password);
+		session.setAttribute("userId", userLogin.getUserID());
 		if(null!=userLogin){
 			UserLoginLog userLoginlog = new UserLoginLog();
 			//获取ip
