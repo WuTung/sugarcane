@@ -18,6 +18,7 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserClickCourse;
 import com.one.sugarcane.entity.UserCollections;
 import com.one.sugarcane.entity.UserLogin;
 @Repository
@@ -357,5 +358,13 @@ public class CourseDaoImpl{
 	 */
 	public void saveCourse(Course course) {
 		this.sessionFactory.getCurrentSession().saveOrUpdate(course);
+	}
+	/**
+	 * 添加用户点击的课程
+	 * @param userClickCourse
+	 * @author QIN
+	 */
+	public void saveUserClickCourse(UserClickCourse userClickCourse) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(userClickCourse);
 	}
 }
