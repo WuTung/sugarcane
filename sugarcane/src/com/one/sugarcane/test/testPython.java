@@ -17,16 +17,13 @@ import com.one.sugarcane.stringUtil.*;
  * @time 2018.5.3
  */
 public class testPython {
-	public static void main(String[] args) throws IOException {
-		File directory = new File("");
-		// 获取文件根目录
-		String courseFile = directory.getCanonicalPath();
-		String[] args1 = new String[] { "python", courseFile + "\\src\\com\\one\\sugarcane\\test\\k-means\\test3.py" };
+	public List<String[]> recommend() {
+		String[] args1 = new String[] { "python", "E:\\gitRepository\\sugarcane\\sugarcane\\src\\com\\one\\sugarcane\\test\\k-means\\recommend.py" };
 		ProcessBuilder builder = new ProcessBuilder();
 		builder.command(args1);
 		Process process;
+		List<String[]> list = new ArrayList<String[]>();
 		try {
-			List<String[]> list = new ArrayList<String[]>();
 			process = builder.start();
 			process.waitFor();
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -43,5 +40,6 @@ public class testPython {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return list;
 	}
 }

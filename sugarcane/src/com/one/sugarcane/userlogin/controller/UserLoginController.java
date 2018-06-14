@@ -65,10 +65,10 @@ public class UserLoginController {
 			userLoginlog.setUserLogin(userLogin);
 			this.userLoginServiceImpl.updateUserLogin(userLoginlog);
 			request.getSession().setAttribute("user", userLogin.getUserInfo());
-			return "front/home";
+			return "front/index";
 		}else{
 			model.addAttribute("information", "邮箱或密码错误");
-			return "front/home";
+			return "front/index";
 		
 		}
 	}

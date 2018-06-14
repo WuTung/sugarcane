@@ -138,10 +138,9 @@
 		<div class="first">
 			<img src="${ctx }/static/frontimages/love.jpg" alt="love" height="25px"/><h1>猜你喜欢</h1>
 			<div class="first_love">
-				<img src="${ctx }/static/frontimages/1.jpg" alt="" height="165px"/>
-				<img src="${ctx }/static/frontimages/1.jpg" alt="" height="165px"/>
-				<img src="${ctx }/static/frontimages/1.jpg" alt="" height="165px"/>
-				<img src="${ctx }/static/frontimages/1.jpg" alt="" height="165px"/>
+			<c:forEach items="${recommend }" var="s">
+				<a href="../course/courseDetails?courseID=${s.courseID }"><img src="${ctx }/static/images/${s.introductionImg1}" alt="" width="270px" height="165px" class="recommend"/></a>
+			</c:forEach>
 			</div>
 		</div>
 		

@@ -5,8 +5,12 @@
  */
 package com.one.sugarcane.course.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -366,5 +370,49 @@ public class CourseDaoImpl{
 	 */
 	public void saveUserClickCourse(UserClickCourse userClickCourse) {
 		this.sessionFactory.getCurrentSession().saveOrUpdate(userClickCourse);
+	}
+	/**
+	 * 查询前四条课程数据
+	 * @author qin
+	 */
+	public List<Course> findFour() {
+		Query q = this.sessionFactory.getCurrentSession().createQuery("From Course");
+		q.setFirstResult(1);	
+		q.setMaxResults(4);
+		return q.list();
+	}
+	/**
+	 * 根据用户id查询浏览次数最多的课程
+	 * @author qin
+	 */
+	public int findUserMostLookforById(int a) {
+		Query q = this.sessionFactory.getCurrentSession().createQuery("select u.courseId ,count(u.courseId) from UserClickCourse u where u.uid = "+ a +"group by u.courseId");
+		List<Object[]> rq = q.list();
+		int max = 0;
+		int courseId = 0;
+		for (Object[] objects : rq) {
+			Number c = (Number) objects[1];
+			if(c.intValue() >= max) {
+				max = c.intValue() ;
+			}
+		}
+		for (Object[] objects : rq) {
+			if(max == ((Number)objects[1]).intValue()) {
+				courseId = ((Number)objects[0]).intValue();
+				break;
+			}
+		}
+		System.out.println(courseId);
+		return courseId;
+	}
+	/**
+	 * 查询推荐的课程
+	 */
+	public List<Course>findCourseForRecommend(int [] b) {
+		List<Course> course = new ArrayList<Course>();
+		for (int i : b) {
+			course.add(this.selectByCourseID(i));
+		}
+		return course;
 	}
 }

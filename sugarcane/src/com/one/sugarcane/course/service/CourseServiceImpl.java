@@ -322,4 +322,22 @@ public class CourseServiceImpl {
 		UserClickCourse c = new UserClickCourse(userId,courseId,a);
 		this.courseDaoImpl.saveUserClickCourse(c);
 	}
+	/**
+	 * 显示首页用户点击过数量最多的四门课程作为推荐(没有登录的时候)
+	 */
+	public List mainfest() {
+		return this.courseDaoImpl.findFour();
+	}
+	/**
+	 * 显示首页用户点击过数量最多的课程(登录的时候)
+	 */
+	public int mainfestMostCourseById(int id) {
+		return this.courseDaoImpl.findUserMostLookforById(id);
+	}
+	/**
+	 * 显示首页用户推荐的课程(登录的时候)
+	 */
+	public List<Course>mainfestCourseByRecommend(int [] b) { 
+		return this.courseDaoImpl.findCourseForRecommend(b);
+	}
 }
