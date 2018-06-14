@@ -15,6 +15,9 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 
+
+
+
 @Repository
 public class SellerInfoDaoImpl {
 	@Resource

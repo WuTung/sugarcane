@@ -13,6 +13,7 @@
 	
 		<% response.sendRedirect("../sellerInfo/showOrg"); %>
 
+		<!-- %response.sendRedirect("../course/toIndex"); %-->
 	</table>
 </body>
 </html>

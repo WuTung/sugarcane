@@ -41,6 +41,35 @@
 	display: inline;
 	padding: 0.0625em 3.125em;
 }
+/*弹框*//*弹框*//*弹框*//*弹框*//*弹框*//*弹框*//*弹框*/
+.fadeud{
+	display: none;
+	font-size: 0.34rem;
+	color: #fff;
+	position:fixed;
+	z-index: 9999;
+	bottom: 2.3rem;
+	left: 2.5rem;
+}
+.fadeud >p{
+	background: rgba(0,0,0,0.5);
+	padding: 0.1rem 0.2rem;
+	border-radius: 0.1rem;
+}
+.fadeudfail{
+	display: none;
+	font-size: 0.34rem;
+	color: #fff;
+	position:fixed;
+	z-index: 9999;
+	bottom: 2.3rem;
+	left: 2.3rem;
+}
+.fadeudfail >p{
+	background: rgba(0,0,0,0.5);
+	padding: 0.1rem 0.2rem;
+	border-radius: 0.1rem;
+}
 h3{
 	font-size: 1em;
 	font-weight: 600;

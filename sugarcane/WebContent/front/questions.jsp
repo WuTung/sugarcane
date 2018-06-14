@@ -173,6 +173,114 @@
                     </tr>
                 </table>
             </div>
+            <div class="one">
+                <table>                  
+                    <tr>
+                        <td><span>2、请选择以下选项</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                </table>
+            </div>
+            <div class="one">
+                <table>                  
+                    <tr>
+                        <td><span>2、请选择以下选项</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                </table>
+            </div>
+            <div class="one">
+                <table>                  
+                    <tr>
+                        <td><span>2、请选择以下选项</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                </table>
+            </div>
+            <div class="one">
+                <table>                  
+                    <tr>
+                        <td><span>2、请选择以下选项</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="io" value="2">单选一
+                        </td>    
+                    </tr>
+                </table>
+            </div>
                 <input type="button" value="提交" id="btn">
             </form>
         </div>

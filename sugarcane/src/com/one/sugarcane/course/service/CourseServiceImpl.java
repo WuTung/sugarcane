@@ -20,12 +20,40 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserClickCourse;
+import com.one.sugarcane.entity.UserCollections;
+import com.one.sugarcane.entity.UserLogin;
 
 @Service
 @Transactional(readOnly=false)
+
 public class CourseServiceImpl {
 	@Resource
 	private CourseDaoImpl courseDaoImpl;
+	public UserCollections findCollectionByID(int ID) {
+		return this.courseDaoImpl.findCollectionByID(ID);
+	}
+
+	public List<UserCollections> findUserCollectionsByUserID(int userID,int page){
+		return this.courseDaoImpl.findUserCollectionsByUserID(userID,page);
+	}
+	public List<UserCollections> findUserCollectionsByUserID(int userID){
+		return this.courseDaoImpl.findUserCollectionsByUserID(userID);
+	}
+	public int getcollectionsPageCountByUserID(int userID) {
+        if((this.courseDaoImpl.findCollectionsRowsCountByUserID(userID))%6==0) {
+		    return (int)(this.courseDaoImpl.findCollectionsRowsCountByUserID(userID)/6);
+		}else {
+		    return (int)(this.courseDaoImpl.findCollectionsRowsCountByUserID(userID)/6+1);	
+		}	
+	}
+	public void saveUserCollections(UserCollections userCollection) {
+		this.courseDaoImpl.saveUserCollections(userCollection);
+	}
+	
+	public UserLogin findUserLoginByuserID(int userID) {
+		return this.courseDaoImpl.findUserLoginByuserID(userID);
+	}
 	public void saveEvaluate(Evaluate evaluate) {
 		this.courseDaoImpl.saveEvaluate(evaluate);
 	}
@@ -286,5 +314,30 @@ public class CourseServiceImpl {
 		    return (int)(this.courseDaoImpl.findRowsCountByCourseType(courseTypeID)/6+1);	
 		}	
 	}
-	
+	/**
+	 * 用户点击某个课程就插入数据库
+	 * @author qin
+	 */
+	public void insert(int userId,int courseId,int a) {
+		UserClickCourse c = new UserClickCourse(userId,courseId,a);
+		this.courseDaoImpl.saveUserClickCourse(c);
+	}
+	/**
+	 * 显示首页用户点击过数量最多的四门课程作为推荐(没有登录的时候)
+	 */
+	public List mainfest() {
+		return this.courseDaoImpl.findFour();
+	}
+	/**
+	 * 显示首页用户点击过数量最多的课程(登录的时候)
+	 */
+	public int mainfestMostCourseById(int id) {
+		return this.courseDaoImpl.findUserMostLookforById(id);
+	}
+	/**
+	 * 显示首页用户推荐的课程(登录的时候)
+	 */
+	public List<Course>mainfestCourseByRecommend(int [] b) { 
+		return this.courseDaoImpl.findCourseForRecommend(b);
+	}
 }

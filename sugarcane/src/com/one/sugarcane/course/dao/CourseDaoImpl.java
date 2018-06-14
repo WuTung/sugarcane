@@ -5,8 +5,12 @@
  */
 package com.one.sugarcane.course.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -18,10 +22,56 @@ import com.one.sugarcane.entity.PublicCourseType;
 import com.one.sugarcane.entity.SellerCourseType;
 import com.one.sugarcane.entity.SellerInfo;
 import com.one.sugarcane.entity.SellerLogin;
+import com.one.sugarcane.entity.UserClickCourse;
+import com.one.sugarcane.entity.UserCollections;
+import com.one.sugarcane.entity.UserLogin;
 @Repository
 public class CourseDaoImpl{
 	@Resource
 	private SessionFactory sessionFactory;
+	public UserCollections findCollectionByID(int ID) {
+		return this.sessionFactory.getCurrentSession().get(UserCollections.class,ID);
+	}
+
+	public List<UserCollections> findUserCollectionsByUserID(int userID,int page){
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from UserCollections where userLogin.userID="+userID+"and collecting=1");
+		query.setFirstResult((page-1)*6);
+		query.setMaxResults(6);	
+		return query.list();
+		
+	}
+	public List<UserCollections> findUserCollectionsByUserID(int userID){
+		Query query=this.sessionFactory.getCurrentSession().createQuery("from UserCollections where userLogin.userID="+userID+"and collecting=1");
+		return query.list();
+		
+	}
+	public int findCollectionsRowsCountByUserID(int userID){
+		Query qc=this.sessionFactory.getCurrentSession().createQuery("select COUNT(id) from UserCollections where userLogin.userID="+userID);
+		Number number = (Number)qc.uniqueResult();
+		int count = number.intValue();
+		return count;
+		}
+	
+	/**
+	 * 保存一条收藏信息
+	 * @param userCollection
+	 */
+	public void saveUserCollections(UserCollections userCollection) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(userCollection);
+	}
+	/**
+	 * 通过userID查找用户登录信息
+	 * @param userID
+	 * @return
+	 */
+	public UserLogin findUserLoginByuserID(int userID){
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userID="+userID);
+		return (UserLogin) query.uniqueResult();
+	}
+	/**
+	 * 保存一条评价
+	 * @param evaluate
+	 */
 	public void saveEvaluate(Evaluate evaluate) {
 		this.sessionFactory.getCurrentSession().saveOrUpdate(evaluate);
 	}
@@ -312,5 +362,57 @@ public class CourseDaoImpl{
 	 */
 	public void saveCourse(Course course) {
 		this.sessionFactory.getCurrentSession().saveOrUpdate(course);
+	}
+	/**
+	 * 添加用户点击的课程
+	 * @param userClickCourse
+	 * @author QIN
+	 */
+	public void saveUserClickCourse(UserClickCourse userClickCourse) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(userClickCourse);
+	}
+	/**
+	 * 查询前四条课程数据
+	 * @author qin
+	 */
+	public List<Course> findFour() {
+		Query q = this.sessionFactory.getCurrentSession().createQuery("From Course");
+		q.setFirstResult(1);	
+		q.setMaxResults(4);
+		return q.list();
+	}
+	/**
+	 * 根据用户id查询浏览次数最多的课程
+	 * @author qin
+	 */
+	public int findUserMostLookforById(int a) {
+		Query q = this.sessionFactory.getCurrentSession().createQuery("select u.courseId ,count(u.courseId) from UserClickCourse u where u.uid = "+ a +"group by u.courseId");
+		List<Object[]> rq = q.list();
+		int max = 0;
+		int courseId = 0;
+		for (Object[] objects : rq) {
+			Number c = (Number) objects[1];
+			if(c.intValue() >= max) {
+				max = c.intValue() ;
+			}
+		}
+		for (Object[] objects : rq) {
+			if(max == ((Number)objects[1]).intValue()) {
+				courseId = ((Number)objects[0]).intValue();
+				break;
+			}
+		}
+		System.out.println(courseId);
+		return courseId;
+	}
+	/**
+	 * 查询推荐的课程
+	 */
+	public List<Course>findCourseForRecommend(int [] b) {
+		List<Course> course = new ArrayList<Course>();
+		for (int i : b) {
+			course.add(this.selectByCourseID(i));
+		}
+		return course;
 	}
 }
