@@ -29,7 +29,7 @@ public class Course {
 	private SellerInfo sellerInfo;
 	private PublicCourseType publicCourseType;
 	private SellerLogin sellerLogin;
-	private String teacher;
+	private String teacher; 
 	private String video;
 	private Set<Evaluate>evaluate = new HashSet<Evaluate>();
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();

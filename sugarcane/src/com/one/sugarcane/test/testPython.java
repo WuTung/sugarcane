@@ -30,7 +30,7 @@ public class testPython {
 			Iterator<String> a = bufferedReader.lines().iterator();
 			while (a.hasNext()) {
 				Convert b = new Convert(a.next());
-				String c[] = b.function();
+				String c[] = b.function(); 
 				list.add(c);
 			}
 		} catch (IOException e) {

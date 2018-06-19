@@ -7,9 +7,7 @@ package com.one.sugarcane.course.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,13 +32,18 @@ import com.one.sugarcane.entity.UserCollections;
 import com.one.sugarcane.entity.UserInfo;
 import com.one.sugarcane.entity.UserLogin;
 import com.one.sugarcane.io.ride.sensitive.SensitiveWordFilter;
+import com.one.sugarcane.sellerinfo.controller.SellerInfoController;
+import com.one.sugarcane.sellerinfo.service.SellerInfoServiceImpl;
 import com.one.sugarcane.test.testPython;
+
 
 @Controller
 @RequestMapping("course")
 public class CourseController {
 	@Resource
 	private CourseServiceImpl courseServiceImpl;
+	@Resource
+	private SellerInfoServiceImpl sellerInfoServiceImpl;
 
 	/**
 	 * 进入首页
@@ -56,7 +60,6 @@ public class CourseController {
 		if (session.getAttribute("userId") == null) {
 			List<Course> list = this.courseServiceImpl.mainfest();
 			session.setAttribute("recommend", list);
-			response.sendRedirect("/Sugarcane/front/home.jsp");
 		} else {
 			testPython test = new testPython();
 			List<String[]> list = test.recommend();
@@ -74,26 +77,28 @@ public class CourseController {
 			}
 			List<Course> list1 = this.courseServiceImpl.mainfestCourseByRecommend(f);
 			session.setAttribute("recommend", list1);
-			// List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
-			List<PublicCourseType> publicCourseTypeList = this.courseServiceImpl.selectPublicCourseType();
-			List<CourseType> courseTypeList = this.courseServiceImpl.selectCourseType();
-			// 显示分类
-			int courseTypeLength = courseTypeList.size();
-			System.out.println(courseTypeLength);
-			for (int i = 0; i < courseTypeLength; i++) {
-				CourseType courseType = this.courseServiceImpl.selectCourseTypeByID(i);
-				List<PublicCourseType> publicCourseTypeLists = this.courseServiceImpl
-						.selectPublicCourseType(courseTypeList.get(i).getCourseTypeID() - 1);
-				List<Course> courseList = this.courseServiceImpl.listCourseByCourseTypeID(i, 1);
-				System.out.println(courseList.toString());
-
-				session.setAttribute("courseList" + i, courseList);
-				session.setAttribute("courseType" + i, courseType);
-				session.setAttribute("publicCourseTypeLists" + i, publicCourseTypeLists);
-			}
-			// session.setAttribute("courseList", courseList);
-			response.sendRedirect("/Sugarcane/front/home.jsp");
 		}
+		// List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
+		List<PublicCourseType> publicCourseTypeList = this.courseServiceImpl.selectPublicCourseType();
+		List<CourseType> courseTypeList = this.courseServiceImpl.selectCourseType();
+		// 显示分类
+		int courseTypeLength = courseTypeList.size();
+		System.out.println(courseTypeLength); 
+		for (int i = 0; i < courseTypeLength; i++) {
+			CourseType courseType = this.courseServiceImpl.selectCourseTypeByID(i);
+			List<PublicCourseType> publicCourseTypeLists = this.courseServiceImpl
+					.selectPublicCourseType(courseTypeList.get(i).getCourseTypeID() - 1);
+			List<Course> courseList = this.courseServiceImpl.listCourseByCourseTypeID(i, 1);
+//			System.out.println(courseList.toString());
+
+			session.setAttribute("courseList" + i, courseList);
+			session.setAttribute("courseType" + i, courseType);
+			session.setAttribute("publicCourseTypeLists" + i, publicCourseTypeLists);
+		}
+		// session.setAttribute("courseList", courseList);
+		List<SellerInfo> list2 = sellerInfoServiceImpl.showOrg();
+		session.setAttribute("showOrg", list2);
+		response.sendRedirect("/Sugarcane/front/home.jsp");
 	}
 
 	@RequestMapping("/deleteCollection")

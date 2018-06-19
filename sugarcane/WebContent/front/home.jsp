@@ -459,7 +459,7 @@
 				<td rowspan="6" class="project_6"><p id="zhe1">展开剩余分类</p><img src="${ctx }/static/frontimages/triangle.jpg" alt="triangle" id="triangle1"/></td>
 			</tr>
 		</table>
-		<!--培训机构块-->
+		<!--培训机构块--> 
 		<div class="last">
 			<div class="last_1">
 				<img src="${ctx }/static/frontimages/plane.jpg" alt="plane" class="plane"/><h1>培训机构</h1>
@@ -497,7 +497,6 @@
 							</tr>
 						</c:if>  
 				</c:forEach>
-				
 			</table>
 		</div>
 		<br style="clear:both;">
