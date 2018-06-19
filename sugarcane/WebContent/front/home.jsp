@@ -428,7 +428,6 @@
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
 			</tr>
-				
 			<tr class="changeTr1" style="display: none;">
 				<td colspan="6" class="project_2">
 					<h2>折叠</h2>
@@ -456,13 +455,10 @@
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
 				<td class="project_5"><div class="p"><a href="#"><p>C语言</p><p>XXXXXXXX教育</p></a></div></td>
 			</tr-->
-			
 			<tr>
 				<td rowspan="6" class="project_6"><p id="zhe1">展开剩余分类</p><img src="${ctx }/static/frontimages/triangle.jpg" alt="triangle" id="triangle1"/></td>
 			</tr>
 		</table>
-		
-		
 		<!--培训机构块-->
 		<div class="last">
 			<div class="last_1">
@@ -472,36 +468,36 @@
 			<h2 class="last_2">为您推荐</h2>
 			<table cellpadding="25" cellspacing="25" class="last_3">
 			<tbody>
-				<c:forEach var="sellerInfo"  items="${showOrg}" varStatus="num">
-					<c:if test="${num.count eq 1 ||(num.count-1)%5 eq 0 }">
-						<tr>
-					</c:if>
-						<c:if test="${num.index % 2 == 0}"><td class="black">
-							<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
+				<c:forEach var="sellerInfo"  items="${showOrg}" varStatus="num" begin="0" end="9">
+						<c:if test="${num.count eq 1 ||(num.count-1)%5 eq 0 }">
+							<tr>
 						</c:if>
-				        <c:if test="${num.index % 2 == 1}"><td class="white">
-				        	<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
-						</c:if>
-					<c:if test="${num.count % 5 eq 0 ||num.count eq 5 }">
-						</tr>
-					</c:if>  
+							<c:if test="${num.index % 2 == 0}"><td class="black">
+								<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
+							</c:if>
+					        <c:if test="${num.index % 2 == 1}"><td class="white">
+					        	<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
+							</c:if>
+						<c:if test="${num.count % 5 eq 0 ||num.count eq 5 }">
+							</tr>
+						</c:if>  
 				</c:forEach>  
 			</tbody>
-			
-				<tr class="changeTr2" style="display:none;">
-					<td class="black"><a href="#">折叠部分</a></td>
-					<td class="white"><a href="#">折叠部分</a></td>
-					<td class="black"><a href="#">折叠部分</a></td>
-					<td class="white"><a href="#">折叠部分</a></td>
-					<td class="black"><a href="#">折叠部分</a></td>
-				</tr>
-				<tr class="changeTr2" style="display:none;">
-					<td class="white"><a href="#">折叠部分</a></td>
-					<td class="black"><a href="#">折叠部分</a></td>
-					<td class="gray"><a href="#">折叠部分</a></td>
-					<td class="black"><a href="#">折叠部分</a></td>
-					<td class="white"><a href="#">折叠部分</a></td>
-				</tr>
+				<c:forEach var="sellerInfo"  items="${showOrg}" varStatus="num" begin="10">
+					<c:if test="${num.count eq 1 ||(num.count-1)%5 eq 0 }">
+						<tr class="changeTr2" style="display:none;">
+					</c:if>
+					<c:if test="${num.index % 2 == 0}"><td class="black">
+								<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
+							</c:if>
+					        <c:if test="${num.index % 2 == 1}"><td class="white">
+					        	<a href="${ctx }/sellerInfo/findSeller?sellerInfoId=${sellerInfo.sellerID }">${sellerInfo.sellerName}</a></td>
+							</c:if>
+						<c:if test="${num.count % 5 eq 0 ||num.count eq 5 }">
+							</tr>
+						</c:if>  
+				</c:forEach>
+				
 			</table>
 		</div>
 		<br style="clear:both;">

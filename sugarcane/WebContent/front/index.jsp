@@ -9,11 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
-	
-		<% response.sendRedirect("../sellerInfo/showOrg"); %>
-
-		<!-- %response.sendRedirect("../course/toIndex"); %-->
+	<table>	
+		<!-- % response.sendRedirect("../sellerInfo/showOrg"); %-->
 	</table>
 </body>
 </html>
