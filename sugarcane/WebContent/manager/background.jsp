@@ -12,8 +12,8 @@
 </head>
 <body>
 	<div class="header">
-		<a href="#">退出</a>
-		<P>管理员名</p>
+		<a href="${ctx }/admin/logoff">退出</a>
+		<P>${adminLogin.adminName }</p>
 	</div>
 	<div class="body">
 		<div class="left">

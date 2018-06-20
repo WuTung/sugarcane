@@ -23,6 +23,7 @@ public class SellerLogin {
 	private String password;
 	private String lastTime;
 	private String lastIP;
+	private Integer forbid=0;
 	private Set<Course>course = new HashSet<Course>();
 	private SellerInfo sellerInfo;
 	private Set<SellerLoginLog>sellerLoginLog = new HashSet<SellerLoginLog>();
@@ -93,6 +94,12 @@ public class SellerLogin {
 		this.course = course;
 		this.sellerInfo = sellerInfo;
 		this.sellerLoginLog = sellerLoginLog;
+	}
+	public Integer getForbid() {
+		return forbid;
+	}
+	public void setForbid(Integer forbid) {
+		this.forbid = forbid;
 	}
 	
 	

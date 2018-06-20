@@ -23,8 +23,8 @@
 	
 	<!--登录框-->
 	<div class="login">
-		<form action="" method="post">
-			<div>账号：<input type="text" value="单行输入" name="adminname" class="text"/></div>
+		<form action="${ctx }/admin/login" method="post">
+			<div>账号：<input type="text" value="单行输入" name="adminName" class="text"/></div>
 			<div class="pw">密码：<input type="password" value="单行输入" name="password" class="text"/></div>
 			<input type="submit" value="登录" class="submit"/>
 		</form>

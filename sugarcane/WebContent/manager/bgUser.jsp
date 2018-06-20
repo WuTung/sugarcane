@@ -9,67 +9,82 @@
 <meta charset="utf-8"/>
 <link rel="stylesheet" type="text/css" href="${ctx }/static/frontcss/bgstyle.css">
 <link rel="stylesheet" type="text/css" href="${ctx }/static/frontcss/bgUser.css">
+<script type="text/javascript">
+	//提交禁用选项
+	function forbidClick(){
+	    document.getElementById('submitfc').submit()
+	} 
+</script>
 </head>
 <body>
 	<div class="header">
-		<a href="#">退出</a>
-		<P>管理员名</p>
+		<a href="${ctx }/admin/logoff">退出</a>
+		<P>${adminLogin.adminName }</p>
 	</div>
 <!--body-->
 	<div class="body">
 		<div class="left">
 			<ul class="option">
-				<li><a href="${ctx }/manager/bgUser.jsp" id="user">用户管理</a></li>
+				<li><a href="${ctx }/admin/listUser" id="user">用户管理</a></li>
 				<li><a href="${ctx }/manager/bgCompany.jsp">培训机构管理</a></li>
 			</ul>
 		</div>
 		<div class="right">
-			<div class="first"><a href="${ctx }/manager/background.html">后台</a>&nbsp;&nbsp;>&nbsp;&nbsp;用户管理</div>
-			<form action="" method="post" class="form">
-				<input type="text" value="单行输入" name="search" class="text"/>
+			<div class="first"><a href="${ctx }/manager/background.jsp">后台</a>&nbsp;&nbsp;>&nbsp;&nbsp;用户管理</div>
+			<form action="${ctx }/admin/listUser" method="post" class="form">
+				<input type="text" value="单行输入" name="userName" class="text"/>
 				<input type="submit" value="搜索" class="search" />
 			</form>
+			<form action="${ctx }/admin/forbidUser" method="post" id="submitfc">
 			<table class="table">
-				<form action="" method="post">
+				<tr>
+					<th>用户编号</th>
+					<th>用户名</th>
+					<th class="lastcol">禁用</th>
+				</tr>
+				<c:forEach items="${listUser }" var="user" varStatus="cou" >
 					<tr>
-						<th>用户编号</th>
-						<th>用户名</th>
-						<th class="lastcol">禁用</th>
+						<td>${cou.count }</td>
+						<td>${user.userName }</td>
+						<c:choose>
+							<c:when test="${user.userLogin.getForbid() == 1  }">
+								<td>
+									<input type="checkbox" id="${cou.count }" name="userID" value="${user.userID }" checked="checked" onclick="forbidClick()" /><label for="${cou.count }"></label>
+								</td>
+							</c:when>
+							<c:otherwise>
+								<td>
+									<input type="checkbox" id="${cou.count }" name="userID" value="${user.userID }" onclick="forbidClick()"/><label for="${cou.count }"></label>
+								</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>Lucy</td>
-						<td class="lastcol"><input type="checkbox" id="myCheck1"/><label for="myCheck1"></label></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Lucy</td>
-						<td class="lastcol"><input type="checkbox" id="myCheck2"/><label for="myCheck2"></label></td>
-					</tr>
-					<tr class="lastrow">
-						<td>3</td>
-						<td>Lucy</td>
-						<td class="lastcol"><input type="checkbox" id="myCheck3"/><label for="myCheck3"></label></td>
-					</tr>
-				</form>
+				</c:forEach>
+				<!-- <tr><td>
+				<input type="submit" name="tijiao" value="提交">
+				</td></tr> -->
 			</table>
+			</form>
 			<div class="fenye">
-				<form method="POST" action="" style="clear:left">
-			        <table border="0" align="center" >
-			            <tr>
-			                <td>共5页<a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></td>
-			                <td><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;<</a></td>
-							<td><a href="#" style="font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;1</a></td>
-							<td><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;2</a></td>
-							<td><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;3</a></td>
-			                <td><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;></a></td>
-			                <td><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;最后一页</a></td>
-			                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转到第:<input type="text" name="page" size="2">页&nbsp;&nbsp;
-								<input type="submit" value="跳转" name="cndok" class="go"></td>
-			            </tr>
-			        </table> 
-	 			</form>
- 			</div>
+				<form method="POST" action="${ctx }/admin/listUser" style="clear:left">
+					<table border="0" align="center" >
+				        <tr>
+				            <td>共${pageCount }页<a href="${ctx }/admin/listUser?pageIndex=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></td>
+					        <c:if test="${pageIndex>1 }">
+		                    	<td><a href="${ctx }/admin/listUser?pageIndex=${pageIndex-1 }">&nbsp;&nbsp;&nbsp;&nbsp;上一页</a></td>
+							</c:if>
+							<td><a href="${ctx }/admin/listUser?pageIndex=${pageIndex }" style="font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;${pageIndex }</a></td>
+					        <c:if test="${pageIndex<pageCount }">
+					            <td><a href="${ctx }/admin/listUser?pageIndex=${pageIndex+1 }">&nbsp;&nbsp;&nbsp;&nbsp;下一页</a></td>
+					            <td><a href="${ctx }/admin/listUser?pageIndex=${pageCount }">&nbsp;&nbsp;&nbsp;&nbsp;尾页</a></td>
+					        </c:if>
+					        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转到第<input type="text" name="page" size="2" id="inputPage">页&nbsp;&nbsp;
+							<input type="submit" value="跳转" name="cndok" class="go">
+							</td>
+				        </tr>
+				    </table>
+				</form>
+			</div>
 		</div>
 	</div>
 <!--footer-->
