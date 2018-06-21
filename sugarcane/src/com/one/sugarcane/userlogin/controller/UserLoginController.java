@@ -3,6 +3,8 @@ package com.one.sugarcane.userlogin.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,11 +67,20 @@ public class UserLoginController {
 			userLoginlog.setUserLogin(userLogin);
 			this.userLoginServiceImpl.updateUserLogin(userLoginlog);
 			request.getSession().setAttribute("user", userLogin.getUserInfo());
-			return "front/index";
+			
+			System.out.println("开始测试");
+			//查询登陆次数，若是第一次登陆，则跳转到完善个人信息页。
+			Set<UserLoginLog> userLoginLogs = userLogin.getUserLoginLog();
+			int num = userLoginLogs.size();
+			System.out.println("登录次数："+num);
+			if(num == 1) {
+				return "redirect:/publicCourseType/list.do";
+			}else {
+				return "front/index";
+			}
 		}else{
 			model.addAttribute("information", "邮箱或密码错误");
 			return "front/index";
-		
 		}
 	}
 	

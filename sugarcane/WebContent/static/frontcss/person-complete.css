@@ -8,8 +8,12 @@
 
 /*body*/
 .body{
-	width: 77.5em; 
+	/* width: 77.5em; 
 	height:43.75em;
+	margin: 0 auto; 
+	修改：冯海晴*/
+	width: 80% 
+	height:100%
 	margin: 0 auto;
 }
 

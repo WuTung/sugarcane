@@ -91,9 +91,9 @@
 <!--body-->
     <div class="body">
         <div class="left">
-            <div class="personimg"><img src="${ctx }/static/frontimages/timg0.jpg"></div>
-            <div class="nickname"><p>我的昵称</p></div>
-            <div class="reinfor"><a href="#">修改个人信息</a></div>
+            <div class="personimg"><img src="${userPicture }"></div>
+            <div class="nickname"><p>${user.userName }</p></div>
+            <div class="reinfor"><a href="${ctx }/publicCourseType/list1">修改个人信息</a></div>
             <div class="collect"><a href="../course/showCollections?collectionsPageIndex=1">我的收藏</a></div>
         </div>
         <div class="line"></div>
