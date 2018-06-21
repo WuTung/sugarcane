@@ -29,7 +29,7 @@
 			</div>
 		<!--全部课程选项卡-->
 			<div class="allclass">
-				<a href="allclass.html">全部课程</a>
+				<a href="../organization/orgLogin.jsp">全部课程</a>
 			</div>
 		<!--搜索框-->
 			<div class="sousuo">

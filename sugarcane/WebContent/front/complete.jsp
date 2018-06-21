@@ -85,7 +85,7 @@
 			<div class="bg_color" onClick="deleteLogin()" id="bg_filter" style="display: none;"></div>
 		<!--培训机构登录-->
 			<div class="org_login">
-				<a href="orgLogin.html">培训机构登录</a>
+				<a href="../organization/orgLogin.jsp">培训机构登录</a>
 			</div>
 		</div>
 	</div>
