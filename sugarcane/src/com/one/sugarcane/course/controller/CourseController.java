@@ -78,6 +78,8 @@ public class CourseController {
 			List<Course> list1 = this.courseServiceImpl.mainfestCourseByRecommend(f);
 			session.setAttribute("recommend", list1);
 		}
+		List<Course> courList = this.courseServiceImpl.six();
+		session.setAttribute("Sixrecommend", courList);
 		// List<Course> courseList=this.courseServiceImpl.listAll(coursePageIndex);
 		List<PublicCourseType> publicCourseTypeList = this.courseServiceImpl.selectPublicCourseType();
 		List<CourseType> courseTypeList = this.courseServiceImpl.selectCourseType();

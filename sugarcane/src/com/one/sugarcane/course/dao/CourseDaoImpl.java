@@ -402,11 +402,11 @@ public class CourseDaoImpl{
 				break;
 			}
 		}
-		System.out.println(courseId);
 		return courseId;
 	}
 	/**
 	 * 查询推荐的课程
+	 * @author qin 
 	 */
 	public List<Course>findCourseForRecommend(int [] b) {
 		List<Course> course = new ArrayList<Course>();
@@ -414,5 +414,20 @@ public class CourseDaoImpl{
 			course.add(this.selectByCourseID(i));
 		}
 		return course;
+	}
+	/**
+	 * 查询点击数前6的课程
+	 * @author qin 
+	 */
+	public List<Course>formerSixRecommend(){
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from UserClickCourse u group by u.courseId order by count(u.courseId) desc");
+		List<UserClickCourse> course1 = new ArrayList<UserClickCourse>();
+		q.setMaxResults(6);
+		course1 = q.list();
+		List<Course> course2 = new ArrayList<Course>();
+		for (UserClickCourse course : course1) {
+			course2.add(this.selectByCourseID(course.getCourseId()));
+		}
+		return course2;
 	}
 }
