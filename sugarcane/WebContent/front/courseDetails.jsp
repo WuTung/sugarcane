@@ -41,8 +41,18 @@
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<a href="javascript:void(0)" onClick="showBox()">登录</a>
-				<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				<c:choose>
+				<c:when test="${username == null }">
+				<!-- 顶部未登录 -->
+					<a href="javascript:void(0)" onClick="showBox()">登录</a>
+					<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				</c:when>
+				<c:otherwise>
+				<!-- 顶部已登录 -->
+					<a href="#" target="_blank"><strong>${username }</strong></a>
+					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">
@@ -83,7 +93,7 @@
 			</div>
 			<div class="bg_color" onClick="deleteLogin()" id="bg_filter" style="display: none;"></div>
 		<!--培训机构登录-->
-			<div class="org_lo gin">
+			<div class="org_login">
 				<a href="orgLogin.html">培训机构登录</a>
 			</div>
 		</div>
@@ -210,36 +220,6 @@
 						</div>
 					</div>
 				</form>
-			</div>
-			<h3>相关推荐</h3>
-			<div class="recommend">
-				<div class="recommend_content">
-					<div class="recommend_content_img">
-						<img src="${ctx }/static/frontimages/redshoes.jpg" alt="" width="270"
-							height="150" />
-					</div>
-					<div class="recommend_content_text">
-						<span>推荐一 北京红舞鞋</span>
-					</div>
-				</div>
-				<div class="recommend_content">
-					<div class="recommend_content_img">
-						<img src="${ctx }/static/frontimages/taiquandao.jpg" alt="" width="270"
-							height="150" />
-					</div>
-					<div class="recommend_content_text">
-						<span>推荐二 跆拳道培训</span>
-					</div>
-				</div>
-				<div class="recommend_content">
-					<div class="recommend_content_img">
-						<img src="${ctx }/static/frontimages/zhuolinsheji.jpg" alt=""
-							width="270" height="150" />
-					</div>
-					<div class="recommend_content_text">
-						<span>推荐三 房屋卓林设计</span>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

@@ -43,8 +43,18 @@
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<a href="javascript:void(0)" onClick="showBox()">登录</a>
-				<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				<c:choose>
+				<c:when test="${username == null }">
+				<!-- 顶部未登录 -->
+					<a href="javascript:void(0)" onClick="showBox()">登录</a>
+					<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				</c:when>
+				<c:otherwise>
+				<!-- 顶部已登录 -->
+					<a href="#" target="_blank"><strong>${username }</strong></a>
+					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">
@@ -148,53 +158,15 @@
 		<!--热门综合推荐块-->
 		<div class="second">
 			<img src="${ctx }/static/frontimages/hot.jpg" alt="hot" height="25px"/><h1>热门综合推荐</h1>
+			<c:forEach items="${Sixrecommend }" var="six">
 			<div class="second_hot">
 				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>舞蹈</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>外语</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>健身</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>插画</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>会计</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>健身</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>茶艺</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>金融</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
-				</div>
-				<div class="hot">
-					<img src="${ctx }/static/frontimages/2.jpg" alt="hot" height="115px"/>
-					<h3>健身</h3>
-					<p>如果你无法简单的表达你的思想，那只能说明你还不够了解它。</p>
+					<img src="${ctx }/static/images/${six.introductionImg1}" alt="hot" height="115px"/>
+					<a href="../course/courseDetails?courseID=${six.courseID }"><h3>${six.courseName }</h3></a>
+					<p>${six.courseBrief}</p>
 				</div>
 			</div>
+			</c:forEach>
 		</div>
 		
 		

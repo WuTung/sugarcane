@@ -340,4 +340,10 @@ public class CourseServiceImpl {
 	public List<Course>mainfestCourseByRecommend(int [] b) { 
 		return this.courseDaoImpl.findCourseForRecommend(b);
 	}
+	/**
+	 * 点击量前6的课程
+	 */
+	public List<Course>six(){
+		return this.courseDaoImpl.formerSixRecommend();
+	}
 }

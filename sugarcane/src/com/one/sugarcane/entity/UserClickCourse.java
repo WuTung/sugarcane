@@ -14,7 +14,7 @@ public class UserClickCourse {
 	private Integer id;
 	private int uid;
 	private int courseId;
-	private int courseTypeId;
+	private Integer courseTypeId;
 	@Id
 	@GeneratedValue(generator="a")
 	@GenericGenerator(name="a",strategy="identity")
@@ -38,10 +38,10 @@ public class UserClickCourse {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public int getCourseTypeId() {
+	public Integer getCourseTypeId() {
 		return courseTypeId;
 	}
-	public void setCourseTypeId(int courseTypeId) {
+	public void setCourseTypeId(Integer courseTypeId) {
 		this.courseTypeId = courseTypeId;
 	}
 
