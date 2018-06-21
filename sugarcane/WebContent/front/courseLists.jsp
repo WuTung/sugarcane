@@ -13,6 +13,17 @@
     <script src="${ctx }/static/frontjs/home.js"></script>
     <script src='${ctx }/static/frontjs/jquery-1.9.0.min.js'></script>
 </head>
+<SCRIPT>
+function dis(){
+	var b = true;
+	if(b == true){
+		var a = document.getElementById('pop');
+		a.style.display="block";		
+	}
+}
+
+
+</SCRIPT>
 <body>
 <div class="overall">
 <!--header-->
@@ -27,21 +38,31 @@
 				<a href="home.jsp">首页</a>
 			</div>
 		<!--全部课程选项卡-->
-			<div class="allclass">
-				<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
+			<div class="allclass">			
+					<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
 			</div>
 		<!--搜索框-->
 			<div class="sousuo">
 				<form> 
                     <div class="s_img">
-                        <a href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
+                        <a  href="${ctx }/front/search.jsp">搜索 <img src="${ctx }/static/frontimages/sousuo.png"></a> 
                     </div>
                 </form>
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<a href="javascript:void(0)" onClick="showBox()">登录</a>
-				<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				<c:choose>
+				<c:when test="${username == null }">
+				<!-- 顶部未登录 -->
+					<a href="javascript:void(0)" onClick="showBox()">登录</a>
+					<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				</c:when>
+				<c:otherwise>
+				<!-- 顶部已登录 -->
+					<a href="#" target="_blank"><strong>${username }</strong></a>
+					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
+				</c:otherwise>
+			    </c:choose>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">
@@ -89,6 +110,7 @@
 	</div>
 <!--body-->
     <div class="body">
+    <form action="${ctx }/ques/getquest.do">
         <div class="body_left">
      
                <div class="body_left_classify">
@@ -96,7 +118,7 @@
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType1.courseTypeID}">${courseType1.courseTypeName }</a>
                            <ul>
                            <c:forEach items="${publicCourseTypeLists1 }" var="publicCourseType1">
-                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType1.publicTypeId }">${publicCourseType1.publicTypeName }</a></li>
+                           <li><a href="${ctx }/ques/getquest.do?courseType=${courseType1.courseTypeName }" onclick="if(confirm('您是否想要通过答题来检测您的水平呢？')==false)return false;">${publicCourseType1.publicTypeName }</a></li>
                            </c:forEach>
                            </ul>
                        </li>
@@ -107,7 +129,7 @@
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType2.courseTypeID}">${courseType2.courseTypeName }</a>
                            <ul>
                            <c:forEach items="${publicCourseTypeLists2 }" var="publicCourseType2">
-                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType2.publicTypeId }">${publicCourseType2.publicTypeName }</a></li>
+                           <li><a href="${ctx }/ques/getquest.do?courseType=${courseType2.courseTypeName }"onclick="if(confirm('您是否想要通过答题来检测您的水平呢？')==false)return false;">${publicCourseType2.publicTypeName }</a></li>
                            </c:forEach>
                            </ul>
                        </li>
@@ -118,7 +140,7 @@
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType3.courseTypeID}">${courseType3.courseTypeName }</a>
                            <ul>
                            <c:forEach items="${publicCourseTypeLists3 }" var="publicCourseType3">
-                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType3.publicTypeId }">${publicCourseType3.publicTypeName }</a></li>
+                           <li><a href="${ctx }/ques/getquest.do?courseType=${publicCourseType3.publicTypeName }"onclick="if(confirm('您是否想要通过答题来检测您的水平呢？')==false)return false;">${publicCourseType3.publicTypeName }</a></li>
                            </c:forEach>
                            </ul>
                        </li>
@@ -129,7 +151,7 @@
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType4.courseTypeID}">${courseType4.courseTypeName }</a>
                            <ul>
                            <c:forEach items="${publicCourseTypeList4 }" var="publicCourseType3">
-                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType4.publicTypeId }">${publicCourseType4.publicTypeName }</a></li>
+                           <li><a href="${ctx }/ques/getquest.do?courseType=${publicCourseType4.publicTypeName }"onclick="if(confirm('您是否想要通过答题来检测您的水平呢？')==false)return false;">${publicCourseType4.publicTypeName }</a></li>
                            </c:forEach>
                            </ul>
                        </li>
@@ -140,7 +162,7 @@
                         <li><a href="../course/listAllCourseByCourseType?coursePageIndex=1&courseTypeID=${courseType0.courseTypeID}">${courseType0.courseTypeName }</a>
                            <ul>
                            <c:forEach items="${publicCourseTypeLists0 }" var="publicCourseType0">
-                           <li><a href="../course/listAllCourseByType?coursePageIndex=1&publicCourseTypeID=${publicCourseType0.publicTypeId }">${publicCourseType0.publicTypeName }</a></li>
+                           <li><a href="${ctx }/ques/getquest.do?courseType=${publicCourseType5.publicTypeName }"onclick="if(confirm('您是否想要通过答题来检测您的水平呢？')==false)return false;">${publicCourseType0.publicTypeName }</a></li>
                            </c:forEach>
                            </ul>
                        </li>
@@ -207,6 +229,14 @@
     </div>
 </div>
     <div id="backgroundImg"></div>
+    <div id="pop" >
+			<div id="pop_img">
+				
+			</div>
+			
+</form>
+		</div>
+
 <!--footer-->
 <div class="footer">
     <div class="footer_text">Copyright©2018-2019&nbsp;&nbsp;&nbsp;sugarcane&nbsp;&nbsp;&nbsp;联系我们</div>

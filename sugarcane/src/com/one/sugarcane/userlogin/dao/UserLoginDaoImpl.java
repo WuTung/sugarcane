@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.one.sugarcane.entity.UserInfo;
 import com.one.sugarcane.entity.UserLogin;
 import com.one.sugarcane.entity.UserLoginLog;
 
@@ -36,6 +37,14 @@ public class UserLoginDaoImpl {
 		this.sessionFactory.getCurrentSession().save(userLoginLog.getUserLogin());
 	}
 	
+public void updateUser(UserInfo u) {
+		
+		this.sessionFactory.getCurrentSession().save(u);
+	}
+	public UserInfo findByEmail2(String email){
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserInfo where userEmail='"+email+"'");
+		return (UserInfo) query.uniqueResult();
+	}
 
 
 

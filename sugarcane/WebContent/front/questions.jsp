@@ -91,197 +91,39 @@
     <div class="body">
         <div>
          <h2 align="center">Java测试题</h2>
-            <form>
+            <form action="${ctx }/ques/getanswer.do">
+            <c:set var="index" value="0" />
+            <c:forEach items="${questions}" var="item">
             <div class="one">
                 <table>                  
                     <tr>
-                        <td><span>1、Java类可作为（）</span></td>
+                        <td><span>${index+1}. ${item.questionStem }</span></td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" name="radio" value="1">A 类型定义机制
+                            <input type="radio" name="answer${index+1}" value="1">A ${item.option1 }
                         </td>    
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" name="radio" value="1">B 数据封装机制
+                            <input type="radio" name="answer${index+1}" value="1">B ${item.option2 }
                         </td>    
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" name="radio" value="1">C 类型定义机制和封装机制
+                            <input type="radio" name="answer${index+1}" value="1">C ${item.option3 }
                         </td>    
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" name="radio" value="1">D 上诉都不对
+                            <input type="radio" name="answer${index+1}" value="1">D ${item.option4 }
                         </td>    
                     </tr>
                 </table>
             </div>
-            <div class="one">
-                <table>                  
-                    <tr>
-                        <td><span>2、请选择以下选项</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                </table>
-            </div>
-            <div class="one">
-                <table>                  
-                    <tr>
-                        <td><span>3、请选择以下选项</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="o" value="3">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="o" value="3">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="o" value="3">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="o" value="3">单选一
-                        </td>    
-                    </tr>
-                </table>
-            </div>
-            <div class="one">
-                <table>                  
-                    <tr>
-                        <td><span>2、请选择以下选项</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                </table>
-            </div>
-            <div class="one">
-                <table>                  
-                    <tr>
-                        <td><span>2、请选择以下选项</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                </table>
-            </div>
-            <div class="one">
-                <table>                  
-                    <tr>
-                        <td><span>2、请选择以下选项</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                </table>
-            </div>
-            <div class="one">
-                <table>                  
-                    <tr>
-                        <td><span>2、请选择以下选项</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" name="io" value="2">单选一
-                        </td>    
-                    </tr>
-                </table>
-            </div>
-                <input type="button" value="提交" id="btn">
+                <c:set var="index" value="${index+1}" />
+				</c:forEach>
+                <input type="submit" value="提交" id="btn">
             </form>
         </div>
     </div>

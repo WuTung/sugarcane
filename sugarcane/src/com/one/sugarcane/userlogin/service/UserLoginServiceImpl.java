@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.one.sugarcane.userlogin.dao.UserLoginDaoImpl;
+import com.one.sugarcane.entity.UserInfo;
 import com.one.sugarcane.entity.UserLogin;
 import com.one.sugarcane.entity.UserLoginLog;
 import com.one.sugarcane.MD5Util.MD5Util;
@@ -45,6 +46,16 @@ public class UserLoginServiceImpl {
 	public void updateUserLogin(UserLoginLog userLoginLog) {
 		this.userLoginDaoImpl.updateUserLogin(userLoginLog);
 	}
-
+	public UserInfo getpass(String email) {
+		
+		UserInfo u = new UserInfo();
+		
+		u = userLoginDaoImpl.findByEmail2(email);
+		return u;
+	}
+	public void updateuserInfo(UserInfo u) {
+		 userLoginDaoImpl.updateUser(u);
+		
+	}
 	
 }

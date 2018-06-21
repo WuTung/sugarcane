@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.one.sugarcane.userlogin.service.UserLoginServiceImpl;
+import com.one.sugarcane.MD5Util.MD5Util;
+import com.one.sugarcane.entity.UserInfo;
 import com.one.sugarcane.entity.UserLogin;
 import com.one.sugarcane.entity.UserLoginLog;
+import com.one.sugarcane.mailUtil.SendmailUtil;
 
 /**
  * 培训机构登录
@@ -82,6 +85,47 @@ public class UserLoginController {
 			model.addAttribute("information", "邮箱或密码错误");
 			return "front/index";
 		}
+	}
+	@RequestMapping("/forget")
+	public String forget(@RequestParam String email,HttpServletRequest request) {
+		
+			
+			String hrefString = request.getScheme() + "://" +request.getServerName()
+			+":"+request.getLocalPort()
+			+request.getServletContext().getContextPath()
+			+"/front/resetpwd.jsp?email=" + email;
+			System.out.println(hrefString);
+			String href = "<a href='" + hrefString + "'>点击重置密码</a>如果链接不可用，拷贝" + hrefString +"到地址栏";
+			String title = "你好，请重置密码";
+			
+			System.out.print(hrefString);
+			SendmailUtil.doSendHtmlEmail(email, title, href);
+		
+		return "organization/forgetSuccess";
+	}
+	
+	@RequestMapping("/respsd")
+	public String resetPassword(@RequestParam String email,@RequestParam String password,@RequestParam String checkPWD,HttpServletRequest request) {
+	
+		if(password.equals(checkPWD)){
+			UserInfo u = (UserInfo)this.userLoginServiceImpl.getpass(email);
+			MD5Util md5 = new MD5Util();
+			String md5PWD = md5.generate(password);
+			u.getUserLogin().setPassword(md5PWD);
+			userLoginServiceImpl.updateuserInfo(u);;
+			return "front/reset1";
+	         }else {
+	        	 return"front/reset0";
+	         }	
+	}
+	
+	@RequestMapping("/outLogin")
+	public String outlogin(HttpServletRequest req) {
+	
+		HttpSession ht=req.getSession(true);
+		ht.removeAttribute("username");
+		
+		return "front/home";
 	}
 	
 }
