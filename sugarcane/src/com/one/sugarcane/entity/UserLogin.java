@@ -21,7 +21,7 @@ public class UserLogin {
 	private String password;
 	private String lastTime;
 	private String lastIP;
-	
+	private Integer forbid=0;
 	private Set<UserCollections>userCollections = new HashSet<UserCollections>();
 	private UserInfo userInfo;
 	private Set<UserLoginLog>userLoginLog = new HashSet<UserLoginLog>();
@@ -91,6 +91,12 @@ public class UserLogin {
 		this.userCollections = userCollections;
 		this.userInfo = userInfo;
 		this.userLoginLog = userLoginLog;
+	}
+	public Integer getForbid() {
+		return forbid;
+	}
+	public void setForbid(Integer forbid) {
+		this.forbid = forbid;
 	}
 	
 }
