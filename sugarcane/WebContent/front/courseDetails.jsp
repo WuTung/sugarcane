@@ -29,7 +29,7 @@
 			</div>
 		<!--全部课程选项卡-->
 			<div class="allclass">
-				<a href="../organization/orgLogin.jsp">全部课程</a>
+				<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
 			</div>
 		<!--搜索框-->
 			<div class="sousuo">
@@ -41,18 +41,8 @@
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<c:choose>
-				<c:when test="${username == null }">
-				<!-- 顶部未登录 -->
-					<a href="javascript:void(0)" onClick="showBox()">登录</a>
-					<a href="javascript:void(0)" onClick="registBox()">注册</a>
-				</c:when>
-				<c:otherwise>
-				<!-- 顶部已登录 -->
-					<a href="#" target="_blank"><strong>${username }</strong></a>
-					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
-				</c:otherwise>
-			</c:choose>
+				<a href="javascript:void(0)" onClick="showBox()">登录</a>
+				<a href="javascript:void(0)" onClick="registBox()">注册</a>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">
@@ -93,7 +83,7 @@
 			</div>
 			<div class="bg_color" onClick="deleteLogin()" id="bg_filter" style="display: none;"></div>
 		<!--培训机构登录-->
-			<div class="org_login">
+			<div class="org_lo gin">
 				<a href="orgLogin.html">培训机构登录</a>
 			</div>
 		</div>
@@ -104,10 +94,12 @@
 				<div class="videos">
 					<video src="${ctx }/static/video/movie.ogg" controls="controls">
 					Your browser does not support the video tag. </video>
-					<a href="../course/courseDetails?courseID=${courseDetails.courseID }">❤收藏</a>
+					<a id="collectiona" href="../course/courseDetails?courseID=${courseDetails.courseID }">❤收藏</a>
 					<!--弹出消息-->
+					
 			<div class="fadeud">
-				<p>已收藏</p>
+				<p id="collectionp">收藏成功！</p>  		
+				            
 			</div>
 
 				</div>
@@ -221,6 +213,36 @@
 					</div>
 				</form>
 			</div>
+			<h3>相关推荐</h3>
+			<div class="recommend">
+				<div class="recommend_content">
+					<div class="recommend_content_img">
+						<img src="${ctx }/static/frontimages/redshoes.jpg" alt="" width="270"
+							height="150" />
+					</div>
+					<div class="recommend_content_text">
+						<span>推荐一 北京红舞鞋</span>
+					</div>
+				</div>
+				<div class="recommend_content">
+					<div class="recommend_content_img">
+						<img src="${ctx }/static/frontimages/taiquandao.jpg" alt="" width="270"
+							height="150" />
+					</div>
+					<div class="recommend_content_text">
+						<span>推荐二 跆拳道培训</span>
+					</div>
+				</div>
+				<div class="recommend_content">
+					<div class="recommend_content_img">
+						<img src="${ctx }/static/frontimages/zhuolinsheji.jpg" alt=""
+							width="270" height="150" />
+					</div>
+					<div class="recommend_content_text">
+						<span>推荐三 房屋卓林设计</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	    <div id="backgroundImg"></div>
@@ -230,29 +252,7 @@
 	</div>
 </body>
 <script>
-function updatecar(obj){
-	console.log(obj.getAttribute('goodID'));
-	var goodID = obj.getAttribute('goodID');
-	$.ajax({
-		type:"get",
-		url:"http://datainfo.duapp.com/shopdata/updatecar.php",
-		data:{userID:localStorage.getItem('userID'),goodsID:goodID,number:1},
-		success:function(data){
-			if(data == 0){
-				console.log(0);
-				$('.fadeudfail').fadeIn();
-				setTimeout(function(){$('.fadeudfail').fadeOut();},1500);
-			}else{
-				console.log(1);
-				$('.fadeud').fadeIn();
-				setTimeout(function(){$('.fadeud').fadeOut();},1500);
-			}
-		},
-		error:function(err){
-			console.log(err);
-		}
-	});
-}
+
 window.onload = function(){
 
 // 绑定事件加点击样式
@@ -264,6 +264,17 @@ for(var i = 0; i < adds.length; i++){
 		adds[i].addEventListener('touchstop', function () { });
 	}(i))
 }
+
+$("#collectiona").click(function(){
+	console.log('show');
+    $(".fadeud").fadeIn();  
+    setTimeout(function(){  
+        $(".fadeud").fadeOut();},1000);  
+})
+
 }
-</script>
+  
+      
+</script>  
+
 </html>

@@ -1,5 +1,5 @@
 .body{
-	height: 110.625em;
+	height: 135.625em;
 	width: 75%;
 	margin:0 auto;
 	background-color: rgba(248,248,255,0.5);
@@ -43,18 +43,27 @@
 }
 /*弹框*//*弹框*//*弹框*//*弹框*//*弹框*//*弹框*//*弹框*/
 .fadeud{
+	margin:0 auto;
 	display: none;
 	font-size: 0.34rem;
 	color: #fff;
 	position:fixed;
 	z-index: 9999;
-	bottom: 2.3rem;
-	left: 2.5rem;
+	bottom: 300px;
+	left:600px;
+	background:#fff;
+	width:100px;
+	height:50px;
+	border:1px solid #000;
+	text-align:center;
+	border-radius:5px;
 }
 .fadeud >p{
-	background: rgba(0,0,0,0.5);
-	padding: 0.1rem 0.2rem;
-	border-radius: 0.1rem;
+	background: #fff;
+	line-height:45px;
+	font-size:16px;
+	color:#000;
+	border-radius:5px;
 }
 .fadeudfail{
 	display: none;
