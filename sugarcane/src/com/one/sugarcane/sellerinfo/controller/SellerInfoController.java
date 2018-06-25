@@ -139,6 +139,7 @@ public class SellerInfoController {
 		sellerLogin.setSellerLoginName(name);
 		sellerInfo.setSellerLogin(sellerLogin);
 		sellerInfoServiceImpl.saveSellerInfo(sellerInfo);
+		request.getSession().setAttribute("brief", sellerInfo.getBrief());
 		return "organization/orgLogin";
 	}
 
