@@ -39,7 +39,7 @@
 				<table>
 					<tr><p class="title">简介</p></tr>
 					<tr><!-- 原简介本身更改 -->
-						<td><div><textarea class="form-control" cols="95" rows="20" placeholder="请输入您的机构简介" name="brief"></textarea></div></td>
+						<td><div><textarea class="form-control" cols="95" rows="20" placeholder="请输入您的机构简介" name="brief">${breif }</textarea></div></td>
 					</tr>
 				</table>
 				<div>
