@@ -51,7 +51,7 @@
 				</c:when>
 				<c:otherwise>
 				<!-- 顶部已登录 -->
-					<a href="#" target="_blank"><strong>${username }</strong></a>
+					<a href="${ctx }/publicCourseType/list1" target="_blank"><strong>${username }</strong></a>
 					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
 				</c:otherwise>
 			</c:choose>
@@ -193,7 +193,7 @@
 			
 			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
 			<c:forEach  items="${courseList1}" begin="0" end="4" var="courseList1" varStatus="i">		
-				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList1.courseID }"><img src="${ctx }/static/${courseList1.introductionImg1}" alt="project"/></a></td>
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList1.courseID }"><img src="${ctx }/static/images/${courseList1.introductionImg1}" alt="project"/></a></td>
 		    </c:forEach>
 			</tr>
 			<tr>
@@ -221,7 +221,7 @@
 			
 			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
 			<c:forEach  items="${courseList2}" begin="0" end="4" var="courseList2" varStatus="i">		
-				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList2.courseID }"><img src="${ctx }/static/${courseList2.introductionImg1}" alt="project"/></a></td>
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList2.courseID }"><img src="${ctx }/static/images/${courseList2.introductionImg1}" alt="project"/></a></td>
 		    </c:forEach>
 			</tr>
 			<tr>
@@ -250,7 +250,7 @@
 			
 			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
 			<c:forEach  items="${courseList3}" begin="0" end="4" var="courseList3" varStatus="i">		
-				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList3.courseID }"><img src="${ctx }/static/${courseList3.introductionImg1}" alt="project"/></a></td>
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList3.courseID }"><img src="${ctx }/static/images/${courseList3.introductionImg1}" alt="project"/></a></td>
 		    </c:forEach>
 			</tr>
 			<tr>
@@ -277,7 +277,7 @@
 			
 			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
 			<c:forEach  items="${courseList4}" begin="0" end="4" var="courseList4" varStatus="i">		
-				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList4.courseID }"><img src="${ctx }/static/${courseList4.introductionImg1}" alt="project"/></a></td>
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList4.courseID }"><img src="${ctx }/static/images/${courseList4.introductionImg1}" alt="project"/></a></td>
 		    </c:forEach>
 			</tr>
 			<tr class="changeTr1" style="display: none;">
@@ -304,7 +304,7 @@
 			
 			<td rowspan="2" class="project_3"><a href="#"><img src="${ctx }/static/frontimages/c.jpg" alt="project"/></td>
 			<c:forEach  items="${courseList5}" begin="0" end="4" var="courseList5" varStatus="i">		
-				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList5.courseID }"><img src="${ctx }/static/${courseList5.introductionImg1}" alt="project"/></a></td>
+				<td class="project_4"><a href="../course/courseDetails?courseID=${courseList5.courseID }"><img src="${ctx }/static/images/${courseList5.introductionImg1}" alt="project"/></a></td>
 		    </c:forEach>
 			</tr>
 			<tr class="changeTr1" style="display: none;">

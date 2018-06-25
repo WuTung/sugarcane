@@ -6,6 +6,7 @@ public class Searcher {
 	private String brief;
 	private String noHighLighteTitle;
 	private String id;
+	private String img;
 	
 	public String getTitle() {
 		return title;
@@ -35,10 +36,11 @@ public class Searcher {
 	public Searcher() {
 		
 	}
-	@Override
-	public String toString() {
-		return "Searcher [title=" + title + ", brief=" + brief + ", noHighLighteTitle=" + noHighLighteTitle + ", id="
-				+ id + "]";
+	public String getImg() {
+		return img;
 	}
-	
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 }

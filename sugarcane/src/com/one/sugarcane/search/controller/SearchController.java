@@ -41,7 +41,6 @@ public class SearchController {
 	public void serachBySeller(@RequestParam("searchName") String name, HttpServletResponse response,
 			HttpSession sessione ,@RequestParam("currentPage") Integer currentPage) throws Exception {
 		list = this.SellerInfoSearchService.searchBySellerName(name, currentPage);
-
 		String b[] = this.SellerInfoSearchService.totalNumber(name);
 		sessione.setAttribute("pageIndex1", b[0]);
 		sessione.setAttribute("totalNumber1", b[1]);

@@ -90,7 +90,7 @@
 			</div>
 		<!--全部课程选项卡-->
 			<div class="allclass">
-				<a href="allclass.html">全部课程</a>
+				<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
 			</div>
 		<!--搜索框-->
 			<div class="sousuo">
@@ -102,8 +102,18 @@
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<a href="javascript:void(0)" onClick="showBox()">登录</a>
-				<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				<c:choose>
+				<c:when test="${username == null }">
+				<!-- 顶部未登录 -->
+					<a href="javascript:void(0)" onClick="showBox()">登录</a>
+					<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				</c:when>
+				<c:otherwise>
+				<!-- 顶部已登录 -->
+					<a href="#" target="_blank"><strong>${username }</strong></a>
+					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">
@@ -155,13 +165,13 @@
         	<div class="personimg">
             <!-- 上传头像 -->
             <form action="${pageContext.request.contextPath}/userInfo/userpic" method="post" id="touxiang" enctype="multipart/form-data">
-	            <img id="img_2" src="${userPicture }" onclick="tempClick()">
+	            <img id="img_2" src="${ctx }/static/images/${user.userPicture}" onclick="tempClick()">
 	            <div><input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="img_1" name="main_img" onchange="PreviewImg(main_img)"></div>
             </form>
             </div>
             <div class="nickname"><p>${user.userName }</p></div>
             <div class="reinfor"><a href="${pageContext.request.contextPath}/publicCourseType/list1">修改个人信息</a></div>
-            <div class="collect"><a href="#">我的收藏</a></div>
+            <div class="collect"><a href="../course/showCollections?collectionsPageIndex=1">我的收藏</a></div>
         </div>
         <div class="line"></div>
         <div class="right">

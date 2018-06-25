@@ -108,6 +108,7 @@ public class CourseSearch {
 			searcher.setNoHighLighteTitle(document.get("courseName"));
 			searcher.setBrief(document.get("courseBrief"));
 			searcher.setId(document.get("id"));
+			searcher.setImg(document.get("img"));
 			String contents = document.get("courseName");
 			if (contents != null) {
 				// 把全部得分高的摘要给显示出来
