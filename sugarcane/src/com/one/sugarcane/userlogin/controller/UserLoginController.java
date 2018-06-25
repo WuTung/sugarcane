@@ -70,6 +70,7 @@ public class UserLoginController {
 			userLoginlog.setUserLogin(userLogin);
 			this.userLoginServiceImpl.updateUserLogin(userLoginlog);
 			request.getSession().setAttribute("user", userLogin.getUserInfo());
+			request.getSession().setAttribute("username", userLogin.getUserInfo().getUserName());
 			
 			System.out.println("开始测试");
 			//查询登陆次数，若是第一次登陆，则跳转到完善个人信息页。
