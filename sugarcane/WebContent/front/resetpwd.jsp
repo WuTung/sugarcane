@@ -110,19 +110,13 @@
     <!--表单-->
         <div class="body_bottom">
             <div class="form">
-                <form action="" onsubmit="javascript:alert('重置成功！');">
+                <form action="${ctx}/userLogin/respsd.do" >
                     <div class="reset">
                         <span>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱&nbsp;：</span>
                         <div class="form_input">
                             <input type="email" name="email" placeholder="请输入正确的邮箱账号" id="checkemail" onchange="check_email()" required="required" />
                         </div>
                         <span id="mail"></span>
-                    </div>
-                    <div class="reset">
-                        <span>旧&nbsp;密&nbsp;码&nbsp;：</span>
-                        <div class="form_input">
-                            <input type="text" placeholder="请输入旧密码" />
-                        </div>
                     </div>
                     <div class="reset">
                         <span>新&nbsp;密&nbsp;码&nbsp;：</span>
