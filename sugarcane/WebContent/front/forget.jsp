@@ -94,18 +94,13 @@
             <div class="tip"><span><h3>通过绑定的邮箱找回密码</h3></span></div>
         <!--表单-->
             <div class="body_form">
-                <form action="">
+                <form action="${ctx }/userLogin/forget.do">
                 <!--单行文本框-->
                     <div class="form_text">
                         <span>邮箱号：</span>
                         <input type="email" name="email" placeholder="请输入正确邮箱账号" id="forget_email" onchange="check_email()" required="required">
                     </div>
-                <!--验证码 编程时用JAVA写-->
-                    <div class="identifyingCode">
-                        <span>验证码：</span>
-                        <input type="text" placeholder="请输入正确的验证码"/>
-                        <span id="idcode"></span><!--点击图片可更换验证码-->
-                    </div>
+               
                 <!--按钮-->
                     <div class="button">
                         <input type="submit" id="btns" value="发送到验证邮箱" />
