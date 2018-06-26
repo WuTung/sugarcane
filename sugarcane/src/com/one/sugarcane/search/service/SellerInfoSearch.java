@@ -103,6 +103,7 @@ public class SellerInfoSearch {
 			searcher.setNoHighLighteTitle(document.get("sellerName"));
 			searcher.setBrief(document.get("brief"));
 			searcher.setId(document.get("sellerId"));
+			searcher.setImg(document.get("img"));
 			String contents = document.get("sellerName");
 			if (contents != null) {
 				// 把全部得分高的摘要给显示出来

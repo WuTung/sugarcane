@@ -70,6 +70,7 @@ public class TestCourse {
                 map.put("price", rs.getString(4));  
                 map.put("phoneNumber", rs.getString(5));
                 map.put("teacher", rs.getString(13));  
+                map.put("img", rs.getString(6));
                 this.dbList.add(map);  
             }  
         } catch (ClassNotFoundException e) {  
@@ -133,7 +134,7 @@ public class TestCourse {
             doc.add(new TextField("phoneNumber", map.get("phoneNumber").toString(),Field.Store.YES ));  
             doc.add(new TextField("teacher", map.get("teacher").toString(),Field.Store.YES ));
             doc.add(new TextField("courseBrief", map.get("courseBrief").toString(),Field.Store.YES ));  
-         
+            doc.add(new TextField("img", map.get("img").toString(),Field.Store.YES ));
             //增加共同域  
 //            doc.add(new TextField("all", "0",Field.Store.YES));  
             try {  

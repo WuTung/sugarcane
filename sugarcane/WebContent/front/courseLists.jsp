@@ -201,7 +201,7 @@ function dis(){
              <c:forEach  items="${courseList}" var="courseList" varStatus="i">
                 <div class="righttwotable">
                     <div class="one">
-                        <a href="../course/courseDetails?courseID=${courseList.courseID }"><img src="${ctx }/static/${courseList.introductionImg1}" alt="" width="130px" height="80px"></a>
+                        <a href="../course/courseDetails?courseID=${courseList.courseID }"><img src="${ctx }/static/images/${courseList.introductionImg1}" alt="" width="130px" height="80px"></a>
                     </div>
                     <div class="two"><span><a href="#">${courseList.courseName }</a></span><br>${courseList.courseBrief }
                     </div>

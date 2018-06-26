@@ -110,10 +110,10 @@ public class UserInfoController {
 		//插入头像
 		String docBase = "D:/Sugarcane/user/img/";
 		//getOriginalFilename : 获取上传文件的原名
-		String imgName=new Date().getTime()+file.getOriginalFilename();
+		String imgName=file.getOriginalFilename();
 		System.out.println(imgName);
 		String path=docBase+imgName;
-		File newFile=new File(path);
+		File newFile=new File(imgName);
 		//通过CommonsMultipartFile的方法直接写文件（注意这个时候）
 		try {
 			file.transferTo(newFile);
@@ -121,7 +121,7 @@ public class UserInfoController {
 			System.out.println("写文件错误");
 		}
 		//将路径存入数据库代码
-		userInfo.setUserPicture(path);
+		userInfo.setUserPicture(imgName);
 		this.userInfoServiceImpl.updateUserInfo(userInfo);
 		return "redirect:/publicCourseType/list1.do";
 	}
@@ -179,6 +179,8 @@ public class UserInfoController {
 		userInfo.setAddress_city(address_city);
 		userInfo.setAddress_area(address_area);
 		this.userInfoServiceImpl.updateUserInfo(userInfo);
+		session.setAttribute("user", userInfo);
+		session.setAttribute("username", userInfo.getUserName());
 		return "redirect:/front/home.jsp";
 	}
 }

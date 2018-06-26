@@ -41,8 +41,18 @@
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<a href="javascript:void(0)" onClick="showBox()">登录</a>
-				<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				<c:choose>
+				<c:when test="${username == null }">
+				<!-- 顶部未登录 -->
+					<a href="javascript:void(0)" onClick="showBox()">登录</a>
+					<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				</c:when>
+				<c:otherwise>
+				<!-- 顶部已登录 -->
+					<a href="#" target="_blank"><strong>${username }</strong></a>
+					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">
@@ -83,7 +93,7 @@
 			</div>
 			<div class="bg_color" onClick="deleteLogin()" id="bg_filter" style="display: none;"></div>
 		<!--培训机构登录-->
-			<div class="org_lo gin">
+			<div class="org_login">
 				<a href="orgLogin.html">培训机构登录</a>
 			</div>
 		</div>
@@ -128,7 +138,7 @@
 			<div class="intro">
 				<div class="intro_top">
 					<div class="intro_img1">
-						<a href="#"><img src="${ctx }/static/${courseDetails.introductionImg1}"
+						<a href="#"><img src="${ctx }/static/images/${courseDetails.introductionImg1}"
 							alt=""></a>
 					</div>
 					<div class="intro_text1">
@@ -161,7 +171,7 @@
 					<c:forEach var="evaluateList"  items="${evaluateList }">
 					<div class="evaluate_content">
 						<div class="evaluate_content_person">
-							<img src="${ctx }/static/${evaluateList.userInfo.userPicture}" alt="" /><br>
+							<img src="${ctx }/static/images/${evaluateList.userInfo.userPicture }" alt="" /><br>
 							<span>${evaluateList.userInfo.userName }</span>
 						</div>
 						<div class="evaluate_content_text">

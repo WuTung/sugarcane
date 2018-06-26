@@ -29,7 +29,7 @@
 			</div>
 		<!--全部课程选项卡-->
 			<div class="allclass">
-				<a href="allclass.html">全部课程</a>
+				<a href="../course/listAllCourse?coursePageIndex=1">全部课程</a>
 			</div>
 		<!--搜索框-->
 			<div class="sousuo">
@@ -41,8 +41,18 @@
 			</div>
 		<!--用户注册登录-->
 			<div class="login_regist">
-				<a href="javascript:void(0)" onClick="showBox()">登录</a>
-				<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				<c:choose>
+				<c:when test="${username == null }">
+				<!-- 顶部未登录 -->
+					<a href="javascript:void(0)" onClick="showBox()">登录</a>
+					<a href="javascript:void(0)" onClick="registBox()">注册</a>
+				</c:when>
+				<c:otherwise>
+				<!-- 顶部已登录 -->
+					<a href="#" target="_blank"><strong>${username }</strong></a>
+					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="event" id="login_box" style="display: none;">
 				<div class="login">

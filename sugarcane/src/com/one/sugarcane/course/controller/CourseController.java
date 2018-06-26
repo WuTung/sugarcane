@@ -76,6 +76,9 @@ public class CourseController {
 				}
 			}
 			List<Course> list1 = this.courseServiceImpl.mainfestCourseByRecommend(f);
+			if(a == 0) {
+				list1 = this.courseServiceImpl.mainfest();
+			}
 			session.setAttribute("recommend", list1);
 		}
 		List<Course> courList = this.courseServiceImpl.six();
@@ -141,8 +144,8 @@ public class CourseController {
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 提交评论
-	 * 
 	 * @param render
+	 * @param evaluatePageIndex
 	 * @param content
 	 * @param response
 	 * @param request
@@ -151,6 +154,7 @@ public class CourseController {
 	 */
 	@RequestMapping("/savaEvaluate")
 	public void addOneEvaluate(@RequestParam(value = "render", defaultValue = "1") Integer render,
+			@RequestParam(value = "evaluatePageIndex", defaultValue = "1") Integer evaluatePageIndex,
 			// @RequestParam("userID")Integer userID,
 			// @RequestParam("courseID")Integer courseID,
 			// @RequestParam("evaluateImg")String evaluateImg,
@@ -164,7 +168,7 @@ public class CourseController {
 		// evaluate.setEvaluateImg(evaluateImg);
 		evaluate.setRender(render);
 		// 绝对路径
-		SensitiveWordFilter filter = new SensitiveWordFilter("G:/javaEESpace/sugarcane0607/sugarcane/resource/key.txt");
+		SensitiveWordFilter filter = new SensitiveWordFilter("E:\\gitRepository\\sugarcane\\sugarcane\\resource\\key.txt");
 		// 相对路径不成功
 		// SensitiveWordFilter filter = new
 		// SensitiveWordFilter("../../../../../resource/key.txt");
@@ -173,6 +177,24 @@ public class CourseController {
 
 		evaluate.setContent(res);
 		this.courseServiceImpl.saveEvaluate(evaluate);
+		
+		// 显示评价
+		        Integer courseID=(Integer) session.getAttribute("courseID");
+				List<Evaluate> evaluateList = this.courseServiceImpl.listEvaluateByCourseID(courseID, evaluatePageIndex);
+				session.setAttribute("evaluateList", evaluateList);
+				// 分页
+				int pageCount = this.courseServiceImpl.getEvaluatePageCountByCourse(courseID);
+				int pageIndex = 1;
+				if (0 == pageIndex || pageIndex < 0) {
+					session.setAttribute("evaluatePageIndex", 1);
+
+				} else {
+					session.setAttribute("evaluatePageIndex", evaluatePageIndex);
+				}
+				System.out.print(evaluatePageIndex);
+				System.out.println(pageCount);
+				session.setAttribute("evaluatePageCount", pageCount);
+
 		response.sendRedirect("/Sugarcane/front/courseDetails.jsp");
 
 	}
@@ -394,7 +416,7 @@ public class CourseController {
 		System.out.println(pageCount);
 		// session.setAttribute("evaluatePageIndex",pageIndex);
 		session.setAttribute("evaluatePageCount", pageCount);
-
+		session.setAttribute("courseID", courseID);
 		response.sendRedirect("/Sugarcane/front/courseDetails.jsp");
 	}
 
