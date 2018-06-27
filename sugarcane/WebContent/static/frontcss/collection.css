@@ -166,14 +166,14 @@
 .colls_items_text {
 	border:0.0625em gray solid;
 	width: 13em;
-	height: 3em;
+	height: 4.5em;
 	position: relative;
 	top:1em;
 	left: 1em;
 }
 .colls_items_text_content {
 	width: 10em;
-	height: 2.5em;
+	height: 4em;
 	overflow: hidden;
 	float: left;
 }

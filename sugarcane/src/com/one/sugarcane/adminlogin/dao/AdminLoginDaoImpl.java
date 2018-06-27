@@ -31,7 +31,6 @@ public class AdminLoginDaoImpl {
 		List<AdminLogin> lista = query.list();
 		if(lista.size()!=0) {
 			AdminLogin adminLogin = lista.get(0);
-			System.out.println("dao层:"+adminLogin.getAdminName());
 			return adminLogin;
 		}
 		return null;

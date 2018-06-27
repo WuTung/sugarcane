@@ -49,7 +49,7 @@
 				</c:when>
 				<c:otherwise>
 				<!-- 顶部已登录 -->
-					<a href="#" target="_blank"><strong>${username }</strong></a>
+					<a href="${ctx }/publicCourseType/list1" target="_blank"><strong>${username }</strong></a>
 					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
 				</c:otherwise>
 			</c:choose>
@@ -66,8 +66,7 @@
 					    <input type="password" name="" id="pwd_login" value="" placeholder="请输入密码" onblur="check_box2()"/>
 					    <div class="error_pwd" align="center"></div>
 					    <input type="submit" name="" id="" value="登录" class="btn" />
-					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="">
-					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="" onClick="regist()">
+<input type="button" name="" id="forgetPwd" value="忘记密码?" class="" onclick="javascrtpt:window.location.href='${ctx }/front/forget.jsp'"> 					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="" onClick="regist()">
 				    </form>
 				</div>
 			</div>
@@ -101,7 +100,12 @@
 <!--body-->
     <div class="body">
         <div class="left">
-            <div class="personimg"><img src="${userPicture }"></div>
+            <div class="personimg">           
+            <!-- 上传头像 -->
+            <form action="${pageContext.request.contextPath}/userInfo/userpic" method="post" id="touxiang" enctype="multipart/form-data">
+	            <img id="img_2" src="${ctx }/static/images/${user.userPicture}" onclick="tempClick()">
+	            <div><input type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" size="1" id="img_1" name="main_img" onchange="PreviewImg(main_img)"></div>
+            </form></div>
             <div class="nickname"><p>${user.userName }</p></div>
             <div class="reinfor"><a href="${ctx }/publicCourseType/list1">修改个人信息</a></div>
             <div class="collect"><a href="../course/showCollections?collectionsPageIndex=1">我的收藏</a></div>
@@ -124,7 +128,7 @@
             <a href="../course/courseDetails?courseID=${collectionList.course.courseID }">
                 <div class="colls_items">
                     <div class="colls_items_img">
-                        <img src="${ctx }/static/${collectionList.course.introductionImg1}">
+                        <img src="${ctx }/static/images/${collectionList.course.introductionImg1}">
                     </div>
                     
                     <div class="colls_items_text">
@@ -133,7 +137,7 @@
                             <span class="colls_items_text_content_span2">${collectionList.course.courseBrief}</span>
                         </div>
                         <div class="colls_items_text_del">
-                            <a href="../course/deleteCollection?collectionID=${collectionList.ID }&collectionsPageIndex=1"><img src="${ctx }/static/frontimages/dele.jpg"></a>
+                            <a href="../course/deleteCollection?collectionID=${collectionList.ID }&collectionsPageIndex=1"><img src="${ctx }/static/images/dele.jpg"></a>
                         </div>
                     </div>
                 </div>

@@ -21,9 +21,10 @@
   <a href="#"><img src="${ctx}/static/images/exit.png" id="exitimg"></a>
  
 </p>  
+</div >
+<div align="center">
+	<span style='font-size:36px;'>发送邮件成功！！</span>
 </div>
-	发送邮件成功！！
-
 <div id="footer">
      ©CopyRight sugarcane <a href="#">联系我们</a>
 </div><!--footer-->

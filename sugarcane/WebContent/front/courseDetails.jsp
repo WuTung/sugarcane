@@ -49,7 +49,7 @@
 				</c:when>
 				<c:otherwise>
 				<!-- 顶部已登录 -->
-					<a href="#" target="_blank"><strong>${username }</strong></a>
+					<a href="${ctx }/publicCourseType/list1" target="_blank"><strong>${username }</strong></a>
 					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
 				</c:otherwise>
 			</c:choose>
@@ -66,7 +66,7 @@
 					    <input type="password" name="" id="pwd_login" value="" placeholder="请输入密码" onblur="check_box2()"/>
 					    <div class="error_pwd" align="center"></div>
 					    <input type="submit" name="" id="" value="登录" class="btn" />
-					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="">
+					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="" onclick="javascrtpt:window.location.href='${ctx }/front/forget.jsp'"> 
 					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="" onClick="regist()">
 				    </form>
 				</div>
@@ -94,7 +94,7 @@
 			<div class="bg_color" onClick="deleteLogin()" id="bg_filter" style="display: none;"></div>
 		<!--培训机构登录-->
 			<div class="org_login">
-				<a href="orgLogin.html">培训机构登录</a>
+				<a href="../organization/orgLogin.jsp">培训机构登录</a>
 			</div>
 		</div>
 	</div>
@@ -104,12 +104,10 @@
 				<div class="videos">
 					<video src="${ctx }/static/video/movie.ogg" controls="controls">
 					Your browser does not support the video tag. </video>
-					<a id="collectiona" href="../course/courseDetails?courseID=${courseDetails.courseID }">❤收藏</a>
+					<a id="collectiona" href="../course/saveCollections?courseID=${courseDetails.courseID }">❤收藏</a>
 					<!--弹出消息-->
-					
 			<div class="fadeud">
-				<p id="collectionp">收藏成功！</p>  		
-				            
+				<p id="collectionp">收藏成功！</p>  		       
 			</div>
 
 				</div>

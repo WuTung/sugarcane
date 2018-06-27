@@ -59,7 +59,7 @@ function dis(){
 				</c:when>
 				<c:otherwise>
 				<!-- 顶部已登录 -->
-					<a href="#" target="_blank"><strong>${username }</strong></a>
+					<a href="${ctx }/publicCourseType/list1" target="_blank"><strong>${username }</strong></a>
 					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
 				</c:otherwise>
 			    </c:choose>
@@ -76,7 +76,7 @@ function dis(){
 					    <input type="password" name="" id="pwd_login" value="" placeholder="请输入密码" onblur="check_box2()"/>
 					    <div class="error_pwd" align="center"></div>
 					    <input type="submit" name="" id="" value="登录" class="btn" />
-					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="">
+					    <input type="button" name="" id="forgetPwd" value="忘记密码?" class="" onclick="javascrtpt:window.location.href='${ctx }/front/forget.jsp'"> 
 					    <input type="button" name="" id="noAccount" value="没有账号?去注册" class="" onClick="regist()">
 				    </form>
 				</div>

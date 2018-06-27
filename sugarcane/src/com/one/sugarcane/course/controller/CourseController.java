@@ -108,11 +108,16 @@ public class CourseController {
 
 	@RequestMapping("/deleteCollection")
 	public void deleteCollection(@RequestParam("collectionID") Integer collectionID, HttpServletResponse response,
-			HttpServletRequest request, HttpSession session) throws IOException {
+			HttpServletRequest request, HttpSession session 
+			,@RequestParam(value = "collectionsPageIndex", defaultValue = "1") Integer collectionsPageIndex) throws IOException {
 		UserCollections userCollection = this.courseServiceImpl.findCollectionByID(collectionID);
+		int f = (int) session.getAttribute("userId");
 		userCollection.setCollected(1);
 		userCollection.setCollecting(0);
 		this.courseServiceImpl.saveUserCollections(userCollection);
+		List<UserCollections> collectionList = this.courseServiceImpl.findUserCollectionsByUserID(f,
+				collectionsPageIndex);
+		session.setAttribute("collectionList", collectionList);
 		response.sendRedirect("/Sugarcane/front/collection.jsp");
 
 	}
@@ -121,13 +126,13 @@ public class CourseController {
 	public void saveCollection(
 			@RequestParam(value = "collectionsPageIndex", defaultValue = "1") Integer collectionsPageIndex,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws IOException {
-		int userID = 4;
-		List<UserCollections> collectionList = this.courseServiceImpl.findUserCollectionsByUserID(userID,
+		int f = (int) session.getAttribute("userId");
+		List<UserCollections> collectionList = this.courseServiceImpl.findUserCollectionsByUserID(f,
 				collectionsPageIndex);
 		session.setAttribute("collectionList", collectionList);
 
 		// 分页
-		int collectionsPageCount = this.courseServiceImpl.getcollectionsPageCountByUserID(userID);
+		int collectionsPageCount = this.courseServiceImpl.getcollectionsPageCountByUserID(f);
 		// int pageIndex=1;
 		if (0 == collectionsPageIndex || collectionsPageIndex < 0) {
 			session.setAttribute("collectionsPageIndex", 1);
@@ -369,37 +374,6 @@ public class CourseController {
 		SellerInfo sellerInfo = this.courseServiceImpl.selectSellerInfoByID(sellerID);
 		session.setAttribute("sellerInfo", sellerInfo);
 		session.setAttribute("courseDetails", course);
-		// 收藏
-		int userID = 1;
-		// List<UserCollections>
-		// collectionsList=this.courseServiceImpl.findUserCollectionsByUserID(userID);
-		// for(UserCollections collection:collectionsList ) {
-		// System.out.println(collection.getUserLogin().getUserID().equals(userID) &&
-		// collection.getCourse().getCourseID().equals(courseID));
-		//
-		// if(collection.getUserLogin().getUserID().equals(userID) &&
-		// collection.getCourse().getCourseID().equals(courseID)) {
-		// System.out.println(collection.getUserLogin().getUserID().equals(userID) &&
-		// collection.getCourse().getCourseID().equals(courseID));
-		// break;
-		// }else {
-		// 获取时间
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String date = df.format(new Date());
-		// int userID=((UserInfo) session.getAttribute("user")).getUserID();
-		UserLogin userLogin = this.courseServiceImpl.findUserLoginByuserID(userID);
-		UserCollections userCollection = new UserCollections();
-		userCollection.setCollectTime(date);
-		userCollection.setCollected(0);
-		userCollection.setCollecting(1);
-		userCollection.setCollectionCount(1);
-		userCollection.setCourse(course);
-		userCollection.setUserLogin(userLogin);
-		this.courseServiceImpl.saveUserCollections(userCollection);
-
-		// }
-		// }
-
 		// 评价
 		List<Evaluate> evaluateList = this.courseServiceImpl.listEvaluateByCourseID(courseID, evaluatePageIndex);
 		session.setAttribute("evaluateList", evaluateList);
@@ -412,11 +386,44 @@ public class CourseController {
 		} else {
 			session.setAttribute("evaluatePageIndex", evaluatePageIndex);
 		}
-		System.out.print(evaluatePageIndex);
-		System.out.println(pageCount);
-		// session.setAttribute("evaluatePageIndex",pageIndex);
 		session.setAttribute("evaluatePageCount", pageCount);
 		session.setAttribute("courseID", courseID);
+		response.sendRedirect("/Sugarcane/front/courseDetails.jsp");
+	}
+
+	/**
+	 * 添加收藏
+	 * 
+	 * @param courseID
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping("/saveCollections")
+	public void saveCollection(@RequestParam(value = "courseID") Integer courseID,
+			@RequestParam(value = "evaluatePageIndex", defaultValue = "1") Integer evaluatePageIndex,
+			HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Course course = this.courseServiceImpl.getCourseById(courseID);
+		session.setAttribute("courseID", courseID);
+		
+		Integer a = (Integer) session.getAttribute("userId");
+		Integer sellerID = course.getSellerLogin().getSellerID();
+		SellerInfo sellerInfo = this.courseServiceImpl.selectSellerInfoByID(sellerID);
+		session.setAttribute("sellerInfo", sellerInfo);
+		session.setAttribute("courseDetails", course);
+		//收藏
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = df.format(new Date());
+		UserLogin userLogin = this.courseServiceImpl.findUserLoginByuserID(a);
+		UserCollections userCollection = new UserCollections();
+		userCollection.setCollectTime(date);
+		userCollection.setCollected(0);
+		userCollection.setCollecting(1);
+		userCollection.setCollectionCount(1);
+		userCollection.setCourse(course);
+		userCollection.setUserLogin(userLogin);
+		this.courseServiceImpl.saveUserCollections(userCollection);
 		response.sendRedirect("/Sugarcane/front/courseDetails.jsp");
 	}
 

@@ -22,7 +22,11 @@
  
 </p>  
 </div>
-	重置密码成功，请返回<a href="${ctx}/front/home.jsp">登陆</a>
+	<div align="center">
+	<span style='font-size:36px;'>重置密码成功，请返回！！</span>
+</div>
+	
+	<a href="${ctx}/front/home.jsp">登陆</a>
 
 <div id="footer">
      ©CopyRight sugarcane <a href="#">联系我们</a>

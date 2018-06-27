@@ -33,12 +33,10 @@ public class AdminLoginController {
 	@RequestMapping("/login")
 	public String login(@RequestParam(value="adminName") String adminName, @RequestParam(value="password") String password,
 			HttpServletRequest request) {
-		System.out.println(adminName + password);
 		AdminLogin adminLogin = this.adminLoginServiceImpl.login(adminName, password);
 		if(adminLogin != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("adminLogin", adminLogin);
-			System.out.println(adminLogin.getAdminName());
 			int userRows = this.adminLoginServiceImpl.listUser().size();
 			session.setAttribute("userRows", userRows);
 			int sellerRows = this.adminLoginServiceImpl.listSeller().size();

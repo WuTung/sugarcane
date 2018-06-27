@@ -48,7 +48,7 @@
 				</c:when>
 				<c:otherwise>
 				<!-- 顶部已登录 -->
-					<a href="#" target="_blank"><strong>${username }</strong></a>
+					<a href="${ctx }/publicCourseType/list1" target="_blank"><strong>${username }</strong></a>
 					 |<a href="${ctx }/userLogin/outLogin.do">退出</a>
 				</c:otherwise>
 			</c:choose>
@@ -112,7 +112,7 @@
                     <div class="p">
                         <p>${s.brief }</p>
                     </div>
-                    <div class="others"><span>浏览xxx次</span></div>
+                    
                 </div>
             </c:forEach>    
             </div>

@@ -47,7 +47,7 @@
 					</c:if>
 					<br>
 					<div align="center">
-						<button class="button" type="button"><span><a href="${ctx}/organization/orgRegist.jsp">注册</a></span></button>
+						<span class="button" ><a href="${ctx}/organization/orgRegist.jsp">注册</a></span>
 						<button class="button" type="submit"><span>登录</span></button>
 					</div>
 				</div>
