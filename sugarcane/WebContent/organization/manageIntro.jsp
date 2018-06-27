@@ -29,8 +29,7 @@
     <div id="list">
      <div class="a1 lefta selecteda"><a href="${ctx }/organization/manageIntro.jsp" class="selecteda leftb">○&nbsp;管理简介</a></div>
      <div class="a1 lefta"><a href="${ctx}/sellerInfo/sellerFindCourse?sellerID=${sellerLogin.sellerID}" class="leftb">○&nbsp;管理分类</a></div>
-     <div class="a1 lefta"><a href="../course/listCourse?coursePageIndex=1&sellerID=${sellerLogin.sellerID }"class="leftb">○&nbsp;管理课程</a></div>
-     <div class="a1 lefta"><a href="#" class="leftb">○&nbsp;预&nbsp;&nbsp;览</a></div>   
+     <div class="a1 lefta"><a href="../course/listCourse?coursePageIndex=1&sellerID=${sellerLogin.sellerID }"class="leftb">○&nbsp;管理课程</a></div>  
      </div><!--list-->
     <!-- 简介内容 -->
     <div  class="top" align="center">
@@ -39,7 +38,7 @@
 				<table>
 					<tr><p class="title">简介</p></tr>
 					<tr><!-- 原简介本身更改 -->
-						<td><div><textarea class="form-control" cols="95" rows="20" placeholder="请输入您的机构简介" name="brief"></textarea></div></td>
+						<td><div><textarea class="form-control" cols="95" rows="20" placeholder="请输入您的机构简介" name="brief">${breif }</textarea></div></td>
 					</tr>
 				</table>
 				<div>
