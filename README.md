@@ -48,40 +48,59 @@
 ## 项目成员
 
 > 吴桐（项目组长)
+  
+>> Email:qwtt160424@163.com
 
 >> github:https://github.com/WuTung
-
+  
 > 秦晓宇(开发人员/技术支持)
+  
+>> Email：jobulence@163.com
 
 >> github:https://github.com/qxxxxxxxxxxy
 
 > 王孜润（设计人员/开发人员）
+  
+>> Email:1010870945@qq.com
 
 >> github:https://github.com/MeccaMe
-
+  
 > 杜凯玲（开发人员）
+  
+>> Email:1052964148@qq.com
 
 >> github:https://github.com/dukailing
 
 > 张梦洲（开发人员）
+  
+>> Email：1421135093@qq.com
 
 >> github:https://github.com/zhangmengzhou
-
+  
 > 王晟宇（开发人员）
+  
+>> Email:852701882@qq.com
 
 >> github:https://github.com/2015015279
 
 > 崔允松（开发人员）
+  
+>> Email:337579873@qq.com
 
 >> github:https://github.com/cui337579
-
+  
 > 冯海晴（开发人员）
+  
+>> Emali:15732103382@163.com
 
 >> github:https://github.com/haiqingfeng
-
+  
 > 冀晋文（测试人员）
+  
+>> Email:1497277185@qq.com
 
 >> github:https://github.com/ytdyyyaa
+  
 
 
 ## 运行效果
@@ -108,7 +127,7 @@
 
 > 收藏页面
   
->> <img src="runningPicture/收藏.png" width="300px" height="200px"/>
+>> <img src="runningPicture/收藏页面.png" width="300px" height="200px"/>
 
 > 全部课程页面
   
